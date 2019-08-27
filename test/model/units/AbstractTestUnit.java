@@ -30,25 +30,14 @@ public abstract class AbstractTestUnit implements ITestUnit {
   }
 
   /**
-   * Sets up the units and weapons to be tested
-   */
-  @BeforeEach
-  public void setUp() {
-    setField();
-    setTestUnit();
-    setTargetAlpaca();
-    setWeapons();
-  }
-
-  /**
    * Set up the game field
    */
   @Override
   public void setField() {
     this.field = new Field();
     this.field.addCells(true, new Location(0, 0), new Location(0, 1), new Location(0, 2),
-        new Location(1, 0), new Location(1, 1), new Location(1, 2), new Location(2, 0),
-        new Location(2, 1), new Location(2, 2));
+            new Location(1, 0), new Location(1, 1), new Location(1, 2), new Location(2, 0),
+            new Location(2, 1), new Location(2, 2));
   }
 
   /**
@@ -68,6 +57,18 @@ public abstract class AbstractTestUnit implements ITestUnit {
     this.staff = new Staff("Staff", 10, 1, 2);
     this.bow = new Bow("Bow", 10, 2, 3);
   }
+  /**
+   * Sets up the units and weapons to be tested
+   */
+
+  @BeforeEach
+  public void setUp() {
+    setField();
+    setTestUnit();
+    setTargetAlpaca();
+    setWeapons();
+  }
+
 
   /**
    * Checks that the constructor works properly.
@@ -108,6 +109,29 @@ public abstract class AbstractTestUnit implements ITestUnit {
     assertNull(getTestUnit().getEquippedItem());
     getTestUnit().equipItem(item);
     assertNull(getTestUnit().getEquippedItem());
+  }
+
+  /**
+   * Tries to give an item from the inventory of the test unit to the alpaca
+   * and verifies whether it has been given or not, then tries to give an item
+   * to a unit with a full inventory.
+   */
+  @Override
+  @Test
+  public void checkGivenItem(){
+    Sword exchangedSword = new Sword("exchangedSword",5,1,2);
+    getTestUnit().getItems().add(exchangedSword);
+    getTestUnit().giveItem(0, getTargetAlpaca());
+    assertEquals(exchangedSword, getTargetAlpaca().getItems().get(0));
+
+    Axe axe = new Axe("Axe",10,1,2);
+    Spear spear = new Spear("Spear",10,1,2);
+    Sword sword = new Sword("Sword",10,1,2);
+    getTestUnit().getItems().add(axe);
+    getTestUnit().getItems().add(spear);
+    getTestUnit().getItems().add(sword);
+    getTargetAlpaca().giveItem(0,getTestUnit());
+    assertEquals(exchangedSword,getTargetAlpaca().getItems().get(0));
   }
 
   /**

@@ -20,7 +20,7 @@ public class BowTest extends AbstractTestItem {
   private Archer archer;
 
   /**
-   * Sets which item is going to be tested
+   * Sets up a correctly implemented item that's going to be tested.
    */
   @Override
   public void setTestItem() {

@@ -25,6 +25,7 @@ public abstract class AbstractUnit implements IUnit {
   private final int movement;
   protected IEquipableItem equippedItem;
   private Location location;
+  private int maxItems;
 
   /**
    * Creates a new Unit.
@@ -44,6 +45,7 @@ public abstract class AbstractUnit implements IUnit {
     this.movement = movement;
     this.location = location;
     this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
+    this.maxItems = maxItems;
   }
 
   @Override
@@ -51,10 +53,17 @@ public abstract class AbstractUnit implements IUnit {
     return currentHitPoints;
   }
 
+  /**
+   * Returns the item list of the unit.
+   * @return the item list.
+   */
+  //cambiado a la lista misma en vez de una copia
   @Override
   public List<IEquipableItem> getItems() {
-    return List.copyOf(items);
+    return items;
   }
+
+  public int getMaxItems(){ return maxItems; }
 
   @Override
   public IEquipableItem getEquippedItem() {
@@ -64,6 +73,21 @@ public abstract class AbstractUnit implements IUnit {
   @Override
   public void setEquippedItem(final IEquipableItem item) {
     this.equippedItem = item;
+  }
+
+  /**
+   * Counts how many items the unit is holding.
+   * @return the number of item the unit is currently holding in its inventory.
+   */
+  @Override
+  public int countItems(){ return this.getItems().size();
+  }
+
+  public void giveItem(int pos, IUnit unit){
+    if(unit.getItems().size()<unit.getMaxItems() && this.getItems().get(pos)!=this.getEquippedItem()){
+      unit.getItems().add(this.getItems().get(pos));
+      this.getItems().remove(pos);
+    }
   }
 
   @Override

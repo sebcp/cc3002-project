@@ -65,4 +65,25 @@ public interface IUnit {
    * If the other location is out of this unit's movement range, the unit doesn't move.
    */
   void moveTo(Location targetLocation);
+
+  /**
+   * Tries to give the unit the pos-th item of the inventory.
+   * @param pos
+   *      the position of the item to give.
+   * @param unit
+   *      the unit to receive the item.
+   */
+  void giveItem(int pos, IUnit unit);
+
+  /**
+   * Counts how many items the unit is holding.
+   * @return the number of item the unit is currently holding in its inventory.
+   */
+  int countItems();
+
+  /**
+   * @return the maximum number of items the unit can hold.
+   */
+  int getMaxItems();
 }
+

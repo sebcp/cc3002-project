@@ -35,32 +35,56 @@ public abstract class AbstractItem implements IEquipableItem {
     this.maxRange = Math.max(maxRange, this.minRange);
   }
 
+  /**
+   * Equips an item to an unit.
+   * @param unit
+   *      the name of the unit to equip the item.
+   */
   @Override
   public void equipTo(final IUnit unit) {
     unit.setEquippedItem(this);
     owner = unit;
   }
 
+  /**
+   * @return IUnit that holds the item. *******REVISAR*******
+   */
   @Override
   public IUnit getOwner() {
     return owner;
   }
 
+  /**
+   * Gets the name of the item.
+   * @return the name of the item.
+   */
   @Override
   public String getName() {
     return name;
   }
 
+  /**
+   * Gets the power of the item.
+   * @return the power of the item.
+   */
   @Override
   public int getPower() {
     return power;
   }
 
+  /**
+   * Get the minimun range of the item.
+   * @return minRange of the item.
+   */
   @Override
   public int getMinRange() {
     return minRange;
   }
 
+  /**
+   * Get the maximum range of the item.
+   * @return maxRange of the item.
+   */
   @Override
   public int getMaxRange() {
     return maxRange;

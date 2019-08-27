@@ -56,6 +56,12 @@ public interface ITestUnit {
   void checkEquippedItem(IEquipableItem item);
 
   /**
+   * Tries to give an item from the inventory of the test unit to the alpaca
+   * and verifies wether it has been given or not.
+   */
+  void checkGivenItem();
+
+  /**
    * @return the test axe
    */
   Axe getAxe();

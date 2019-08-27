@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public abstract class AbstractTestItem {
+  public abstract class AbstractTestItem {
 
   protected String expectedName;
   protected int expectedPower;
@@ -55,6 +55,9 @@ public abstract class AbstractTestItem {
     assertTrue(getWrongTestItem().getMaxRange() >= getWrongTestItem().getMinRange());
   }
 
+  /**
+   * @return the item with wrong ranges setted.
+   */
   public abstract IEquipableItem getWrongTestItem();
 
   /**

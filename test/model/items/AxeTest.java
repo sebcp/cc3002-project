@@ -16,6 +16,9 @@ class AxeTest extends AbstractTestItem {
   private Axe wrongAxe;
   private Fighter fighter;
 
+  /**
+   * Sets up a correctly implemented item that's going to be tested.
+   */
   @Override
   public void setTestItem() {
     expectedName = "Common axe";
@@ -41,11 +44,17 @@ class AxeTest extends AbstractTestItem {
     fighter = new Fighter(10, 5, new Location(0, 0));
   }
 
+  /**
+   * @return the item with wrong range setted.
+   */
   @Override
   public IEquipableItem getWrongTestItem() {
     return wrongAxe;
   }
 
+  /**
+   * @return the item being tested.
+   */
   @Override
   public IEquipableItem getTestItem() {
     return axe;
