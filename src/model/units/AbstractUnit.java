@@ -5,6 +5,7 @@ import static java.lang.Math.min;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import model.items.IEquipableItem;
 import model.map.Location;
 
@@ -66,6 +67,11 @@ public abstract class AbstractUnit implements IUnit {
   public int getMaxItems(){ return maxItems; }
 
   @Override
+  public void equipItem(IEquipableItem item){
+    this.setEquippedItem(item);
+  }
+
+  @Override
   public IEquipableItem getEquippedItem() {
     return equippedItem;
   }
@@ -74,6 +80,7 @@ public abstract class AbstractUnit implements IUnit {
   public void setEquippedItem(final IEquipableItem item) {
     this.equippedItem = item;
   }
+
 
   /**
    * Counts how many items the unit is holding.
