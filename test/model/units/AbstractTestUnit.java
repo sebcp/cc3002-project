@@ -23,6 +23,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   protected Sword sword;
   protected Staff staff;
   protected Spear spear;
+  protected SpellBook spellbook;
 
   @Override
   public void setTargetAlpaca() {
@@ -56,6 +57,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     this.spear = new Spear("Spear", 10, 1, 2);
     this.staff = new Staff("Staff", 10, 1, 2);
     this.bow = new Bow("Bow", 10, 2, 3);
+    this.spellbook = new SpellBook("SpellBook",10,2,3, "Anima");
   }
   /**
    * Sets up the units and weapons to be tested
@@ -194,8 +196,18 @@ public abstract class AbstractTestUnit implements ITestUnit {
    * @return the test bow
    */
   @Override
-  public Bow getBow() {
-    return bow;
+  public Bow getBow() { return bow; }
+
+  @Override
+  @Test
+  public void equipSpellBook() { checkEquippedItem(getSpellBook()); }
+
+  /**
+   * @return the test spell book
+   */
+  @Override
+  public SpellBook getSpellBook(){
+    return spellbook;
   }
 
   /**

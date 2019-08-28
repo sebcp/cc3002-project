@@ -59,6 +59,7 @@ public interface ITestUnit {
    * Tries to give an item from the inventory of the test unit to the alpaca
    * and verifies wether it has been given or not.
    */
+  @Test
   void checkGivenItem();
 
   /**
@@ -97,6 +98,14 @@ public interface ITestUnit {
    * @return the test bow
    */
   Bow getBow();
+
+  @Test
+  void equipSpellBook();
+
+  /**
+   * @return the test spell book
+   */
+  SpellBook getSpellBook();
 
   /**
    * Checks if the unit moves correctly

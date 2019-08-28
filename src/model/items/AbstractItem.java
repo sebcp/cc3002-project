@@ -47,7 +47,7 @@ public abstract class AbstractItem implements IEquipableItem {
   }
 
   /**
-   * @return IUnit that holds the item. *******REVISAR*******
+   * @return IUnit that has the item equipped.
    */
   @Override
   public IUnit getOwner() {

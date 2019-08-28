@@ -71,7 +71,7 @@ public interface IUnit {
    * @param pos
    *      the position of the item to give.
    * @param unit
-   *      the unit to receive the item.
+   *      the unit that receives the item.
    */
   void giveItem(int pos, IUnit unit);
 

@@ -49,6 +49,10 @@ public abstract class AbstractUnit implements IUnit {
     this.maxItems = maxItems;
   }
 
+  /**
+   * Returns the actual hit points of the unit.
+   * @return the current hit points.
+   */
   @Override
   public int getCurrentHitPoints() {
     return currentHitPoints;
@@ -64,6 +68,10 @@ public abstract class AbstractUnit implements IUnit {
     return items;
   }
 
+  /**
+   * Returns the max amount of items the unit can hold.
+   * @return the max amount of items.
+   */
   public int getMaxItems(){ return maxItems; }
 
   @Override
@@ -71,11 +79,20 @@ public abstract class AbstractUnit implements IUnit {
     this.setEquippedItem(item);
   }
 
+  /**
+   * Returns the equipped item.
+   * @return the equipped item.
+   */
   @Override
   public IEquipableItem getEquippedItem() {
     return equippedItem;
   }
 
+  /**
+   * Sets a new equipped item.
+   * @param item
+   *      the item to be equipped.
+   */
   @Override
   public void setEquippedItem(final IEquipableItem item) {
     this.equippedItem = item;
@@ -90,6 +107,13 @@ public abstract class AbstractUnit implements IUnit {
   public int countItems(){ return this.getItems().size();
   }
 
+  /**
+   * Tries to give the unit the pos-th item of the inventory.
+   * @param pos
+   *      the position of the item to give.
+   * @param unit
+   *      the unit that receives the item.
+   */
   public void giveItem(int pos, IUnit unit){
     if(unit.getItems().size()<unit.getMaxItems() && this.getItems().get(pos)!=this.getEquippedItem()){
       unit.getItems().add(this.getItems().get(pos));
