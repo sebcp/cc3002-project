@@ -27,7 +27,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
 
   @Override
   public void setTargetAlpaca() {
-    targetAlpaca = new Alpaca(50, 2, field.getCell(1, 0));
+    targetAlpaca = new Alpaca(50, 2, field.getCell(1, 0),"Alpaca");
   }
 
   /**

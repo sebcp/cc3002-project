@@ -2,7 +2,6 @@ package model.units;
 
 import java.util.List;
 
-import model.items.Axe;
 import model.items.IEquipableItem;
 import model.map.Location;
 
@@ -113,15 +112,39 @@ public interface IUnit {
   int calculateDistance(IUnit target);
 
   /**
-   * Starts a combat with the targeted unit, it ends when one of the units falls to 0 hp.
+   * Starts a combat with the targeted unit, it ends when one of the units HP fall to 0.
+   * Units cannot enter combat if they don't have an item equipped or if the targeted unit
+   * is outside of the range defined by the equipped item.
    * @param unit
    *      the unit to be fought.
    */
   void combat(IUnit unit);
 
-
+  /**
+   * Lowers the hp of the unit by an amount defined by the attacker's item power. If
+   * the unit's hp were to fall bellow 0, it's set to 0 and set to dead.
+   * @param damage
+   */
   void receiveDamage(int damage);
 
+  /**
+   * Sets the current health points to a specified value.
+   * @param hp
+   *      the value to be setted as hp.
+   */
   void setHp(int hp);
+
+  /**
+   * Sets the current state of the unit.
+   * @param bool
+   *      boolean to be set, true if the unit is alive; false if the unit is dead.
+   */
+  void setIsAlive(boolean bool);
+
+  /**
+   * Returns the current state of the unit.
+   * @return true if the unit's hp hasn't fell to 0; false if it has.
+   */
+  boolean getIsAlive();
 }
 

@@ -87,17 +87,46 @@ public interface IEquipableItem {
    */
   void equipToSwordMaster(IUnit unit);
 
-
+  /**
+   * Attacks the unit holding the specified item.
+   * @param item
+   *      the item that's held by the unit to be attacked.
+   */
   void attack(IEquipableItem item);
 
+  /**
+   * Receives an attack from an axe.
+   * @param axe
+   *      the axe that's attacking.
+   */
   void receiveAttackFromAxe(Axe axe);
 
+  /**
+   * Receives an attack from a spear.
+   * @param spear
+   *      the spear that's attacking.
+   */
   void receiveAttackFromSpear(Spear spear);
 
+  /**
+   * Receives an attack from a sword.
+   * @param sword
+   *      the sword that's attacking.
+   */
   void receiveAttackFromSword(Sword sword);
 
+  /**
+   * Receives an attack from a spell book.
+   * @param spellbook
+   *      the spell book that's attacking.
+   */
   void receiveAttackFromSpellBook(SpellBook spellbook);
 
+  /**
+   * Receives an attack from a bow.
+   * @param bow
+   *      the bow that's attacking.
+   */
   void receiveAttackFromBow(Bow bow);
 }
 

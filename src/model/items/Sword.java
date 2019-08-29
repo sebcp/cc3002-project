@@ -57,6 +57,7 @@ public class Sword extends AbstractItem {
   public void equipToSwordMaster(IUnit unit){
     unit.setEquippedItem(this);
     unit.addItem(this);
+    this.setOwner(unit);
   }
 
   @Override

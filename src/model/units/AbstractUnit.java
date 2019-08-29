@@ -27,6 +27,8 @@ public abstract class AbstractUnit implements IUnit {
   private IEquipableItem equippedItem;
   private Location location;
   private int maxItems;
+  private boolean isAlive;
+  private String name;
 
   /**
    * Creates a new Unit.
@@ -47,84 +49,88 @@ public abstract class AbstractUnit implements IUnit {
     this.location = location;
     this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
     this.maxItems = maxItems;
+    this.isAlive = true;
   }
 
-  @Override
+  public void setName(String name){ this.name = name; }
+
+  public String getName(){ return this.name; }
+
   public int getCurrentHitPoints() {
     return currentHitPoints;
   }
 
-  @Override
   public void setHp(int hp){ this.currentHitPoints = hp; }
+
+  public void setIsAlive(boolean bool){ this.isAlive = bool; }
+
+  public boolean getIsAlive(){ return this.isAlive; }
 
   public void receiveDamage(int damage){
     int damageDealt;
-    if(this.currentHitPoints-damage < 0){
+    if(this.currentHitPoints-damage <= 0){
       damageDealt = this.getCurrentHitPoints();
       this.setHp(0);
+      this.setIsAlive(false);
     }
     else{
       damageDealt = damage;
       this.setHp(this.getCurrentHitPoints()-damage);
     }
-    System.out.println("The unit received " + damageDealt + " points of damage.");
+    System.out.println(this.getName() + " received " + damageDealt + " points of damage.");
   }
 
-  @Override
   public List<IEquipableItem> getItems() {
     return List.copyOf(items);
   }
 
-  @Override
   public void addItem(IEquipableItem item){
     this.items.add(item);
   }
 
-  @Override
   public void removeItem(IEquipableItem item){ this.items.remove(item); }
 
-  @Override
   public int calculateDistance(IUnit target) {
     return (int) this.getLocation().distanceTo(target.getLocation());
   }
 
-  @Override
   public void combat(IUnit unit){
-    IEquipableItem unitEquip = unit.getEquippedItem();
-    IEquipableItem thisEquip = this.getEquippedItem();
-
-    if(thisEquip==null){
-      //Do nothing
-      System.out.println("Units must have an item equipped to combat another unit.");
-    }
-    if(unitEquip==null){
-      unit.setHp(0);
-    }
-    while(this.currentHitPoints!=0 && unit.getCurrentHitPoints()!=0 && thisEquip!=null &&
-            unitEquip!=null) {
-      thisEquip.attack(unitEquip);
-      if(unit.getCurrentHitPoints()!=0){
-        unitEquip.attack(thisEquip);
+    if(this.getIsAlive() && unit.getIsAlive()) {
+      IEquipableItem unitEquip = unit.getEquippedItem();
+      IEquipableItem thisEquip = this.getEquippedItem();
+      int distance = this.calculateDistance(unit);
+      if (thisEquip == null) {
+        //Do nothing
+        System.out.println("Units must have an item equipped to combat another unit.");
+      }
+      else {
+        if (distance >= thisEquip.getMinRange() && distance <= thisEquip.getMaxRange()) {
+          if (unitEquip == null) {
+            while (unit.getCurrentHitPoints() != 0) {
+              unit.receiveDamage(thisEquip.getPower());
+            }
+          }
+          while (this.currentHitPoints != 0 && unit.getCurrentHitPoints() != 0 &&
+                  thisEquip != null && unitEquip != null) {
+            thisEquip.attack(unitEquip);
+            if (unit.getCurrentHitPoints() != 0 && distance >= unitEquip.getMinRange() &&
+                    distance <= unitEquip.getMaxRange()) {
+              unitEquip.attack(thisEquip);
+            }
+          }
+        }
       }
     }
   }
 
   public int getMaxItems(){ return maxItems; }
 
-  @Override
   public abstract void equipItem(IEquipableItem item);
 
-  @Override
-  public IEquipableItem getEquippedItem() {
-    return equippedItem;
-  }
+  public IEquipableItem getEquippedItem() { return equippedItem; }
 
-  @Override
-  public void setEquippedItem(final IEquipableItem item) {
-    this.equippedItem = item;
-  }
+  public void setEquippedItem(final IEquipableItem item) { this.equippedItem = item; }
 
-  @Override
   public int countItems(){ return this.getItems().size(); }
 
   public void giveItem(int pos, IUnit unit){
@@ -136,24 +142,12 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  public Location getLocation() { return location; }
 
+  public void setLocation(final Location location) { this.location = location; }
 
-  @Override
-  public Location getLocation() {
-    return location;
-  }
+  public int getMovement() { return movement; }
 
-  @Override
-  public void setLocation(final Location location) {
-    this.location = location;
-  }
-
-  @Override
-  public int getMovement() {
-    return movement;
-  }
-
-  @Override
   public void moveTo(final Location targetLocation) {
     if (getLocation().distanceTo(targetLocation) <= getMovement()
         && targetLocation.getUnit() == null) {

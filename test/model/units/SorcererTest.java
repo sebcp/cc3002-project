@@ -1,8 +1,8 @@
 package model.units;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test set for the sorcerer unit.
@@ -12,7 +12,7 @@ public class SorcererTest extends AbstractTestUnit {
     private Sorcerer sorcerer;
 
     @Override
-    public void setTestUnit() { sorcerer = new Sorcerer(50,2,field.getCell(0, 0)); }
+    public void setTestUnit() { sorcerer = new Sorcerer(50,2,field.getCell(0, 0),"Sorcerer"); }
 
     @Override
     public IUnit getTestUnit() { return sorcerer; }
@@ -24,5 +24,19 @@ public class SorcererTest extends AbstractTestUnit {
         assertNull(sorcerer.getEquippedItem());
         sorcerer.equipItem(spellbook);
         assertEquals(spellbook,sorcerer.getEquippedItem());
+    }
+
+    @Test
+    public void combatTest(){
+        sorcerer.equipItem(spellbook);
+        assertEquals(spellbook, sorcerer.getEquippedItem());
+
+        sorcerer.combat(getTargetAlpaca());
+        assertEquals(50,getTargetAlpaca().getCurrentHitPoints());
+
+        getTargetAlpaca().moveTo(field.getCell(1,1));
+        sorcerer.combat(getTargetAlpaca());
+        assertEquals(0,getTargetAlpaca().getCurrentHitPoints());
+        assertFalse(getTargetAlpaca().getIsAlive());
     }
 }

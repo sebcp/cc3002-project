@@ -15,7 +15,7 @@ public class SwordMasterTest extends AbstractTestUnit {
    */
   @Override
   public void setTestUnit() {
-    swordMaster = new SwordMaster(50, 2, field.getCell(0, 0));
+    swordMaster = new SwordMaster(50, 2, field.getCell(0, 0),"Swordmaster");
   }
 
   /**

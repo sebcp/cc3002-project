@@ -32,6 +32,7 @@ public class Axe extends AbstractItem {
   public void equipToFighter(IUnit unit) {
     unit.setEquippedItem(this);
     unit.addItem(this);
+    this.setOwner(unit);
   }
 
   @Override

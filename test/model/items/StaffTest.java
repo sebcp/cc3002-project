@@ -41,7 +41,7 @@ public class StaffTest extends AbstractTestItem {
    */
   @Override
   public void setTestUnit() {
-    cleric = new Cleric(10, 5, new Location(0, 0));
+    cleric = new Cleric(10, 5, new Location(0, 0),"Cleric");
   }
 
   @Override

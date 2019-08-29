@@ -2,7 +2,9 @@ package model.units;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import model.items.Sword;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -20,7 +22,7 @@ public class ArcherTest extends AbstractTestUnit {
    */
   @Override
   public void setTestUnit() {
-    archer = new Archer(50, 2, field.getCell(0, 0));
+    archer = new Archer(50, 2, field.getCell(0, 0),"Archer");
   }
 
   /**
@@ -40,5 +42,26 @@ public class ArcherTest extends AbstractTestUnit {
     assertNull(archer.getEquippedItem());
     archer.equipItem(bow);
     assertEquals(bow, archer.getEquippedItem());
+  }
+
+  @Test
+  public void combatTest(){
+    archer.equipItem(bow);
+    assertEquals(bow, archer.getEquippedItem());
+
+    archer.combat(getTargetAlpaca());
+    assertEquals(50,getTargetAlpaca().getCurrentHitPoints());
+
+    getTargetAlpaca().moveTo(field.getCell(1,1));
+    archer.combat(getTargetAlpaca());
+    assertEquals(0,getTargetAlpaca().getCurrentHitPoints());
+    assertFalse(getTargetAlpaca().getIsAlive());
+
+    Sword sword = new Sword("Sword",10,1,1);
+    SwordMaster swordmaster = new SwordMaster(50,2,field.getCell(0,1),"Swordmaster");
+    swordmaster.equipItem(sword);
+    swordmaster.combat(archer);
+    assertEquals(0,archer.getCurrentHitPoints());
+    assertFalse(archer.getIsAlive());
   }
 }

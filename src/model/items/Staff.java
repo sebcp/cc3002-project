@@ -52,6 +52,7 @@ public class Staff extends AbstractItem {
   public void equipToCleric(IUnit unit) {
     unit.setEquippedItem(this);
     unit.addItem(this);
+    this.setOwner(unit);
   }
 
   @Override

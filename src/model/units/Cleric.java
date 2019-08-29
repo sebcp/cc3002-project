@@ -20,9 +20,10 @@ public class Cleric extends AbstractUnit {
    * @param movement
    *     the number of panels a unit can move
    */
-  public Cleric(final int hitPoints, final int movement, final Location location,
+  public Cleric(int hitPoints, final int movement, final Location location, String name,
       IEquipableItem... items) {
     super(hitPoints, movement, location, 3, items);
+    this.setName(name);
   }
 
   /**

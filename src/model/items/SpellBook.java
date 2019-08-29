@@ -60,6 +60,7 @@ public class SpellBook extends AbstractItem {
     public void equipToSorcerer(IUnit unit){
         unit.setEquippedItem(this);
         unit.addItem(this);
+        this.setOwner(unit);
     }
 
     @Override

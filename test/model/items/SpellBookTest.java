@@ -44,7 +44,7 @@ public class SpellBookTest extends AbstractTestItem{
      */
     @Override
     public void setTestUnit() {
-        sorcerer = new Sorcerer(10, 5, new Location(0, 0));
+        sorcerer = new Sorcerer(10, 5, new Location(0, 0),"Sorcerer");
     }
 
     /**
