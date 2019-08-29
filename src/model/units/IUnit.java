@@ -112,5 +112,16 @@ public interface IUnit {
    */
   int calculateDistance(IUnit target);
 
+  /**
+   * Starts a combat with the targeted unit, it ends when one of the units falls to 0 hp.
+   * @param unit
+   *      the unit to be fought.
+   */
+  void combat(IUnit unit);
+
+
+  void receiveDamage(int damage);
+
+  void setHp(int hp);
 }
 

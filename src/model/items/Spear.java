@@ -2,6 +2,8 @@ package model.items;
 
 import model.units.IUnit;
 
+import java.lang.Math;
+
 /**
  * This class represents a spear.
  *
@@ -57,5 +59,21 @@ public class Spear extends AbstractItem {
   @Override
   public void equipToSwordMaster(IUnit unit){
     System.out.println("Cannot equip " + this.getName() + ", sword masters can only equip swords.");
+  }
+
+  @Override
+  public void attack(IEquipableItem item){
+    item.receiveAttackFromSpear(this);
+  }
+  @Override
+  public void receiveAttackFromAxe(Axe axe) {
+    int damage = (int) Math.round(axe.getPower()*1.5);
+    this.getOwner().receiveDamage(damage);
+  }
+
+  @Override
+  public void receiveAttackFromSword(Sword sword) {
+    int damage = sword.getPower()-20;
+    this.getOwner().receiveDamage(damage);
   }
 }

@@ -37,4 +37,10 @@ public class Cleric extends AbstractUnit {
   public void equipItem(final IEquipableItem item) {
     item.equipToCleric(this);
   }
+
+  @Override
+  public void combat(IUnit unit){
+    //Do nothing
+    System.out.println("Clerics cannot combat other units.");
+  }
 }

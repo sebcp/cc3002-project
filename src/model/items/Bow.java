@@ -64,4 +64,9 @@ public class Bow extends AbstractItem {
   public void equipToSwordMaster(IUnit unit){
     System.out.println("Cannot equip " + this.getName() + ", sword masters can only equip swords.");
   }
+
+  @Override
+  public void attack(IEquipableItem item){
+    item.receiveAttackFromBow(this);
+  }
 }

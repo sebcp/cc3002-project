@@ -86,6 +86,19 @@ public interface IEquipableItem {
    *      the sword master to be equipped with the item.
    */
   void equipToSwordMaster(IUnit unit);
+
+
+  void attack(IEquipableItem item);
+
+  void receiveAttackFromAxe(Axe axe);
+
+  void receiveAttackFromSpear(Spear spear);
+
+  void receiveAttackFromSword(Sword sword);
+
+  void receiveAttackFromSpellBook(SpellBook spellbook);
+
+  void receiveAttackFromBow(Bow bow);
 }
 
 

@@ -58,4 +58,21 @@ public class Sword extends AbstractItem {
     unit.setEquippedItem(this);
     unit.addItem(this);
   }
+
+  @Override
+  public void attack(IEquipableItem item){
+    item.receiveAttackFromSword(this);
+  }
+
+  @Override
+  public void receiveAttackFromAxe(Axe axe) {
+    int damage = axe.getPower()-20;
+    this.getOwner().receiveDamage(damage);
+  }
+
+  @Override
+  public void receiveAttackFromSpear(Spear spear){
+    int damage = (int) Math.round(spear.getPower()*1.5);
+    this.getOwner().receiveDamage(damage);
+  }
 }

@@ -19,14 +19,10 @@ public abstract class AbstractItem implements IEquipableItem {
   /**
    * Constructor for a default item without any special behaviour.
    *
-   * @param name
-   *     the name of the item
-   * @param power
-   *     the power of the item (this could be the amount of damage or healing the item does)
-   * @param minRange
-   *     the minimum range of the item
-   * @param maxRange
-   *     the maximum range of the item
+   * @param name     the name of the item
+   * @param power    the power of the item (this could be the amount of damage or healing the item does)
+   * @param minRange the minimum range of the item
+   * @param maxRange the maximum range of the item
    */
   public AbstractItem(final String name, final int power, final int minRange, final int maxRange) {
     this.name = name;
@@ -37,8 +33,8 @@ public abstract class AbstractItem implements IEquipableItem {
 
   /**
    * Equips an item to an unit.
-   * @param unit
-   *      the name of the unit to equip the item.
+   *
+   * @param unit the name of the unit to equip the item.
    */
   @Override
   public void equipTo(final IUnit unit) {
@@ -88,4 +84,36 @@ public abstract class AbstractItem implements IEquipableItem {
 
   @Override
   public abstract void equipToSwordMaster(IUnit unit);
+
+  public abstract void attack(IEquipableItem item);
+
+  @Override
+  public void receiveAttackFromAxe(Axe axe) {
+    int damage = axe.getPower();
+    this.getOwner().receiveDamage(damage);
+  }
+
+  @Override
+  public void receiveAttackFromSpear(Spear spear){
+    int damage = spear.getPower();
+    this.getOwner().receiveDamage(damage);
+  }
+
+  @Override
+  public void receiveAttackFromSword(Sword sword) {
+    int damage = sword.getPower();
+    this.getOwner().receiveDamage(damage);
+  }
+
+  @Override
+  public void receiveAttackFromSpellBook(SpellBook spellbook) {
+    int damage = (int) Math.round(spellbook.getPower()*1.5);
+    this.getOwner().receiveDamage(damage);
+  }
+
+  @Override
+  public void receiveAttackFromBow(Bow bow){
+    int damage = bow.getPower();
+    this.getOwner().receiveDamage(damage);
+  }
 }

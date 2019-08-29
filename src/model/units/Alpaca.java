@@ -39,4 +39,10 @@ public class Alpaca extends AbstractUnit {
     // Method body intentionally left empty
   }
 
+  @Override
+  public void combat(IUnit unit){
+    //Do nothing
+    System.out.println("Alpacas cannot combat other units.");
+  }
+
 }

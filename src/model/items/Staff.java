@@ -58,4 +58,8 @@ public class Staff extends AbstractItem {
   public void equipToSwordMaster(IUnit unit){
     System.out.println("Cannot equip " + this.getName() + ", sword masters can only equip swords.");
   }
+
+  public void attack(IEquipableItem item){
+    //Intentionally left empty.
+  }
 }

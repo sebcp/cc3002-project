@@ -22,7 +22,7 @@ import model.map.Location;
 public abstract class AbstractUnit implements IUnit {
 
   protected final List<IEquipableItem> items = new ArrayList<>();
-  private final int currentHitPoints;
+  private int currentHitPoints;
   private final int movement;
   private IEquipableItem equippedItem;
   private Location location;
@@ -55,6 +55,22 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   @Override
+  public void setHp(int hp){ this.currentHitPoints = hp; }
+
+  public void receiveDamage(int damage){
+    int damageDealt;
+    if(this.currentHitPoints-damage < 0){
+      damageDealt = this.getCurrentHitPoints();
+      this.setHp(0);
+    }
+    else{
+      damageDealt = damage;
+      this.setHp(this.getCurrentHitPoints()-damage);
+    }
+    System.out.println("The unit received " + damageDealt + " points of damage.");
+  }
+
+  @Override
   public List<IEquipableItem> getItems() {
     return List.copyOf(items);
   }
@@ -65,13 +81,32 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   @Override
-  public void removeItem(IEquipableItem item){
-    this.items.remove(item);
-  }
+  public void removeItem(IEquipableItem item){ this.items.remove(item); }
 
   @Override
   public int calculateDistance(IUnit target) {
     return (int) this.getLocation().distanceTo(target.getLocation());
+  }
+
+  @Override
+  public void combat(IUnit unit){
+    IEquipableItem unitEquip = unit.getEquippedItem();
+    IEquipableItem thisEquip = this.getEquippedItem();
+
+    if(thisEquip==null){
+      //Do nothing
+      System.out.println("Units must have an item equipped to combat another unit.");
+    }
+    if(unitEquip==null){
+      unit.setHp(0);
+    }
+    while(this.currentHitPoints!=0 && unit.getCurrentHitPoints()!=0 && thisEquip!=null &&
+            unitEquip!=null) {
+      thisEquip.attack(unitEquip);
+      if(unit.getCurrentHitPoints()!=0){
+        unitEquip.attack(thisEquip);
+      }
+    }
   }
 
   public int getMaxItems(){ return maxItems; }
@@ -100,6 +135,8 @@ public abstract class AbstractUnit implements IUnit {
       this.removeItem(this.getItems().get(pos));
     }
   }
+
+
 
   @Override
   public Location getLocation() {

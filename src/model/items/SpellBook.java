@@ -79,4 +79,27 @@ public class SpellBook extends AbstractItem {
     public String getType() {
         return type;
     }
+
+    @Override
+    public void attack(IEquipableItem item){
+        item.receiveAttackFromSpellBook(this);
+    }
+
+    @Override
+    public void receiveAttackFromAxe(Axe axe) {
+        int damage = (int) Math.round(axe.getPower()*1.5);
+        this.getOwner().receiveDamage(damage);
+    }
+
+    @Override
+    public void receiveAttackFromSpear(Spear spear) {
+        int damage = (int) Math.round(spear.getPower() * 1.5);
+        this.getOwner().receiveDamage(damage);
+    }
+
+    @Override
+    public void receiveAttackFromSword(Sword sword) {
+        int damage = (int) Math.round(sword.getPower()*1.5);
+        this.getOwner().receiveDamage(damage);
+    }
 }

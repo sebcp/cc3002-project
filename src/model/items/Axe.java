@@ -58,4 +58,21 @@ public class Axe extends AbstractItem {
   public void equipToSwordMaster(IUnit unit){
     System.out.println("Cannot equip " + this.getName() + ", sword masters can only equip swords.");
   }
+
+  @Override
+  public void attack(IEquipableItem item){
+    item.receiveAttackFromAxe(this);
+  }
+
+  @Override
+  public void receiveAttackFromSpear(Spear spear){
+    int damage = spear.getPower()-20;
+    this.getOwner().receiveDamage(damage);
+  }
+
+  @Override
+  public void receiveAttackFromSword(Sword sword) {
+    int damage = (int) Math.round(sword.getPower()*1.5);
+    this.getOwner().receiveDamage(damage);
+  }
 }
