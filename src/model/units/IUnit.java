@@ -1,6 +1,8 @@
 package model.units;
 
 import java.util.List;
+
+import model.items.Axe;
 import model.items.IEquipableItem;
 import model.map.Location;
 
@@ -85,5 +87,20 @@ public interface IUnit {
    * @return the maximum number of items the unit can hold.
    */
   int getMaxItems();
+
+  /**
+   * Adds an item to the unit's inventory.
+   * @param item
+   *      the item to be added.
+   */
+  void addItem(IEquipableItem item);
+
+  /**
+   * Removes an item from the unit's inventory.
+   * @param item
+   *      the item to be removed.
+   */
+  void removeItem(IEquipableItem item);
+
 }
 

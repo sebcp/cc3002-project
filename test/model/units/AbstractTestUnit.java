@@ -122,16 +122,16 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Test
   public void checkGivenItem(){
     Sword exchangedSword = new Sword("exchangedSword",5,1,2);
-    getTestUnit().getItems().add(exchangedSword);
+    getTestUnit().addItem(exchangedSword);
     getTestUnit().giveItem(0, getTargetAlpaca());
     assertEquals(exchangedSword, getTargetAlpaca().getItems().get(0));
 
     Axe axe = new Axe("Axe",10,1,2);
     Spear spear = new Spear("Spear",10,1,2);
     Sword sword = new Sword("Sword",10,1,2);
-    getTestUnit().getItems().add(axe);
-    getTestUnit().getItems().add(spear);
-    getTestUnit().getItems().add(sword);
+    getTestUnit().addItem(axe);
+    getTestUnit().addItem(spear);
+    getTestUnit().addItem(sword);
     getTargetAlpaca().giveItem(0,getTestUnit());
     assertEquals(exchangedSword,getTargetAlpaca().getItems().get(0));
   }

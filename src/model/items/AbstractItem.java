@@ -1,5 +1,7 @@
 package model.items;
 
+import model.map.Field;
+import model.units.Fighter;
 import model.units.IUnit;
 
 /**
@@ -89,4 +91,22 @@ public abstract class AbstractItem implements IEquipableItem {
   public int getMaxRange() {
     return maxRange;
   }
+
+  @Override
+  public abstract void equipToFighter(IUnit unit);
+
+  @Override
+  public abstract void equipToArcher(IUnit unit);
+
+  @Override
+  public abstract void equipToHero(IUnit unit);
+
+  @Override
+  public abstract void equipToSorcerer(IUnit unit);
+
+  @Override
+  public abstract void equipToCleric(IUnit unit);
+
+  @Override
+  public abstract void equipToSwordMaster(IUnit unit);
 }

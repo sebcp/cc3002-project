@@ -1,5 +1,8 @@
 package model.items;
 
+import model.units.Fighter;
+import model.units.IUnit;
+
 /**
  * This class represents an Axe.
  * <p>
@@ -24,5 +27,36 @@ public class Axe extends AbstractItem {
    */
   public Axe(final String name, final int power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange);
+  }
+
+  @Override
+  public void equipToFighter(IUnit unit) {
+    unit.setEquippedItem(this);
+    unit.addItem(this);
+  }
+
+  @Override
+  public void equipToArcher(IUnit unit) {
+    System.out.println("Cannot equip " + this.getName() + ", archers can only equip bows." );
+  }
+
+  @Override
+  public void equipToHero(IUnit unit) {
+    System.out.println("Cannot equip " + this.getName() + ", heroes can only equip spears.");
+  }
+
+  @Override
+  public void equipToSorcerer(IUnit unit){
+    System.out.println("Cannot equip " + this.getName() + ", sorcerers can only equip spell books.");
+  }
+
+  @Override
+  public void equipToCleric(IUnit unit) {
+    System.out.println("Cannot equip " + this.getName() + ", clerics can only equip staffs.");
+  }
+
+  @Override
+  public void equipToSwordMaster(IUnit unit){
+    System.out.println("Cannot equip " + this.getName() + ", sword masters can only equip swords.");
   }
 }

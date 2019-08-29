@@ -35,7 +35,7 @@ public class AlpacaTest extends AbstractTestUnit {
   @Test
   public void checkGivenItem(){
     Sword exchangedSword = new Sword("exchangedSword",5,1,2);
-    getTestUnit().getItems().add(exchangedSword);
+    getTestUnit().addItem(exchangedSword);
     getTestUnit().giveItem(0, getTargetAlpaca());
     assertEquals(exchangedSword, getTargetAlpaca().getItems().get(0));
   }

@@ -62,10 +62,19 @@ public abstract class AbstractUnit implements IUnit {
    * Returns the item list of the unit.
    * @return the item list.
    */
-  //cambiado a la lista misma en vez de una copia
   @Override
   public List<IEquipableItem> getItems() {
-    return items;
+    return List.copyOf(items);
+  }
+
+  @Override
+  public void addItem(IEquipableItem item){
+    this.items.add(item);
+  }
+
+  @Override
+  public void removeItem(IEquipableItem item){
+    this.items.remove(item);
   }
 
   /**
@@ -75,9 +84,7 @@ public abstract class AbstractUnit implements IUnit {
   public int getMaxItems(){ return maxItems; }
 
   @Override
-  public void equipItem(IEquipableItem item){
-    this.setEquippedItem(item);
-  }
+  public abstract void equipItem(IEquipableItem item);
 
   /**
    * Returns the equipped item.
@@ -116,8 +123,8 @@ public abstract class AbstractUnit implements IUnit {
    */
   public void giveItem(int pos, IUnit unit){
     if(unit.getItems().size()<unit.getMaxItems() && this.getItems().get(pos)!=this.getEquippedItem()){
-      unit.getItems().add(this.getItems().get(pos));
-      this.getItems().remove(pos);
+      unit.addItem(this.getItems().get(pos));
+      this.removeItem(this.getItems().get(pos));
     }
   }
 
