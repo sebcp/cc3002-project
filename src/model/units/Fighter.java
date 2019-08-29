@@ -1,6 +1,5 @@
 package model.units;
 
-import model.items.Axe;
 import model.items.IEquipableItem;
 import model.map.Location;
 
@@ -21,6 +20,7 @@ public class Fighter extends AbstractUnit {
   /**
    * Sets the currently equipped item of this unit.
    *
+   * The fighter can only equip axes.
    * @param item
    *     the item to equip
    */

@@ -6,12 +6,12 @@ import model.units.IUnit;
 
 /**
  * This class represents a <i>location</i> in the game's map.
- * <p>
+ *
  * A location is simply a graph node with connections to all adjacent positions to it. Every node
  * in the graph contains an id that represents it's position, with rows and columns with numbers
  * (just like a cartesian plane), a list of references to all of it's neighbours and a reference to
  * the unit that's currently in that position (in case there is one).
- * <p>
+ *
  * Note that a structure like this let's it's user implement more complicated maps than a simple
  * chess one, but for simplicity, it will be assumed that the distance between any node and it's
  * neighbours will be always 1.
@@ -43,13 +43,13 @@ public class Location {
 
   /**
    * Checks if a location is equal to another object.
-   * <p>
+   *
    * Two locations are equal when their id's match. It is assumed that there can't be 2 locations
    * with the same id in the game.
    *
    * @param other
    *     the object to compare this location to
-   * @return <code>true</code> if the id's match; <code>false</code> otherwise
+   * @return true if the id's match; false otherwise
    */
   @Override
   public boolean equals(final Object other) {
@@ -88,7 +88,7 @@ public class Location {
    *
    * @param otherLocation
    *     the cell to be checked
-   * @return <code>true</code> if the two locations are adjacent; <code>false</code> otherwise
+   * @return true if the two locations are adjacent; false otherwise
    */
   boolean isNeighbour(final Location otherLocation) {
     return neighbours.contains(otherLocation);
@@ -112,7 +112,7 @@ public class Location {
   }
 
   /**
-   * Removes a reighbour from this location.
+   * Removes a neighbour from this location.
    *
    * @param neighbour
    *     the neighbour to be removed

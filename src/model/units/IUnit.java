@@ -8,7 +8,7 @@ import model.map.Location;
 
 /**
  * This interface represents all units in the game.
- * <p>
+ *
  * The signature of all the common methods that a unit can execute are defined here. All units
  * except some special ones can carry at most 3 weapons.
  *
@@ -63,13 +63,15 @@ public interface IUnit {
 
   /**
    * Moves this unit to another location.
-   * <p>
+   *
    * If the other location is out of this unit's movement range, the unit doesn't move.
    */
   void moveTo(Location targetLocation);
 
   /**
    * Tries to give the unit the pos-th item of the inventory.
+   * Only works if the targeted unit doesn't have a full inventory, is 1 cell away from the unit
+   * that's giving the item and the item isn't equipped.
    * @param pos
    *      the position of the item to give.
    * @param unit
@@ -101,6 +103,14 @@ public interface IUnit {
    *      the item to be removed.
    */
   void removeItem(IEquipableItem item);
+
+  /**
+   * Calculates the distance from the unit to the target.
+   * @param target
+   *      the unit that's desired to know how far it is.
+   * @return the distance from the unit to the target.
+   */
+  int calculateDistance(IUnit target);
 
 }
 

@@ -11,7 +11,7 @@ import model.map.Location;
 
 /**
  * This class represents an abstract unit.
- * <p>
+ *
  * An abstract unit is a unit that cannot be used in the
  * game, but that contains the implementation of some of the methods that are common for most
  * units.
@@ -24,7 +24,7 @@ public abstract class AbstractUnit implements IUnit {
   protected final List<IEquipableItem> items = new ArrayList<>();
   private final int currentHitPoints;
   private final int movement;
-  protected IEquipableItem equippedItem;
+  private IEquipableItem equippedItem;
   private Location location;
   private int maxItems;
 
@@ -49,19 +49,11 @@ public abstract class AbstractUnit implements IUnit {
     this.maxItems = maxItems;
   }
 
-  /**
-   * Returns the actual hit points of the unit.
-   * @return the current hit points.
-   */
   @Override
   public int getCurrentHitPoints() {
     return currentHitPoints;
   }
 
-  /**
-   * Returns the item list of the unit.
-   * @return the item list.
-   */
   @Override
   public List<IEquipableItem> getItems() {
     return List.copyOf(items);
@@ -77,52 +69,33 @@ public abstract class AbstractUnit implements IUnit {
     this.items.remove(item);
   }
 
-  /**
-   * Returns the max amount of items the unit can hold.
-   * @return the max amount of items.
-   */
+  @Override
+  public int calculateDistance(IUnit target) {
+    return (int) this.getLocation().distanceTo(target.getLocation());
+  }
+
   public int getMaxItems(){ return maxItems; }
 
   @Override
   public abstract void equipItem(IEquipableItem item);
 
-  /**
-   * Returns the equipped item.
-   * @return the equipped item.
-   */
   @Override
   public IEquipableItem getEquippedItem() {
     return equippedItem;
   }
 
-  /**
-   * Sets a new equipped item.
-   * @param item
-   *      the item to be equipped.
-   */
   @Override
   public void setEquippedItem(final IEquipableItem item) {
     this.equippedItem = item;
   }
 
-
-  /**
-   * Counts how many items the unit is holding.
-   * @return the number of item the unit is currently holding in its inventory.
-   */
   @Override
-  public int countItems(){ return this.getItems().size();
-  }
+  public int countItems(){ return this.getItems().size(); }
 
-  /**
-   * Tries to give the unit the pos-th item of the inventory.
-   * @param pos
-   *      the position of the item to give.
-   * @param unit
-   *      the unit that receives the item.
-   */
   public void giveItem(int pos, IUnit unit){
-    if(unit.getItems().size()<unit.getMaxItems() && this.getItems().get(pos)!=this.getEquippedItem()){
+    if(unit.getItems().size()<unit.getMaxItems() &&
+            this.getItems().get(pos)!=this.getEquippedItem() &&
+            this.calculateDistance(unit)==1){
       unit.addItem(this.getItems().get(pos));
       this.removeItem(this.getItems().get(pos));
     }

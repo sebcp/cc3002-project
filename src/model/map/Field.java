@@ -4,8 +4,8 @@ import java.util.*;
 
 /**
  * This class represents the map where the units are located and the game is played.
- * <p>
- * The field is an undirected graph composed of <i>Location</i> nodes where the weight of every edge
+ *
+ * The field is an undirected graph composed of Location nodes where the weight of every edge
  * of the graph is 1.
  * Since all cells of the map should be reachable, the graph must be connected.
  *

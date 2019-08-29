@@ -1,7 +1,6 @@
 package model.units;
 
 import model.items.IEquipableItem;
-import model.items.Staff;
 import model.map.Location;
 
 /**
@@ -28,6 +27,8 @@ public class Cleric extends AbstractUnit {
 
   /**
    * Sets the currently equipped item of this unit.
+   *
+   * The Cleric can only equip staffs.
    *
    * @param item
    *     the item to equip

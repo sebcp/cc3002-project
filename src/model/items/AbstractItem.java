@@ -1,7 +1,5 @@
 package model.items;
 
-import model.map.Field;
-import model.units.Fighter;
 import model.units.IUnit;
 
 /**
@@ -48,45 +46,26 @@ public abstract class AbstractItem implements IEquipableItem {
     owner = unit;
   }
 
-  /**
-   * @return IUnit that has the item equipped.
-   */
   @Override
   public IUnit getOwner() {
     return owner;
   }
 
-  /**
-   * Gets the name of the item.
-   * @return the name of the item.
-   */
   @Override
   public String getName() {
     return name;
   }
 
-  /**
-   * Gets the power of the item.
-   * @return the power of the item.
-   */
   @Override
   public int getPower() {
     return power;
   }
 
-  /**
-   * Get the minimun range of the item.
-   * @return minRange of the item.
-   */
   @Override
   public int getMinRange() {
     return minRange;
   }
 
-  /**
-   * Get the maximum range of the item.
-   * @return maxRange of the item.
-   */
   @Override
   public int getMaxRange() {
     return maxRange;

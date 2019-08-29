@@ -1,17 +1,21 @@
 package model.items;
 
-import model.units.Fighter;
 import model.units.IUnit;
 
 /**
+ * This class represents a bow.
+ *
+ * Bows deal the same damage to all weapons and receive the default ammount of damage from all of
+ * them.
+ *
  * @author Ignacio Slater Muñoz
- * @since
+ * @since 1.0
  */
 public class Bow extends AbstractItem {
 
   /**
    * Creates a new bow.
-   * <p>
+   *
    * Bows are weapons that can't attack adjacent units, so it's minimum range must be greater than
    * one.
    *

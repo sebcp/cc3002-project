@@ -1,11 +1,10 @@
 package model.items;
 
-import model.units.Fighter;
 import model.units.IUnit;
 
 /**
- * This class represents a <i>spear</i>.
- * <p>
+ * This class represents a spear.
+ *
  * Spears are strong against swords and weak against axes
  *
  * @author Ignacio Slater Muñoz

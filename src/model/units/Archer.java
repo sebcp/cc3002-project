@@ -1,13 +1,12 @@
 package model.units;
 
-import model.items.Bow;
 import model.items.IEquipableItem;
 import model.map.Location;
 
 /**
- * This class represents an <i>Archer</i> type unit.
- * <p>
- * This kind of unit <b>can only use bows</b>.
+ * This class represents an Archer type unit.
+ *
+ * This kind of unit can only use bows.
  *
  * @author Ignacio Slater Muñoz
  * @since 1.0
@@ -33,8 +32,8 @@ public class Archer extends AbstractUnit {
 
   /**
    * Sets the currently equipped item of this unit.
-   * <p>
-   * The <i>Archer</i> can <b>only equip Bows</b>.
+   *
+   * The Archer can only equip Bows.
    *
    * @param item
    *     the item to equip

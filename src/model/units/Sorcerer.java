@@ -1,7 +1,6 @@
 package model.units;
 
 import model.items.IEquipableItem;
-import model.items.SpellBook;
 import model.map.Location;
 
 /**
@@ -19,6 +18,7 @@ public class Sorcerer extends AbstractUnit{
     /**
      * Sets the currently equipped item of this unit.
      *
+     * The sorcerer can only equip spell books.
      * @param item
      *     the item to equip
      */

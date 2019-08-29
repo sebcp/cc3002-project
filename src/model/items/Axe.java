@@ -1,11 +1,10 @@
 package model.items;
 
-import model.units.Fighter;
 import model.units.IUnit;
 
 /**
  * This class represents an Axe.
- * <p>
+ *
  * Axes are strong against spears but weak against swords.
  *
  * @author Ignacio Slater Muñoz

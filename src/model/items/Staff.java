@@ -1,12 +1,11 @@
 package model.items;
 
-import model.units.Fighter;
 import model.units.IUnit;
 
 /**
- * This class represents a <i>Staff</i> type item.
- * <p>
- * A staff is an item that can heal other units nut cannot counter any attack
+ * This class represents a Staff type item.
+ *
+ * A staff is an item that can heal other units but cannot counter any attack
  *
  * @author Ignacio Slater Muñoz
  * @since 1.0

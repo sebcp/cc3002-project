@@ -4,9 +4,9 @@ import model.items.IEquipableItem;
 import model.map.Location;
 
 /**
- * This class represents a <i>SwordMaster</i> type unit.
- * <p>
- * A <i>SwordMaster</i> is a unit that <b>can only use sword type weapons</b>.
+ * This class represents a SwordMaster type unit.
+ *
+ * A SwordMaster is a unit that can only use sword type weapons.
  *
  * @author Ignacio Slater Muñoz
  * @since 1.0
@@ -21,6 +21,7 @@ public class SwordMaster extends AbstractUnit {
   /**
    * Sets the currently equipped item of this unit.
    *
+   * The sword master can only equip swords.
    * @param item
    *     the item to equip
    */

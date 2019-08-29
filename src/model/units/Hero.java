@@ -1,13 +1,12 @@
 package model.units;
 
 import model.items.IEquipableItem;
-import model.items.Spear;
 import model.map.Location;
 
 /**
- * A <i>Hero</i> is a special kind of unit, the player that defeats this unit wins the game.
- * <p>
- * This unit <b>can only use spear weapons</b>.
+ * A Hero is a special kind of unit, the player that defeats this unit wins the game.
+ *
+ * This unit can only use spear weapons.
  *
  * @author Ignacio Slater Muñoz
  * @since 1.0
@@ -30,6 +29,7 @@ public class Hero extends AbstractUnit {
   /**
    * Sets the currently equipped item of this unit.
    *
+   * The hero can only equip spears.
    * @param item
    *     the item to equip
    */

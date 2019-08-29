@@ -4,8 +4,8 @@ import model.items.IEquipableItem;
 import model.map.Location;
 
 /**
- * This class represents an <i>Alpaca</i> type unit.
- * <p>
+ * This class represents an Alpaca type unit.
+ *
  * This are a special kind of unit that can carry an unlimited amount of items but can't use any of
  * them.
  *
@@ -31,8 +31,8 @@ public class Alpaca extends AbstractUnit {
 
   /**
    * {@inheritDoc}
-   * <p>
-   * The <i>Alpaca</i> cannot equip any item.
+   *
+   * The Alpaca cannot equip any item.
    */
   @Override
   public void equipItem(final IEquipableItem item) {

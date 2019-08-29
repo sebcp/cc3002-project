@@ -1,9 +1,16 @@
 package model.items;
 
-import model.units.Fighter;
 import model.units.IUnit;
 
 /**
+ * This class represents a Spell Book type item.
+ *
+ * Spell books are strong against all other weapons but they're also weak against all of the other
+ * type of items.
+ * Anima spell books are strong against Luz spell books and weak against Oscuridad spell books.
+ * Oscuridad spell books are strong against Anima spell books and weak against Luz spell books.
+ * Luz spell books are strong against Oscuridad spell books and weak against Anima spell books.
+ *
  * @author Sebastián Contreras Phillippi
  */
 public class SpellBook extends AbstractItem {
@@ -13,6 +20,7 @@ public class SpellBook extends AbstractItem {
     /**
      * Creates a new spell book.
      * Spell books cannot attack adjacent units, so it's minimum range must be greater than 1.
+     * When spell books are created with a non-valid type, they're set to Anima by default.
      *
      * @param name
      *      the name of the spell book
@@ -27,7 +35,7 @@ public class SpellBook extends AbstractItem {
      */
     public SpellBook(String name, int power, int minRange, int maxRange, String type) {
         super(name, power, minRange, maxRange);
-        if(type!="Anima" && type!="Luz" && type!="Oscuridad"){ this.type = "Anima"; }
+        if(!type.equals("Anima") && !type.equals("Luz") && !type.equals("Oscuridad")){ this.type = "Anima"; }
         else{ this.type = type; }
         this.minRange = Math.max(minRange, 2);
         this.maxRange = Math.max(maxRange, this.minRange);
@@ -62,5 +70,13 @@ public class SpellBook extends AbstractItem {
     @Override
     public void equipToSwordMaster(IUnit unit){
         System.out.println("Cannot equip " + this.getName() + ", sword masters can only equip swords.");
+    }
+
+    /**
+     * Returns the type of the spell book (Anima, Luz, Oscuridad).
+     * @return the type of the spell book.
+     */
+    public String getType() {
+        return type;
     }
 }

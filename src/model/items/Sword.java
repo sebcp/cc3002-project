@@ -1,11 +1,10 @@
 package model.items;
 
-import model.units.Fighter;
 import model.units.IUnit;
 
 /**
  * This class represents a sword type item.
- * <p>
+ *
  * Swords are strong against axes and weak against spears.
  *
  * @author Ignacio Slater Muñoz
