@@ -12,7 +12,7 @@ import model.units.IUnit;
  *
  * @author Sebastián Contreras Phillippi
  */
-public abstract class AbstractSpellBook extends AbstractItem {
+public abstract class AbstractSpellBook extends AbstractAttackAbleItem {
 
     /**
      * Creates a new spell book.

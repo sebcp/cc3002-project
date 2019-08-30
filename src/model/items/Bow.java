@@ -11,7 +11,7 @@ import model.units.IUnit;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public class Bow extends AbstractItem {
+public class Bow extends AbstractAttackAbleItem {
 
   /**
    * Creates a new bow.

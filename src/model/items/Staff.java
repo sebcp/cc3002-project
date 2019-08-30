@@ -10,7 +10,7 @@ import model.units.IUnit;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public class Staff extends AbstractItem {
+public class Staff extends AbstractNonAttackAbleItem {
 
   /**
    * Creates a new Staff item.
@@ -38,10 +38,6 @@ public class Staff extends AbstractItem {
   @Override
   public void equipToSwordMaster(IUnit unit){
     System.out.println("Cannot equip " + this.getName() + ", sword masters can only equip swords.");
-  }
-
-  public void attack(IEquipableItem item){
-    //Intentionally left empty.
   }
 
   public void heal(IUnit unit){

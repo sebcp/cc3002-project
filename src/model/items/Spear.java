@@ -12,7 +12,7 @@ import java.lang.Math;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public class Spear extends AbstractItem {
+public class Spear extends AbstractAttackAbleItem {
 
   /**
    * Creates a new Axe item
