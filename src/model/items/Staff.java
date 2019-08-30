@@ -29,26 +29,6 @@ public class Staff extends AbstractItem {
   }
 
   @Override
-  public void equipToFighter(IUnit unit) {
-    System.out.println("Cannot equip " + this.getName() + ", fighters can only equip axes.");
-  }
-
-  @Override
-  public void equipToArcher(IUnit unit) {
-    System.out.println("Cannot equip " + this.getName() + ", archers can only equip bows." );
-  }
-
-  @Override
-  public void equipToHero(IUnit unit) {
-    System.out.println("Cannot equip " + this.getName() + ", heroes can only equip spears.");
-  }
-
-  @Override
-  public void equipToSorcerer(IUnit unit){
-    System.out.println("Cannot equip " + this.getName() + ", sorcerers can only equip spell books.");
-  }
-
-  @Override
   public void equipToCleric(IUnit unit) {
     unit.setEquippedItem(this);
     unit.addItem(this);

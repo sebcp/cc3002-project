@@ -36,31 +36,6 @@ public class Axe extends AbstractItem {
   }
 
   @Override
-  public void equipToArcher(IUnit unit) {
-    System.out.println("Cannot equip " + this.getName() + ", archers can only equip bows." );
-  }
-
-  @Override
-  public void equipToHero(IUnit unit) {
-    System.out.println("Cannot equip " + this.getName() + ", heroes can only equip spears.");
-  }
-
-  @Override
-  public void equipToSorcerer(IUnit unit){
-    System.out.println("Cannot equip " + this.getName() + ", sorcerers can only equip spell books.");
-  }
-
-  @Override
-  public void equipToCleric(IUnit unit) {
-    System.out.println("Cannot equip " + this.getName() + ", clerics can only equip staffs.");
-  }
-
-  @Override
-  public void equipToSwordMaster(IUnit unit){
-    System.out.println("Cannot equip " + this.getName() + ", sword masters can only equip swords.");
-  }
-
-  @Override
   public void attack(IEquipableItem item){
     item.receiveAttackFromAxe(this);
   }

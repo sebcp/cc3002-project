@@ -5,10 +5,14 @@ public class LuzSpellBook extends AbstractSpellBook {
      * Creates a new spell book.
      * Spell books cannot attack adjacent units, so it's minimum range must be greater than 1.
      *
-     * @param name     the name of the spell book
-     * @param power    the damage power of the spell book
-     * @param minRange the minimum range of the spell book
+     * @param name
+     *      the name of the spell book
+     * @param power
+     *      the damage power of the spell book
+     * @param minRange
+     *      the minimum range of the spell book
      * @param maxRange
+     *      the maximum range of the spell book
      */
     public LuzSpellBook(String name, int power, int minRange, int maxRange) {
         super(name, power, minRange, maxRange);

@@ -73,8 +73,8 @@ public class SorcererTest extends AbstractTestUnit {
                 "Archer");
         archer.equipItem(bow);
         archer.combat(sorcerer);
-        assertEquals(0,archer.getCurrentHitPoints());
-        assertFalse(archer.getIsAlive());
-        assertTrue(sorcerer.getIsAlive());
+        assertEquals(0,sorcerer.getCurrentHitPoints());
+        assertFalse(sorcerer.getIsAlive());
+        assertTrue(archer.getIsAlive());
     }
 }

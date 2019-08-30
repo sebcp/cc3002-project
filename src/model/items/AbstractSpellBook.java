@@ -34,35 +34,10 @@ public abstract class AbstractSpellBook extends AbstractItem {
     }
 
     @Override
-    public void equipToFighter(IUnit unit) {
-        System.out.println("Cannot equip " + this.getName() + ", fighters can only equip axes.");
-    }
-
-    @Override
-    public void equipToArcher(IUnit unit) {
-        System.out.println("Cannot equip " + this.getName() + ", archers can only equip bows." );
-    }
-
-    @Override
-    public void equipToHero(IUnit unit) {
-        System.out.println("Cannot equip " + this.getName() + ", heroes can only equip spears.");
-    }
-
-    @Override
     public void equipToSorcerer(IUnit unit){
         unit.setEquippedItem(this);
         unit.addItem(this);
         this.setOwner(unit);
-    }
-
-    @Override
-    public void equipToCleric(IUnit unit) {
-        System.out.println("Cannot equip " + this.getName() + ", clerics can only equip staffs.");
-    }
-
-    @Override
-    public void equipToSwordMaster(IUnit unit){
-        System.out.println("Cannot equip " + this.getName() + ", sword masters can only equip swords.");
     }
 
     @Override
@@ -83,6 +58,12 @@ public abstract class AbstractSpellBook extends AbstractItem {
     @Override
     public void receiveAttackFromSword(Sword sword) {
         int damage = (int) Math.round(sword.getPower()*1.5);
+        this.getOwner().receiveDamage(damage);
+    }
+
+    @Override
+    public void receiveAttackFromBow(Bow bow) {
+        int damage = (int) Math.round(bow.getPower()*1.5);
         this.getOwner().receiveDamage(damage);
     }
 }

@@ -70,22 +70,34 @@ public abstract class AbstractItem implements IEquipableItem {
   }
 
   @Override
-  public abstract void equipToFighter(IUnit unit);
+  public void equipToArcher(IUnit unit) {
+    System.out.println("Cannot equip " + this.getName() + ", archers can only equip bows." );
+  }
 
   @Override
-  public abstract void equipToArcher(IUnit unit);
+  public void equipToHero(IUnit unit) {
+    System.out.println("Cannot equip " + this.getName() + ", heroes can only equip spears.");
+  }
 
   @Override
-  public abstract void equipToHero(IUnit unit);
+  public void equipToSorcerer(IUnit unit){
+    System.out.println("Cannot equip " + this.getName() + ", sorcerers can only equip spell books.");
+  }
 
   @Override
-  public abstract void equipToSorcerer(IUnit unit);
+  public void equipToCleric(IUnit unit) {
+    System.out.println("Cannot equip " + this.getName() + ", clerics can only equip staffs.");
+  }
 
   @Override
-  public abstract void equipToCleric(IUnit unit);
+  public void equipToSwordMaster(IUnit unit){
+    System.out.println("Cannot equip " + this.getName() + ", sword masters can only equip swords.");
+  }
 
   @Override
-  public abstract void equipToSwordMaster(IUnit unit);
+  public void equipToFighter(IUnit unit) {
+    System.out.println("Cannot equip " + this.getName() + ", fighters can only equip axes.");
+  }
 
   public abstract void attack(IEquipableItem item);
 
