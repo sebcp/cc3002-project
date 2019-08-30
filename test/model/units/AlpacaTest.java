@@ -6,6 +6,7 @@ import model.items.Sword;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * Test set for the alpaca unit
@@ -38,5 +39,16 @@ public class AlpacaTest extends AbstractTestUnit {
     getTestUnit().addItem(exchangedSword);
     getTestUnit().giveItem(0, getTargetAlpaca());
     assertEquals(exchangedSword, getTargetAlpaca().getItems().get(0));
+  }
+
+  @Test
+  @Override
+  public void checkCombat() {
+      Sword sword = new Sword("Sword",10,1,1);
+      SwordMaster swordmaster = new SwordMaster(50,2,field.getCell(0,1),"Swordmaster");
+      swordmaster.equipItem(sword);
+      swordmaster.combat(alpaca);
+      assertEquals(0,alpaca.getCurrentHitPoints());
+      assertFalse(alpaca.getIsAlive());
   }
 }

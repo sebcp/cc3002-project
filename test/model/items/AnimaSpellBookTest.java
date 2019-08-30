@@ -13,10 +13,10 @@ import org.junit.jupiter.api.Test;
  * @author Sebastián Contreras Phillippi
  */
 
-public class SpellBookTest extends AbstractTestItem{
+public class AnimaSpellBookTest extends AbstractTestItem{
 
-    private SpellBook spellbook;
-    private SpellBook wrongSpellbook;
+    private AnimaSpellBook spellbook;
+    private AnimaSpellBook wrongSpellbook;
     private Sorcerer sorcerer;
 
     /**
@@ -28,7 +28,7 @@ public class SpellBookTest extends AbstractTestItem{
         expectedPower = 8;
         expectedMinRange = 2;
         expectedMaxRange = 4;
-        spellbook = new SpellBook(expectedName, expectedPower, expectedMinRange, expectedMaxRange, "Anima");
+        spellbook = new AnimaSpellBook(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
     }
 
     /**
@@ -36,7 +36,7 @@ public class SpellBookTest extends AbstractTestItem{
      */
     @Override
     public void setWrongRangeItem() {
-        wrongSpellbook = new SpellBook("Wrong spellbook", 10, 1, 1, "notAnima");
+        wrongSpellbook = new AnimaSpellBook("Wrong spellbook", 10, 1, 1);
     }
 
     /**

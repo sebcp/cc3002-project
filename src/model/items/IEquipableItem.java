@@ -116,18 +116,17 @@ public interface IEquipableItem {
   void receiveAttackFromSword(Sword sword);
 
   /**
-   * Receives an attack from a spell book.
-   * @param spellbook
-   *      the spell book that's attacking.
-   */
-  void receiveAttackFromSpellBook(SpellBook spellbook);
-
-  /**
    * Receives an attack from a bow.
    * @param bow
    *      the bow that's attacking.
    */
   void receiveAttackFromBow(Bow bow);
+
+  void receiveAttackFromAnimaSpellBook(AnimaSpellBook animaSpellBook);
+
+  void receiveAttackFromOscuridadSpellBook(OscuridadSpellBook oscuridadSpellBook);
+
+  void receiveAttackFromLuzSpellBook(LuzSpellBook luzSpellBook);
 }
 
 

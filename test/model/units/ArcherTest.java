@@ -45,7 +45,7 @@ public class ArcherTest extends AbstractTestUnit {
   }
 
   @Test
-  public void combatTest(){
+  public void checkCombat(){
     archer.equipItem(bow);
     assertEquals(bow, archer.getEquippedItem());
 

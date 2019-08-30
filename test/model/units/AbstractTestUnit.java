@@ -23,7 +23,9 @@ public abstract class AbstractTestUnit implements ITestUnit {
   protected Sword sword;
   protected Staff staff;
   protected Spear spear;
-  protected SpellBook spellbook;
+  protected AnimaSpellBook anima;
+  protected OscuridadSpellBook oscuridad;
+  protected LuzSpellBook luz;
 
   @Override
   public void setTargetAlpaca() {
@@ -57,7 +59,9 @@ public abstract class AbstractTestUnit implements ITestUnit {
     this.spear = new Spear("Spear", 10, 1, 2);
     this.staff = new Staff("Staff", 10, 1, 2);
     this.bow = new Bow("Bow", 10, 2, 3);
-    this.spellbook = new SpellBook("SpellBook",10,2,3, "Anima");
+    this.anima = new AnimaSpellBook("AnimaSpellBook",10,2,3);
+    this.oscuridad = new OscuridadSpellBook("OscuridadSpellBook",10,2,3);
+    this.luz = new LuzSpellBook("LuzSpellBook",10,2,3);
   }
   /**
    * Sets up the units and weapons to be tested
@@ -136,6 +140,8 @@ public abstract class AbstractTestUnit implements ITestUnit {
     assertEquals(exchangedSword,getTargetAlpaca().getItems().get(0));
   }
 
+  public abstract void checkCombat();
+
   /**
    * @return the test axe
    */
@@ -200,15 +206,29 @@ public abstract class AbstractTestUnit implements ITestUnit {
 
   @Override
   @Test
-  public void equipSpellBook() { checkEquippedItem(getSpellBook()); }
+  public void equipAnimaSpellBook() { checkEquippedItem(getAnimaSpellBook()); }
 
   /**
    * @return the test spell book
    */
   @Override
-  public SpellBook getSpellBook(){
-    return spellbook;
+  public AnimaSpellBook getAnimaSpellBook(){
+    return anima;
   }
+
+  @Override
+  @Test
+  public void equipOscuridadSpellBook(){ checkEquippedItem(getOscuridadSpellBook());}
+
+  @Override
+  public OscuridadSpellBook getOscuridadSpellBook(){ return oscuridad; }
+
+  @Override
+  @Test
+  public void equipLuzSpellBook(){ checkEquippedItem(getLuzSpellBook()); }
+
+  @Override
+  public LuzSpellBook getLuzSpellBook(){ return luz; }
 
   /**
    * Checks if the unit moves correctly

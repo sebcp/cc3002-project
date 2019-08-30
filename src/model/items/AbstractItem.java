@@ -108,14 +108,26 @@ public abstract class AbstractItem implements IEquipableItem {
   }
 
   @Override
-  public void receiveAttackFromSpellBook(SpellBook spellbook) {
-    int damage = (int) Math.round(spellbook.getPower()*1.5);
+  public void receiveAttackFromBow(Bow bow){
+    int damage = bow.getPower();
     this.getOwner().receiveDamage(damage);
   }
 
   @Override
-  public void receiveAttackFromBow(Bow bow){
-    int damage = bow.getPower();
+  public void receiveAttackFromAnimaSpellBook(AnimaSpellBook animaSpellBook) {
+    int damage = (int) Math.round(animaSpellBook.getPower()*1.5);
+    this.getOwner().receiveDamage(damage);
+  }
+
+  @Override
+  public void receiveAttackFromOscuridadSpellBook(OscuridadSpellBook oscuridadSpellBook) {
+    int damage = (int) Math.round(oscuridadSpellBook.getPower()*1.5);
+    this.getOwner().receiveDamage(damage);
+  }
+
+  @Override
+  public void receiveAttackFromLuzSpellBook(LuzSpellBook luzSpellBook) {
+    int damage = (int) Math.round(luzSpellBook.getPower()*1.5);
     this.getOwner().receiveDamage(damage);
   }
 }

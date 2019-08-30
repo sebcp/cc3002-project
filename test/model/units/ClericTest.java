@@ -1,9 +1,9 @@
 package model.units;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
+import model.items.Sword;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Ignacio Slater Muñoz
@@ -34,5 +34,16 @@ public class ClericTest extends AbstractTestUnit {
     assertNull(cleric.getEquippedItem());
     cleric.equipItem(staff);
     assertEquals(staff, cleric.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void checkCombat() {
+    Sword sword = new Sword("Sword",10,1,1);
+    SwordMaster swordmaster = new SwordMaster(50,2,field.getCell(0,1),"Swordmaster");
+    swordmaster.equipItem(sword);
+    swordmaster.combat(cleric);
+    assertEquals(0,cleric.getCurrentHitPoints());
+    assertFalse(cleric.getIsAlive());
   }
 }

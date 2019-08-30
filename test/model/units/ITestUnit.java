@@ -100,12 +100,22 @@ public interface ITestUnit {
   Bow getBow();
 
   @Test
-  void equipSpellBook();
+  void equipAnimaSpellBook();
 
   /**
    * @return the test spell book
    */
-  SpellBook getSpellBook();
+  AnimaSpellBook getAnimaSpellBook();
+
+  @Test
+  void equipOscuridadSpellBook();
+
+  OscuridadSpellBook getOscuridadSpellBook();
+
+  @Test
+  void equipLuzSpellBook();
+
+  LuzSpellBook getLuzSpellBook();
 
   /**
    * Checks if the unit moves correctly

@@ -1,7 +1,6 @@
 package model.items;
 
 import model.units.IUnit;
-
 /**
  * This class represents a Spell Book type item.
  *
@@ -13,14 +12,11 @@ import model.units.IUnit;
  *
  * @author Sebastián Contreras Phillippi
  */
-public class SpellBook extends AbstractItem {
-
-    private String type;
+public abstract class AbstractSpellBook extends AbstractItem {
 
     /**
      * Creates a new spell book.
      * Spell books cannot attack adjacent units, so it's minimum range must be greater than 1.
-     * When spell books are created with a non-valid type, they're set to Anima by default.
      *
      * @param name
      *      the name of the spell book
@@ -30,13 +26,9 @@ public class SpellBook extends AbstractItem {
      *      the minimum range of the spell book
      * @param maxRange
      *      the maximum range of the spell book
-     * @param type
-     *      the type of magic of the spell book
      */
-    public SpellBook(String name, int power, int minRange, int maxRange, String type) {
+    public AbstractSpellBook(String name, int power, int minRange, int maxRange) {
         super(name, power, minRange, maxRange);
-        if(!type.equals("Anima") && !type.equals("Luz") && !type.equals("Oscuridad")){ this.type = "Anima"; }
-        else{ this.type = type; }
         this.minRange = Math.max(minRange, 2);
         this.maxRange = Math.max(maxRange, this.minRange);
     }
@@ -65,7 +57,7 @@ public class SpellBook extends AbstractItem {
 
     @Override
     public void equipToCleric(IUnit unit) {
-        System.out.println("Cannot equp " + this.getName() + ", clerics can only equip staffs.");
+        System.out.println("Cannot equip " + this.getName() + ", clerics can only equip staffs.");
     }
 
     @Override
@@ -73,18 +65,8 @@ public class SpellBook extends AbstractItem {
         System.out.println("Cannot equip " + this.getName() + ", sword masters can only equip swords.");
     }
 
-    /**
-     * Returns the type of the spell book (Anima, Luz, Oscuridad).
-     * @return the type of the spell book.
-     */
-    public String getType() {
-        return type;
-    }
-
     @Override
-    public void attack(IEquipableItem item){
-        item.receiveAttackFromSpellBook(this);
-    }
+    public abstract void attack(IEquipableItem item);
 
     @Override
     public void receiveAttackFromAxe(Axe axe) {
