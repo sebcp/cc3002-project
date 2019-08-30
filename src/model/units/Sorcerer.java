@@ -11,8 +11,8 @@ import model.map.Location;
  */
 public class Sorcerer extends AbstractUnit{
 
-    public Sorcerer(int hitPoints, final int movement, Location location, String name, IEquipableItem... items) {
-        super(hitPoints, movement, location, 3, items);
+    public Sorcerer(int maxHitPoints, final int movement, Location location, String name, IEquipableItem... items) {
+        super(maxHitPoints, movement, location, 3, items);
         this.setName(name);
     }
 

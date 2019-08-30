@@ -43,4 +43,24 @@ public class Staff extends AbstractItem {
   public void attack(IEquipableItem item){
     //Intentionally left empty.
   }
+
+  public void heal(IUnit unit){
+    if(unit.getIsAlive()){
+      int current = unit.getCurrentHitPoints();
+      int max = unit.getMaxHitPoints();
+      int heal = 0;
+      if(current<max){
+        int healPower = this.getPower();
+        if(current + healPower >= max){
+          heal = max - current;
+          unit.setHp(max);
+        }
+        else{
+          heal = healPower;
+          unit.setHp(current + healPower);
+        }
+      }
+      System.out.println(unit.getName() + "was healed for " + heal);
+    }
+  }
 }

@@ -12,9 +12,9 @@ import model.map.Location;
  */
 public class Fighter extends AbstractUnit {
 
-  public Fighter(int hitPoints, final int movement, final Location location, String name,
+  public Fighter(int maxHitPoints, final int movement, final Location location, String name,
       IEquipableItem... items) {
-    super(hitPoints, movement, location, 3, items);
+    super(maxHitPoints, movement, location, 3, items);
     this.setName(name);
   }
 

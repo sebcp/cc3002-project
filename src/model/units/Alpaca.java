@@ -17,16 +17,16 @@ public class Alpaca extends AbstractUnit {
   /**
    * Creates a new Alpaca.
    *
-   * @param hitPoints
-   *     the amount of damage this unit can receive
+   * @param maxHitPoints
+   *      the maximum amount of health points
    * @param movement
    *     number of cells the unit can move
    * @param location
    *     current position of the unit
    */
-  public Alpaca(int hitPoints, final int movement, final Location location, String name,
+  public Alpaca(int maxHitPoints, final int movement, final Location location, String name,
       final IEquipableItem... items) {
-    super(hitPoints, movement, location, Integer.MAX_VALUE, items);
+    super(maxHitPoints, movement, location, Integer.MAX_VALUE, items);
     this.setName(name);
   }
 

@@ -13,9 +13,9 @@ import model.map.Location;
  */
 public class SwordMaster extends AbstractUnit {
 
-  public SwordMaster(int hitPoints, final int movement, final Location location, String name,
+  public SwordMaster(int maxHitPoints, final int movement, final Location location, String name,
       IEquipableItem... items) {
-    super(hitPoints, movement, location, 3, items);
+    super(maxHitPoints, movement, location, 3, items);
     this.setName(name);
   }
 

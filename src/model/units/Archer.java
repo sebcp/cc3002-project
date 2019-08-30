@@ -18,6 +18,8 @@ public class Archer extends AbstractUnit {
    *
    * @param hitPoints
    *     maximum hit points of the unit
+   * @param maxHitPoints
+   *      the maximum amount of health points
    * @param movement
    *     the amount of cells this unit can move
    * @param position
@@ -25,9 +27,9 @@ public class Archer extends AbstractUnit {
    * @param items
    *     the items carried by this unit
    */
-  public Archer(int hitPoints, final int movement, final Location position, String name,
+  public Archer(int maxHitPoints, final int movement, final Location position, String name,
       final IEquipableItem... items) {
-    super(hitPoints, movement, position, 3, items);
+    super(maxHitPoints, movement, position, 3, items);
     this.setName(name);
   }
 

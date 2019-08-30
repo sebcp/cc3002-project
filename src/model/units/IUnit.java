@@ -30,6 +30,12 @@ public interface IUnit {
   int getCurrentHitPoints();
 
   /**
+   * Returns the max amount of health points a unit can have.
+   * @return the max amount of hp
+   */
+  int getMaxHitPoints();
+
+  /**
    * @return the items carried by this unit
    */
   List<IEquipableItem> getItems();
@@ -146,5 +152,9 @@ public interface IUnit {
    * @return true if the unit's hp hasn't fell to 0; false if it has.
    */
   boolean getIsAlive();
+
+  void setName(String name);
+
+  String getName();
 }
 
