@@ -111,7 +111,7 @@ import org.junit.jupiter.api.Test;
   public void equippedToTest() {
     assertNull(getTestItem().getOwner());
     IUnit unit = getTestUnit();
-    getTestItem().equipTo(unit);
+    unit.equipItem(getTestItem());
     assertEquals(unit, getTestItem().getOwner());
   }
 

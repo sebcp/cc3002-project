@@ -14,13 +14,6 @@ import model.units.IUnit;
 public interface IEquipableItem {
 
   /**
-   * Equips this item to a unit.
-   * @param unit
-   *     the unit that will be quipped with the item
-   */
-  void equipTo(IUnit unit);
-
-  /**
    * @return the unit that has currently equipped this item
    */
   IUnit getOwner();
