@@ -21,7 +21,7 @@ import model.map.Location;
  */
 public abstract class AbstractUnit implements IUnit {
 
-  protected final List<IEquipableItem> items = new ArrayList<>();
+  protected List<IEquipableItem> items = new ArrayList<>();
   private int currentHitPoints;
   private final int maxHitPoints;
   private final int movement;

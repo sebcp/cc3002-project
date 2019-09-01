@@ -24,7 +24,7 @@ public class SwordTest extends AbstractTestItem {
     expectedName = "Common sword";
     expectedPower = 10;
     expectedMinRange = 1;
-    expectedMaxRange = 1;
+    expectedMaxRange = 2;
     sword = new Sword(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
   }
 

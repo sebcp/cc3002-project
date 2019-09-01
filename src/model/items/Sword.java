@@ -50,4 +50,20 @@ public class Sword extends AbstractAttackAbleItem {
     int damage = (int) Math.round(spear.getPower()*1.5);
     this.getOwner().receiveDamage(damage);
   }
+
+  public boolean equals(Object obj){
+    if(obj instanceof Sword){
+      String itemName = ((Sword) obj).getName();
+      int itemPower = ((Sword) obj).getPower();
+      int itemMinRange = ((Sword) obj).getMinRange();
+      int itemMaxRange = ((Sword) obj).getMaxRange();
+      IUnit itemOwner = ((Sword) obj).getOwner();
+      if(itemName.equals(this.getName()) && itemOwner == this.getOwner() &&
+              itemMaxRange == this.getMaxRange() && itemMinRange == this.getMinRange() &&
+              itemPower == this.getPower()){
+        return true;
+      }
+    }
+    return false;
+  }
 }

@@ -1,6 +1,7 @@
 package model.units;
 
 import model.items.IEquipableItem;
+
 import model.map.Location;
 
 import java.util.List;
@@ -40,13 +41,13 @@ public class Sorcerer extends AbstractUnit{
             boolean unitIsAlive = ((IUnit) obj).getIsAlive();
             int unitMovement = ((IUnit) obj).getMovement();
             IEquipableItem unitEquippedItem = ((IUnit) obj).getEquippedItem();
-            List<IEquipableItem> unitItems = ((IUnit) obj).getItems();
+            List<IEquipableItem> unitItems = ((Sorcerer) obj).items;
             Location unitLocation = ((IUnit) obj).getLocation();
             String unitName = ((IUnit) obj).getName();
             if(unitIsAlive==this.getIsAlive() && unitEquippedItem == this.getEquippedItem() &&
                     unitHitPoints == this.getCurrentHitPoints() && unitMaxHitPoints == this.getMaxHitPoints()
-                    && unitItems == this.getItems() && unitMovement == this.getMovement() &&
-                    unitLocation == this.getLocation() && unitName == this.getName()){
+                    && unitItems == this.items && unitMovement == this.getMovement() &&
+                    unitLocation == this.getLocation() && unitName.equals(this.getName())){
                 return true;
             }
         }

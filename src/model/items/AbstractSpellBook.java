@@ -12,7 +12,7 @@ import model.units.IUnit;
  *
  * @author Sebastián Contreras Phillippi
  */
-public abstract class AbstractSpellBook extends AbstractAttackAbleItem {
+public abstract class AbstractSpellBook extends AbstractRangedAttackAbleItem {
 
     /**
      * Creates a new spell book.
@@ -29,8 +29,6 @@ public abstract class AbstractSpellBook extends AbstractAttackAbleItem {
      */
     public AbstractSpellBook(String name, int power, int minRange, int maxRange) {
         super(name, power, minRange, maxRange);
-        this.minRange = Math.max(minRange, 2);
-        this.maxRange = Math.max(maxRange, this.minRange);
     }
 
     @Override
@@ -65,4 +63,6 @@ public abstract class AbstractSpellBook extends AbstractAttackAbleItem {
         int damage = (int) Math.round(bow.getPower()*1.5);
         this.getOwner().receiveDamage(damage);
     }
+
+    public abstract boolean equals(Object obj);
 }

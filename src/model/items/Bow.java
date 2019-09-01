@@ -11,7 +11,7 @@ import model.units.IUnit;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public class Bow extends AbstractAttackAbleItem {
+public class Bow extends AbstractRangedAttackAbleItem {
 
   /**
    * Creates a new bow.
@@ -30,8 +30,6 @@ public class Bow extends AbstractAttackAbleItem {
    */
   public Bow(final String name, final int power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange);
-    this.minRange = Math.max(minRange, 2);
-    this.maxRange = Math.max(maxRange, this.minRange);
   }
 
   @Override
@@ -43,5 +41,21 @@ public class Bow extends AbstractAttackAbleItem {
   @Override
   public void attack(IEquipableItem item){
     item.receiveAttackFromBow(this);
+  }
+
+  public boolean equals(Object obj){
+    if(obj instanceof Bow){
+      String itemName = ((Bow) obj).getName();
+      int itemPower = ((Bow) obj).getPower();
+      int itemMinRange = ((Bow) obj).getMinRange();
+      int itemMaxRange = ((Bow) obj).getMaxRange();
+      IUnit itemOwner = ((Bow) obj).getOwner();
+      if(itemName.equals(this.getName()) && itemOwner == this.getOwner() &&
+              itemMaxRange == this.getMaxRange() && itemMinRange == this.getMinRange() &&
+              itemPower == this.getPower()){
+        return true;
+      }
+    }
+    return false;
   }
 }

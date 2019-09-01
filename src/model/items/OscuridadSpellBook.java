@@ -1,5 +1,7 @@
 package model.items;
 
+import model.units.IUnit;
+
 public class OscuridadSpellBook extends AbstractSpellBook {
 
     /**
@@ -36,5 +38,21 @@ public class OscuridadSpellBook extends AbstractSpellBook {
     public void receiveAttackFromLuzSpellBook(LuzSpellBook luzSpellBook) {
         int damage = (int) Math.round(luzSpellBook.getPower()*1.5);
         this.getOwner().receiveDamage(damage);
+    }
+
+    public boolean equals(Object obj){
+        if(obj instanceof OscuridadSpellBook){
+            String itemName = ((OscuridadSpellBook) obj).getName();
+            int itemPower = ((OscuridadSpellBook) obj).getPower();
+            int itemMinRange = ((OscuridadSpellBook) obj).getMinRange();
+            int itemMaxRange = ((OscuridadSpellBook) obj).getMaxRange();
+            IUnit itemOwner = ((OscuridadSpellBook) obj).getOwner();
+            if(itemName.equals(this.getName()) && itemOwner == this.getOwner() &&
+                    itemMaxRange == this.getMaxRange() && itemMinRange == this.getMinRange() &&
+                    itemPower == this.getPower()){
+                return true;
+            }
+        }
+        return false;
     }
 }

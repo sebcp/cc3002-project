@@ -1,5 +1,7 @@
 package model.items;
 
+import model.units.IUnit;
+
 public class LuzSpellBook extends AbstractSpellBook {
     /**
      * Creates a new spell book.
@@ -39,5 +41,21 @@ public class LuzSpellBook extends AbstractSpellBook {
     public void receiveAttackFromLuzSpellBook(LuzSpellBook luzSpellBook) {
         int damage = luzSpellBook.getPower();
         this.getOwner().receiveDamage(damage);
+    }
+
+    public boolean equals(Object obj){
+        if(obj instanceof LuzSpellBook){
+            String itemName = ((LuzSpellBook) obj).getName();
+            int itemPower = ((LuzSpellBook) obj).getPower();
+            int itemMinRange = ((LuzSpellBook) obj).getMinRange();
+            int itemMaxRange = ((LuzSpellBook) obj).getMaxRange();
+            IUnit itemOwner = ((LuzSpellBook) obj).getOwner();
+            if(itemName.equals(this.getName()) && itemOwner == this.getOwner() &&
+                    itemMaxRange == this.getMaxRange() && itemMinRange == this.getMinRange() &&
+                    itemPower == this.getPower()){
+                return true;
+            }
+        }
+        return false;
     }
 }

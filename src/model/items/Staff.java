@@ -38,4 +38,20 @@ public class Staff extends AbstractNonAttackAbleItem {
   public void equipToSwordMaster(IUnit unit){
     System.out.println("Cannot equip " + this.getName() + ", sword masters can only equip swords.");
   }
+
+  public boolean equals(Object obj){
+    if(obj instanceof Staff){
+      String itemName = ((Staff) obj).getName();
+      int itemPower = ((Staff) obj).getPower();
+      int itemMinRange = ((Staff) obj).getMinRange();
+      int itemMaxRange = ((Staff) obj).getMaxRange();
+      IUnit itemOwner = ((Staff) obj).getOwner();
+      if(itemName.equals(this.getName()) && itemOwner == this.getOwner() &&
+              itemMaxRange == this.getMaxRange() && itemMinRange == this.getMinRange() &&
+              itemPower == this.getPower()){
+        return true;
+      }
+    }
+    return false;
+  }
 }

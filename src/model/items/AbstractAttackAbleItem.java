@@ -28,7 +28,7 @@ public abstract class AbstractAttackAbleItem implements IEquipableItem {
     this.name = name;
     this.power = power;
     this.minRange = Math.max(minRange, 1);
-    this.maxRange = Math.max(maxRange, this.minRange);
+    this.maxRange = Math.max(maxRange, this.minRange+1);
   }
 
   @Override
@@ -131,4 +131,6 @@ public abstract class AbstractAttackAbleItem implements IEquipableItem {
     int damage = (int) Math.round(luzSpellBook.getPower()*1.5);
     this.getOwner().receiveDamage(damage);
   }
+
+  public abstract boolean equals(Object obj);
 }

@@ -120,6 +120,8 @@ public interface IEquipableItem {
   void receiveAttackFromOscuridadSpellBook(OscuridadSpellBook oscuridadSpellBook);
 
   void receiveAttackFromLuzSpellBook(LuzSpellBook luzSpellBook);
+
+  boolean equals(Object obj);
 }
 
 

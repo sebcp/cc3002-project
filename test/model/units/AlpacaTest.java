@@ -1,7 +1,5 @@
 package model.units;
 
-import model.items.Axe;
-import model.items.Spear;
 import model.items.Sword;
 import org.junit.jupiter.api.Test;
 

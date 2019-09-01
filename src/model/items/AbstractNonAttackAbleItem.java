@@ -133,4 +133,6 @@ public abstract class AbstractNonAttackAbleItem implements IEquipableItem {
         int damage = (int) Math.round(luzSpellBook.getPower()*1.5);
         this.getOwner().receiveDamage(damage);
     }
+
+    public abstract boolean equals(Object obj);
 }

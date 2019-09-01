@@ -51,4 +51,20 @@ public class Spear extends AbstractAttackAbleItem {
     int damage = sword.getPower()-20;
     this.getOwner().receiveDamage(damage);
   }
+
+  public boolean equals(Object obj){
+    if(obj instanceof Spear){
+      String itemName = ((Spear) obj).getName();
+      int itemPower = ((Spear) obj).getPower();
+      int itemMinRange = ((Spear) obj).getMinRange();
+      int itemMaxRange = ((Spear) obj).getMaxRange();
+      IUnit itemOwner = ((Spear) obj).getOwner();
+      if(itemName.equals(this.getName()) && itemOwner == this.getOwner() &&
+              itemMaxRange == this.getMaxRange() && itemMinRange == this.getMinRange() &&
+              itemPower == this.getPower()){
+        return true;
+      }
+    }
+    return false;
+  }
 }
