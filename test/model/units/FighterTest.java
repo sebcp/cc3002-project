@@ -35,13 +35,16 @@ public class FighterTest extends AbstractTestUnit {
   @Override
   public void equipAxeTest() {
     assertNull(fighter.getEquippedItem());
+    fighter.addItem(axe);
     fighter.equipItem(axe);
+    assertTrue(fighter.getItems().contains(axe));
     assertEquals(axe, fighter.getEquippedItem());
   }
 
   @Test
   @Override
   public void checkCombat() {
+    fighter.addItem(axe);
     fighter.equipItem(axe);
     fighter.combat(getTargetAlpaca());
     assertEquals(0,getTargetAlpaca().getCurrentHitPoints());
@@ -50,6 +53,7 @@ public class FighterTest extends AbstractTestUnit {
     Bow bow = new Bow("Bow",10,2,3);
     Archer archer = new Archer(50,2,field.getCell(1,1),
             "Archer");
+    archer.addItem(bow);
     archer.equipItem(bow);
     archer.combat(fighter);
     assertEquals(0,fighter.getCurrentHitPoints());

@@ -37,7 +37,6 @@ public class Bow extends AbstractAttackAbleItem {
   @Override
   public void equipToArcher(IUnit unit) {
     unit.setEquippedItem(this);
-    unit.addItem(this);
     this.setOwner(unit);
   }
 

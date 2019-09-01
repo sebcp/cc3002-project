@@ -23,38 +23,38 @@ public abstract class AbstractUnit implements IUnit {
 
   protected final List<IEquipableItem> items = new ArrayList<>();
   private int currentHitPoints;
-  private int maxHitPoints;
+  private final int maxHitPoints;
   private final int movement;
   private IEquipableItem equippedItem;
   private Location location;
-  private int maxItems;
+  private final int maxItems;
   private boolean isAlive;
-  private String name;
+  private final String name;
 
   /**
    * Creates a new Unit.
-   *
-   * @param maxHitPoints
+   *  @param maxHitPoints
    *      the maximum amount of health points
    * @param movement
-   *     the number of panels a unit can move
+   *      the number of panels a unit can move
    * @param location
-   *     the current position of this unit on the map
+ *        the current position of this unit on the map
    * @param maxItems
-   *     maximum amount of items this unit can carry
+   *      the maximum amount of items the unit can hold
+   * @param name
+   *      the name of the unit
    */
   protected AbstractUnit(final int maxHitPoints, final int movement,
-      final Location location, final int maxItems, final IEquipableItem... items) {
+                         Location location, final int maxItems, String name, IEquipableItem... items) {
     this.maxHitPoints = maxHitPoints;
     this.currentHitPoints = maxHitPoints;
     this.movement = movement;
     this.location = location;
+    this.name = name;
     this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
     this.maxItems = maxItems;
     this.isAlive = true;
   }
-
-  public void setName(String name){ this.name = name; }
 
   public String getName(){ return this.name; }
 
@@ -64,7 +64,16 @@ public abstract class AbstractUnit implements IUnit {
 
   public int getMaxHitPoints(){ return maxHitPoints; }
 
-  public void setHp(int hp){ this.currentHitPoints = hp; }
+  public void setCurrentHitPoints(int hp) {
+    if (hp <= 0) {
+      this.currentHitPoints = 0;
+      this.setIsAlive(false);
+    }
+    else {
+      if (hp <= this.getMaxHitPoints()) { this.currentHitPoints = hp; }
+      else { this.currentHitPoints = this.getMaxHitPoints(); }
+    }
+  }
 
   public void setIsAlive(boolean bool){ this.isAlive = bool; }
 
@@ -74,19 +83,36 @@ public abstract class AbstractUnit implements IUnit {
     int damageDealt;
     if(this.currentHitPoints-damage <= 0){
       damageDealt = this.getCurrentHitPoints();
-      this.setHp(0);
+      this.setCurrentHitPoints(0);
       this.setIsAlive(false);
     }
     else{
       damageDealt = damage;
-      this.setHp(this.getCurrentHitPoints()-damage);
+      this.setCurrentHitPoints(this.getCurrentHitPoints()-damage);
     }
     System.out.println(this.getName() + " received " + damageDealt + " points of damage.");
   }
 
-  public List<IEquipableItem> getItems() {
-    return List.copyOf(items);
+  public void receiveHealing(int healing){
+    if(this.getIsAlive()){
+      int current = this.getCurrentHitPoints();
+      int max = this.getMaxHitPoints();
+      int heal = 0;
+      if(current<max){
+        if(current + healing >= max){
+          heal = max - current;
+          this.setCurrentHitPoints(max);
+        }
+        else{
+          heal = healing;
+          this.setCurrentHitPoints(current + healing);
+        }
+      }
+      System.out.println(this.getName() + " was healed for " + heal + " points.");
+    }
   }
+
+  public List<IEquipableItem> getItems() { return List.copyOf(items); }
 
   public void addItem(IEquipableItem item){
     this.items.add(item);
@@ -109,16 +135,15 @@ public abstract class AbstractUnit implements IUnit {
       }
       else {
         if (distance >= thisEquip.getMinRange() && distance <= thisEquip.getMaxRange()) {
-          if (unitEquip == null) {
+          if (unitEquip == null || unitEquip.getMinRange() > distance ||
+                  unitEquip.getMaxRange() < distance) {
             while (unit.getCurrentHitPoints() != 0) {
               unit.receiveDamage(thisEquip.getPower());
             }
           }
-          while (this.currentHitPoints != 0 && unit.getCurrentHitPoints() != 0 &&
-                  thisEquip != null && unitEquip != null) {
+          while (this.currentHitPoints != 0 && unit.getCurrentHitPoints() != 0) {
             thisEquip.attack(unitEquip);
-            if (unit.getCurrentHitPoints() != 0 && distance >= unitEquip.getMinRange() &&
-                    distance <= unitEquip.getMaxRange()) {
+            if (unit.getCurrentHitPoints() != 0) {
               unitEquip.attack(thisEquip);
             }
           }
@@ -158,4 +183,6 @@ public abstract class AbstractUnit implements IUnit {
       setLocation(targetLocation);
     }
   }
+
+  public abstract boolean equals(Object obj);
 }

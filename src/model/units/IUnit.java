@@ -133,12 +133,14 @@ public interface IUnit {
    */
   void receiveDamage(int damage);
 
+  void receiveHealing(int heal);
+
   /**
    * Sets the current health points to a specified value.
    * @param hp
    *      the value to be setted as hp.
    */
-  void setHp(int hp);
+  void setCurrentHitPoints(int hp);
 
   /**
    * Sets the current state of the unit.
@@ -153,8 +155,18 @@ public interface IUnit {
    */
   boolean getIsAlive();
 
-  void setName(String name);
-
+  /**
+   * Returns the name of the unit.
+   * @return the name of the unit as a string.
+   */
   String getName();
+
+  /**
+   * Checks if the object is equal to the unit.
+   * @param obj
+   *      object to be compared.
+   * @return true if the unit and the object are the same; false if they're different.
+   */
+  boolean equals(Object obj);
 }
 

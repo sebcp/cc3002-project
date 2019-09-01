@@ -36,7 +36,6 @@ public abstract class AbstractSpellBook extends AbstractAttackAbleItem {
     @Override
     public void equipToSorcerer(IUnit unit){
         unit.setEquippedItem(this);
-        unit.addItem(this);
         this.setOwner(unit);
     }
 

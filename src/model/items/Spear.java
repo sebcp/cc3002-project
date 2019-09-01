@@ -33,7 +33,6 @@ public class Spear extends AbstractAttackAbleItem {
   @Override
   public void equipToHero(IUnit unit) {
     unit.setEquippedItem(this);
-    unit.addItem(this);
     this.setOwner(unit);
   }
 

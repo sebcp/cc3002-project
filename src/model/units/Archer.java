@@ -3,6 +3,8 @@ package model.units;
 import model.items.IEquipableItem;
 import model.map.Location;
 
+import java.util.List;
+
 /**
  * This class represents an Archer type unit.
  *
@@ -16,7 +18,6 @@ public class Archer extends AbstractUnit {
   /**
    * Creates a new archer
    *
-   * @param hitPoints
    *     maximum hit points of the unit
    * @param maxHitPoints
    *      the maximum amount of health points
@@ -27,10 +28,9 @@ public class Archer extends AbstractUnit {
    * @param items
    *     the items carried by this unit
    */
-  public Archer(int maxHitPoints, final int movement, final Location position, String name,
+  public Archer(final int maxHitPoints, final int movement, final Location position, String name,
       final IEquipableItem... items) {
-    super(maxHitPoints, movement, position, 3, items);
-    this.setName(name);
+    super(maxHitPoints, movement, position, 3, name, items);
   }
 
   /**
@@ -42,7 +42,30 @@ public class Archer extends AbstractUnit {
    *     the item to equip
    */
   @Override
-  public void equipItem(final IEquipableItem item) {
-    item.equipToArcher(this);
+  public void equipItem(IEquipableItem item) {
+    if(this.getItems().contains(item)) {
+      item.equipToArcher(this);
+    }
+  }
+
+  @Override
+  public boolean equals(Object obj){
+    if(obj instanceof Archer){
+      int unitHitPoints = ((IUnit) obj).getCurrentHitPoints();
+      int unitMaxHitPoints = ((IUnit) obj).getMaxHitPoints();
+      boolean unitIsAlive = ((IUnit) obj).getIsAlive();
+      int unitMovement = ((IUnit) obj).getMovement();
+      IEquipableItem unitEquippedItem = ((IUnit) obj).getEquippedItem();
+      List<IEquipableItem> unitItems = ((IUnit) obj).getItems();
+      Location unitLocation = ((IUnit) obj).getLocation();
+      String unitName = ((IUnit) obj).getName();
+      if(unitIsAlive==this.getIsAlive() && unitEquippedItem == this.getEquippedItem() &&
+              unitHitPoints == this.getCurrentHitPoints() && unitMaxHitPoints == this.getMaxHitPoints()
+              && unitItems == this.getItems() && unitMovement == this.getMovement() &&
+              unitLocation == this.getLocation() && unitName == this.getName()){
+        return true;
+      }
+    }
+    return false;
   }
 }

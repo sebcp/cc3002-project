@@ -46,6 +46,7 @@ public class AlpacaTest extends AbstractTestUnit {
   public void checkCombat() {
       Sword sword = new Sword("Sword",10,1,1);
       SwordMaster swordmaster = new SwordMaster(50,2,field.getCell(0,1),"Swordmaster");
+      swordmaster.addItem(sword);
       swordmaster.equipItem(sword);
       swordmaster.combat(alpaca);
       assertEquals(0,alpaca.getCurrentHitPoints());

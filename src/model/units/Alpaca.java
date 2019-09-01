@@ -3,6 +3,8 @@ package model.units;
 import model.items.IEquipableItem;
 import model.map.Location;
 
+import java.util.List;
+
 /**
  * This class represents an Alpaca type unit.
  *
@@ -24,10 +26,9 @@ public class Alpaca extends AbstractUnit {
    * @param location
    *     current position of the unit
    */
-  public Alpaca(int maxHitPoints, final int movement, final Location location, String name,
+  public Alpaca(final int maxHitPoints, final int movement, final Location location, String name,
       final IEquipableItem... items) {
-    super(maxHitPoints, movement, location, Integer.MAX_VALUE, items);
-    this.setName(name);
+    super(maxHitPoints, movement, location, Integer.MAX_VALUE, name, items);
   }
 
   /**
@@ -36,7 +37,7 @@ public class Alpaca extends AbstractUnit {
    * The Alpaca cannot equip any item.
    */
   @Override
-  public void equipItem(final IEquipableItem item) {
+  public void equipItem(IEquipableItem item) {
     // Method body intentionally left empty
   }
 
@@ -46,4 +47,24 @@ public class Alpaca extends AbstractUnit {
     System.out.println("Alpacas cannot combat other units.");
   }
 
+  @Override
+  public boolean equals(Object obj){
+    if(obj instanceof Alpaca){
+      int unitHitPoints = ((IUnit) obj).getCurrentHitPoints();
+      int unitMaxHitPoints = ((IUnit) obj).getMaxHitPoints();
+      boolean unitIsAlive = ((IUnit) obj).getIsAlive();
+      int unitMovement = ((IUnit) obj).getMovement();
+      IEquipableItem unitEquippedItem = ((IUnit) obj).getEquippedItem();
+      List<IEquipableItem> unitItems = ((IUnit) obj).getItems();
+      Location unitLocation = ((IUnit) obj).getLocation();
+      String unitName = ((IUnit) obj).getName();
+      if(unitIsAlive==this.getIsAlive() && unitEquippedItem == this.getEquippedItem() &&
+              unitHitPoints == this.getCurrentHitPoints() && unitMaxHitPoints == this.getMaxHitPoints()
+              && unitItems == this.getItems() && unitMovement == this.getMovement() &&
+              unitLocation == this.getLocation() && unitName == this.getName()){
+        return true;
+      }
+    }
+    return false;
+  }
 }

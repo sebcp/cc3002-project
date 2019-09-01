@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 public abstract class AbstractTestUnit implements ITestUnit {
 
   protected Alpaca targetAlpaca;
+  protected Cleric testCleric;
   protected Bow bow;
   protected Field field;
   protected Axe axe;
@@ -63,6 +64,14 @@ public abstract class AbstractTestUnit implements ITestUnit {
     this.oscuridad = new OscuridadSpellBook("OscuridadSpellBook",10,2,3);
     this.luz = new LuzSpellBook("LuzSpellBook",10,2,3);
   }
+
+  public void setTestCleric(){
+    testCleric = new Cleric(50,2,field.getCell(1,0),
+          "TestCleric");
+    Staff testStaff = new Staff("TestStaff",10,1,2);
+    testCleric.addItem(testStaff);
+    testCleric.equipItem(testStaff);
+  }
   /**
    * Sets up the units and weapons to be tested
    */
@@ -73,8 +82,8 @@ public abstract class AbstractTestUnit implements ITestUnit {
     setTestUnit();
     setTargetAlpaca();
     setWeapons();
+    setTestCleric();
   }
-
 
   /**
    * Checks that the constructor works properly.
@@ -86,6 +95,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     assertEquals(2, getTestUnit().getMovement());
     assertEquals(new Location(0, 0), getTestUnit().getLocation());
     assertTrue(getTestUnit().getItems().isEmpty());
+    assertTrue(getTestUnit().equals(getTestUnit()));
   }
 
   /**
@@ -141,6 +151,19 @@ public abstract class AbstractTestUnit implements ITestUnit {
   }
 
   public abstract void checkCombat();
+
+  @Test
+  public void checkHealing(){
+    getTestUnit().receiveDamage(10);
+    assertEquals(getTestUnit().getMaxHitPoints()-10,getTestUnit().getCurrentHitPoints());
+    testCleric.heal(getTestUnit());
+    assertEquals(getTestUnit().getMaxHitPoints(),getTestUnit().getCurrentHitPoints());
+    getTestUnit().receiveDamage(15);
+    testCleric.heal(getTestUnit());
+    assertEquals(getTestUnit().getMaxHitPoints()-5,getTestUnit().getCurrentHitPoints());
+    testCleric.heal(getTestUnit());
+    assertEquals(getTestUnit().getMaxHitPoints(),getTestUnit().getCurrentHitPoints());
+  }
 
   /**
    * @return the test axe

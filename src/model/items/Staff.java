@@ -31,32 +31,11 @@ public class Staff extends AbstractNonAttackAbleItem {
   @Override
   public void equipToCleric(IUnit unit) {
     unit.setEquippedItem(this);
-    unit.addItem(this);
     this.setOwner(unit);
   }
 
   @Override
   public void equipToSwordMaster(IUnit unit){
     System.out.println("Cannot equip " + this.getName() + ", sword masters can only equip swords.");
-  }
-
-  public void heal(IUnit unit){
-    if(unit.getIsAlive()){
-      int current = unit.getCurrentHitPoints();
-      int max = unit.getMaxHitPoints();
-      int heal = 0;
-      if(current<max){
-        int healPower = this.getPower();
-        if(current + healPower >= max){
-          heal = max - current;
-          unit.setHp(max);
-        }
-        else{
-          heal = healPower;
-          unit.setHp(current + healPower);
-        }
-      }
-      System.out.println(unit.getName() + "was healed for " + heal);
-    }
   }
 }

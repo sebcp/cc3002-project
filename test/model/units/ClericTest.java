@@ -32,7 +32,9 @@ public class ClericTest extends AbstractTestUnit {
   @Override
   public void equipStaffTest() {
     assertNull(cleric.getEquippedItem());
+    cleric.addItem(staff);
     cleric.equipItem(staff);
+    assertTrue(cleric.getItems().contains(staff));
     assertEquals(staff, cleric.getEquippedItem());
   }
 
@@ -41,6 +43,7 @@ public class ClericTest extends AbstractTestUnit {
   public void checkCombat() {
     Sword sword = new Sword("Sword",10,1,1);
     SwordMaster swordmaster = new SwordMaster(50,2,field.getCell(0,1),"Swordmaster");
+    swordmaster.addItem(sword);
     swordmaster.equipItem(sword);
     swordmaster.combat(cleric);
     assertEquals(0,cleric.getCurrentHitPoints());

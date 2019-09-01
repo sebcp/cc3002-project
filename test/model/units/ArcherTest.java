@@ -1,11 +1,9 @@
 package model.units;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import model.items.Sword;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test set for the Archer unit.
@@ -40,12 +38,15 @@ public class ArcherTest extends AbstractTestUnit {
   @Override
   public void equipBowTest() {
     assertNull(archer.getEquippedItem());
+    archer.addItem(bow);
     archer.equipItem(bow);
+    assertTrue(archer.getItems().contains(bow));
     assertEquals(bow, archer.getEquippedItem());
   }
 
   @Test
   public void checkCombat(){
+    archer.addItem(bow);
     archer.equipItem(bow);
     assertEquals(bow, archer.getEquippedItem());
 
@@ -59,6 +60,7 @@ public class ArcherTest extends AbstractTestUnit {
 
     Sword sword = new Sword("Sword",10,1,1);
     SwordMaster swordmaster = new SwordMaster(50,2,field.getCell(0,1),"Swordmaster");
+    swordmaster.addItem(sword);
     swordmaster.equipItem(sword);
     swordmaster.combat(archer);
     assertEquals(0,archer.getCurrentHitPoints());

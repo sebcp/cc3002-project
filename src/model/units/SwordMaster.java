@@ -3,6 +3,8 @@ package model.units;
 import model.items.IEquipableItem;
 import model.map.Location;
 
+import java.util.List;
+
 /**
  * This class represents a SwordMaster type unit.
  *
@@ -13,10 +15,9 @@ import model.map.Location;
  */
 public class SwordMaster extends AbstractUnit {
 
-  public SwordMaster(int maxHitPoints, final int movement, final Location location, String name,
-      IEquipableItem... items) {
-    super(maxHitPoints, movement, location, 3, items);
-    this.setName(name);
+  public SwordMaster(final int maxHitPoints, final int movement, final Location location,
+                     String name, IEquipableItem... items) {
+    super(maxHitPoints, movement, location, 3, name, items);
   }
 
   /**
@@ -28,6 +29,29 @@ public class SwordMaster extends AbstractUnit {
    */
   @Override
   public void equipItem(final IEquipableItem item) {
-    item.equipToSwordMaster(this);
+    if(this.getItems().contains(item)) {
+      item.equipToSwordMaster(this);
+    }
+  }
+
+  @Override
+  public boolean equals(Object obj){
+    if(obj instanceof SwordMaster){
+      int unitHitPoints = ((IUnit) obj).getCurrentHitPoints();
+      int unitMaxHitPoints = ((IUnit) obj).getMaxHitPoints();
+      boolean unitIsAlive = ((IUnit) obj).getIsAlive();
+      int unitMovement = ((IUnit) obj).getMovement();
+      IEquipableItem unitEquippedItem = ((IUnit) obj).getEquippedItem();
+      List<IEquipableItem> unitItems = ((IUnit) obj).getItems();
+      Location unitLocation = ((IUnit) obj).getLocation();
+      String unitName = ((IUnit) obj).getName();
+      if(unitIsAlive==this.getIsAlive() && unitEquippedItem == this.getEquippedItem() &&
+              unitHitPoints == this.getCurrentHitPoints() && unitMaxHitPoints == this.getMaxHitPoints()
+              && unitItems == this.getItems() && unitMovement == this.getMovement() &&
+              unitLocation == this.getLocation() && unitName == this.getName()){
+        return true;
+      }
+    }
+    return false;
   }
 }

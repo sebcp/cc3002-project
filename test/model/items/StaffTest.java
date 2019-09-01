@@ -3,6 +3,8 @@ package model.items;
 import model.map.Location;
 import model.units.Cleric;
 import model.units.IUnit;
+import model.units.SwordMaster;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test set for staffs
