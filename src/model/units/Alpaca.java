@@ -25,6 +25,10 @@ public class Alpaca extends AbstractUnit {
    *     number of cells the unit can move
    * @param location
    *     current position of the unit
+   * @param items
+   *     the items carried by this unit
+   * @param name
+   *     the name of the alpaca.
    */
   public Alpaca(final int maxHitPoints, final int movement, final Location location, String name,
       final IEquipableItem... items) {
@@ -32,15 +36,18 @@ public class Alpaca extends AbstractUnit {
   }
 
   /**
-   * {@inheritDoc}
-   *
-   * The Alpaca cannot equip any item.
+   * The Alpaca cannot equip any items.
    */
   @Override
   public void equipItem(IEquipableItem item) {
     // Method body intentionally left empty
   }
 
+  /**
+   * Alpacas cannot combat other units.
+   * @param unit
+   *      the unit to be targeted.
+   */
   @Override
   public void combat(IUnit unit){
     //Do nothing

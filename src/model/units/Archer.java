@@ -10,7 +10,7 @@ import java.util.List;
  *
  * This kind of unit can only use bows.
  *
- * @author Ignacio Slater Muñoz
+ * @author Sebastián Contreras Phillippi
  * @since 1.0
  */
 public class Archer extends AbstractUnit {
@@ -27,20 +27,14 @@ public class Archer extends AbstractUnit {
    *     the initial position of this unit
    * @param items
    *     the items carried by this unit
+   * @param name
+   *     the name of the archer
    */
   public Archer(final int maxHitPoints, final int movement, final Location position, String name,
       final IEquipableItem... items) {
     super(maxHitPoints, movement, position, 3, name, items);
   }
 
-  /**
-   * Sets the currently equipped item of this unit.
-   *
-   * The Archer can only equip Bows.
-   *
-   * @param item
-   *     the item to equip
-   */
   @Override
   public void equipItem(IEquipableItem item) {
     if(this.getItems().contains(item) && this.getIsAlive()) {

@@ -9,23 +9,29 @@ import java.util.List;
  * This class represents a fighter type unit.
  * A fighter is a unit that can only use axe type weapons.
  *
- * @author Ignacio Slater Muñoz
+ * @author Sebastián Contreras Phillippi
  * @since 1.0
  */
 public class Fighter extends AbstractUnit {
-
+  /**
+   * Creates a new Unit.
+   *
+   * @param maxHitPoints
+   *      the maximum amount of health points
+   * @param movement
+   *     the number of panels a unit can move
+   * @param location
+   *     the initial position of this unit
+   * @param items
+   *     the items carried by this unit
+   * @param name
+   *     the name of the fighter
+   */
   public Fighter(final int maxHitPoints, final int movement, Location location, String name,
       IEquipableItem... items) {
     super(maxHitPoints, movement, location, 3, name, items);
   }
 
-  /**
-   * Sets the currently equipped item of this unit.
-   *
-   * The fighter can only equip axes.
-   * @param item
-   *     the item to equip
-   */
   @Override
   public void equipItem(final IEquipableItem item) {
     if(this.getItems().contains(item) && this.getIsAlive()) {

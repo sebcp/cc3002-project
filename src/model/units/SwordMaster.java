@@ -10,23 +10,30 @@ import java.util.List;
  *
  * A SwordMaster is a unit that can only use sword type weapons.
  *
- * @author Ignacio Slater Muñoz
+ * @author Sebastián Contreras
  * @since 1.0
  */
 public class SwordMaster extends AbstractUnit {
 
+  /**
+   * Creates a new Unit.
+   *
+   * @param maxHitPoints
+   *      the maximum amount of health points
+   * @param movement
+   *     the number of panels a unit can move
+   * @param location
+   *     the initial position of this unit
+   * @param items
+   *     the items carried by this unit
+   * @param name
+   *     the name of the swordmaster
+   */
   public SwordMaster(final int maxHitPoints, final int movement, final Location location,
                      String name, IEquipableItem... items) {
     super(maxHitPoints, movement, location, 3, name, items);
   }
 
-  /**
-   * Sets the currently equipped item of this unit.
-   *
-   * The sword master can only equip swords.
-   * @param item
-   *     the item to equip
-   */
   @Override
   public void equipItem(final IEquipableItem item) {
     if(this.getItems().contains(item) && this.getIsAlive()) {

@@ -11,14 +11,14 @@ import model.map.Location;
  * The signature of all the common methods that a unit can execute are defined here. All units
  * except some special ones can carry at most 3 weapons.
  *
- * @author Ignacio Slater Muñoz
+ * @author Sebastián Contreras Phillippi
  * @since 1.0
  */
 public interface IUnit {
 
   /**
-   * Sets the currently equipped item of this unit.
-   *
+   * Tries to equip the item to the unit. Units can only equip items if they're alive.
+   * Every class, but sorcerers and alpacas, can only equip one kind of item.
    * @param item
    *     the item to equip
    */
@@ -46,18 +46,21 @@ public interface IUnit {
   IEquipableItem getEquippedItem();
 
   /**
+   * Changes the equipped item.
    * @param item
-   *     the item to be equipped
+   *     the item to be equipped.
    */
   void setEquippedItem(IEquipableItem item);
 
   /**
-   * @return the current location of the unit
+   * @return the current location of the unit.
    */
   Location getLocation();
 
   /**
-   * Sets a new location for this unit,
+   * Sets a new location for this unit.
+   * @param location
+   *      the new location of the unit.
    */
   void setLocation(final Location location);
 
@@ -68,8 +71,9 @@ public interface IUnit {
 
   /**
    * Moves this unit to another location.
-   *
    * If the other location is out of this unit's movement range, the unit doesn't move.
+   * @param targetLocation
+   *      the location the unit's moving to.
    */
   void moveTo(Location targetLocation);
 
@@ -85,7 +89,6 @@ public interface IUnit {
   void giveItem(int pos, IUnit unit);
 
   /**
-   * Counts how many items the unit is holding.
    * @return the number of item the unit is currently holding in its inventory.
    */
   int countItems();
@@ -119,8 +122,9 @@ public interface IUnit {
 
   /**
    * Starts a combat with the targeted unit, it ends when one of the units HP fall to 0.
-   * Units cannot enter combat if they don't have an item equipped or if the targeted unit
-   * is outside of the range defined by the equipped item.
+   * Units cannot enter combat if they don't have an item equipped, if the targeted unit
+   * is outside of the range defined by the equipped item, if they're equipped with a
+   * non-attack able item or if they're dead. Units cannot combat dead units.
    * @param unit
    *      the unit to be fought.
    */
@@ -128,7 +132,7 @@ public interface IUnit {
 
   /**
    * Lowers the hp of the unit by an amount defined by the attacker's item power. If
-   * the unit's hp were to fall bellow 0, it'd set to 0 and set to dead.
+   * the unit's hp were to fall bellow 0, it's set to 0 and the unit is set to dead.
    * @param damage
    */
   void receiveDamage(int damage);
@@ -136,7 +140,7 @@ public interface IUnit {
   /**
    * Increases the hp of the unit by an amount defined by the healer's item power. If
    * the unit's hp were to rise above their maximum hp, it'd be set to their maximum hp.
-   * Dead units cannot be healed.
+   * Dead units cannot heal other units.
    * @param heal
    */
   void receiveHealing(int heal);
@@ -170,7 +174,7 @@ public interface IUnit {
   /**
    * Checks if the object is equal to the unit.
    * @param obj
-   *      object to be compared.
+   *      the object to be compared.
    * @return true if the unit and the object are the same; false if they're different.
    */
   boolean equals(Object obj);

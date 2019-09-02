@@ -22,19 +22,18 @@ public class Hero extends AbstractUnit {
    *     the maximum amount of damage a unit can sustain
    * @param movement
    *     the number of panels a unit can move
+   * @param location
+   *     the initial position of this unit
+   * @param items
+   *     the items carried by this unit
+   * @param name
+   *     the name of the hero
    */
   public Hero(final int maxHitPoints, final int movement, final Location location, String name,
       IEquipableItem... items) {
     super(maxHitPoints, movement, location, 3, name, items);
   }
 
-  /**
-   * Sets the currently equipped item of this unit.
-   *
-   * The hero can only equip spears.
-   * @param item
-   *     the item to equip
-   */
   @Override
   public void equipItem(IEquipableItem item) {
     if(this.getItems().contains(item) && this.getIsAlive()) {

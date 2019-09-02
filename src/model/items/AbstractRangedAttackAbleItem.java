@@ -3,7 +3,8 @@ package model.items;
 public abstract class AbstractRangedAttackAbleItem extends AbstractAttackAbleItem{
 
     /**
-     * Constructor for a default item that can attack other units.
+     * Constructor for a default ranged item that can attack other units.
+     * Ranged items must have a minimum range greater or equal than 2.
      *
      * @param name     the name of the item
      * @param power    the power of the item (this could be the amount of damage or healing the item does)

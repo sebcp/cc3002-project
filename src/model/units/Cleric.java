@@ -9,7 +9,7 @@ import java.util.List;
  * This class represents a cleric type unit. A cleric can only use staff type weapons, which means
  * that it can receive attacks but can't counter attack any of those.
  *
- * @author Ignacio Slater Muñoz
+ * @author Sebastián Contreras Phillippi
  * @since 1.0
  */
 public class Cleric extends AbstractUnit {
@@ -21,6 +21,12 @@ public class Cleric extends AbstractUnit {
    *      the maximum amount of health points
    * @param movement
    *     the number of panels a unit can move
+   * @param location
+   *     the initial position of this unit
+   * @param items
+   *     the items carried by this unit
+   * @param name
+   *     the name of the cleric
    */
   public Cleric(final int maxHitPoints, final int movement, final Location location, String name,
       IEquipableItem... items) {
@@ -42,14 +48,25 @@ public class Cleric extends AbstractUnit {
     }
   }
 
+  /**
+   * Clerics cannot combat other units.
+   * @param unit
+   *      the unit to be targeted.
+   */
   @Override
   public void combat(IUnit unit){
     //Do nothing
     System.out.println("Clerics cannot combat other units.");
   }
 
+  /**
+   * Heals a unit. Healing depends on the staff's power. Clerics can only heal other
+   * units if they're alive.
+   * @param unit
+   *      the unit to be healed.
+   */
   public void heal(IUnit unit) {
-    if (this.getEquippedItem() != null) {
+    if (this.getEquippedItem() != null && this.getIsAlive()) {
       unit.receiveHealing(this.getEquippedItem().getPower());
     }
   }
