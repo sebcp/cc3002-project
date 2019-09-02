@@ -1,9 +1,10 @@
 package model.items;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import model.map.Location;
+import model.units.Cleric;
 import model.units.IUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,8 @@ import org.junit.jupiter.api.Test;
   protected int expectedPower;
   protected short expectedMinRange;
   protected short expectedMaxRange;
+  protected Cleric cleric;
+  protected Staff staff;
 
   /**
    * Sets up the items to be tested
@@ -46,6 +49,13 @@ import org.junit.jupiter.api.Test;
    */
   public abstract void setTestUnit();
 
+  public void setTarget(){
+    staff = new Staff("Staff",10,1,2);
+    cleric = new Cleric(50,2,new Location(0,1),"Cleric");
+    cleric.addItem(staff);
+    cleric.equipItem(staff);
+  }
+
   /**
    * Checks that the tested item cannot have ranges outside of certain bounds.
    */
@@ -69,6 +79,19 @@ import org.junit.jupiter.api.Test;
     assertEquals(getExpectedBasePower(), getTestItem().getPower());
     assertEquals(getExpectedMinRange(), getTestItem().getMinRange());
     assertEquals(getExpectedMaxRange(), getTestItem().getMaxRange());
+  }
+
+  public abstract void checkWeakness();
+
+  public abstract void checkResistance();
+
+  @Test
+  public void checkAttack(){
+    getTestUnit().addItem(getTestItem());
+    getTestUnit().equipItem(getTestItem());
+    setTarget();
+    getTestItem().attack(staff);
+    assertEquals(40,cleric.getCurrentHitPoints());
   }
 
   /**
@@ -107,15 +130,7 @@ import org.junit.jupiter.api.Test;
   /**
    * Checks that the Item can be correctly equipped to a unit
    */
-  @Test
-  public void equippedToTest() {
-    assertNull(getTestItem().getOwner());
-    IUnit unit = getTestUnit();
-    unit.addItem(getTestItem());
-    unit.equipItem(getTestItem());
-    assertEquals(unit, getTestItem().getOwner());
-    assertTrue(unit.getItems().contains(getTestItem()));
-  }
+  public abstract void equippedToTest();
 
   /**
    * @return a unit that can equip the item being tested

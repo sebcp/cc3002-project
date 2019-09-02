@@ -28,7 +28,7 @@ public class Sorcerer extends AbstractUnit{
      */
     @Override
     public void equipItem(final IEquipableItem item) {
-        if(this.getItems().contains(item)) {
+        if(this.getItems().contains(item) && this.getIsAlive()) {
             item.equipToSorcerer(this);
         }
     }

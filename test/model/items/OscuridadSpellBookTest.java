@@ -1,5 +1,6 @@
 package model.items;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import model.map.Location;
@@ -44,7 +45,7 @@ public class OscuridadSpellBookTest extends AbstractTestItem{
      */
     @Override
     public void setTestUnit() {
-        sorcerer = new Sorcerer(10, 5, new Location(0, 0),"Sorcerer");
+        sorcerer = new Sorcerer(50, 5, new Location(0, 0),"Sorcerer");
     }
 
     /**
@@ -60,12 +61,63 @@ public class OscuridadSpellBookTest extends AbstractTestItem{
     @Override
     public IEquipableItem getWrongTestItem() { return wrongSpellbook; }
 
+    @Test
+    @Override
+    public void checkWeakness() {
+        getTestUnit().addItem(getTestItem());
+        getTestUnit().equipItem(getTestItem());
+        assertEquals(getTestItem(),getTestUnit().getEquippedItem());
+
+        LuzSpellBook item = new LuzSpellBook("test",10,2,3);
+        getTestItem().receiveAttackFromLuzSpellBook(item);
+        assertEquals(35,getTestUnit().getCurrentHitPoints());
+        Axe axe = new Axe("Axe",5,1,2);
+        Spear spear = new Spear("Spear",5,1,2);
+        Sword sword = new Sword("Sword",5,1,2);
+        getTestItem().receiveAttackFromAxe(axe);
+        assertEquals(27,getTestUnit().getCurrentHitPoints());
+        getTestItem().receiveAttackFromSword(sword);
+        assertEquals(19,getTestUnit().getCurrentHitPoints());
+        getTestItem().receiveAttackFromSpear(spear);
+        assertEquals(11,getTestUnit().getCurrentHitPoints());
+    }
+
+    @Test
+    @Override
+    public void checkResistance(){
+        getTestUnit().addItem(getTestItem());
+        getTestUnit().equipItem(getTestItem());
+        assertEquals(getTestItem(),getTestUnit().getEquippedItem());
+
+        AnimaSpellBook test = new AnimaSpellBook("test",10,2,3);
+        getTestItem().receiveAttackFromAnimaSpellBook(test);
+        assertEquals(getTestUnit().getMaxHitPoints(),getTestUnit().getCurrentHitPoints());
+    }
+
     /**
      * @return the item being tested
      */
     @Override
     public IEquipableItem getTestItem() {
         return spellbook;
+    }
+
+    @Test
+    @Override
+    public void equippedToTest() {
+        getTestItem().equipToSorcerer(getTestUnit());
+        assertEquals(getTestItem(),getTestUnit().getEquippedItem());
+    }
+
+    @Override
+    @Test
+    public void checkAttack(){
+        getTestUnit().addItem(getTestItem());
+        getTestUnit().equipItem(getTestItem());
+        setTarget();
+        cleric.moveTo(new Location(1,1));
+        getTestItem().attack(staff);
+        assertEquals(38,cleric.getCurrentHitPoints());
     }
 
     /**

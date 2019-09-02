@@ -43,7 +43,7 @@ public class Archer extends AbstractUnit {
    */
   @Override
   public void equipItem(IEquipableItem item) {
-    if(this.getItems().contains(item)) {
+    if(this.getItems().contains(item) && this.getIsAlive()) {
       item.equipToArcher(this);
     }
   }
