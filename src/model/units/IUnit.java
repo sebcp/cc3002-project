@@ -128,11 +128,17 @@ public interface IUnit {
 
   /**
    * Lowers the hp of the unit by an amount defined by the attacker's item power. If
-   * the unit's hp were to fall bellow 0, it's set to 0 and set to dead.
+   * the unit's hp were to fall bellow 0, it'd set to 0 and set to dead.
    * @param damage
    */
   void receiveDamage(int damage);
 
+  /**
+   * Increases the hp of the unit by an amount defined by the healer's item power. If
+   * the unit's hp were to rise above their maximum hp, it'd be set to their maximum hp.
+   * Dead units cannot be healed.
+   * @param heal
+   */
   void receiveHealing(int heal);
 
   /**
@@ -151,7 +157,7 @@ public interface IUnit {
 
   /**
    * Returns the current state of the unit.
-   * @return true if the unit's hp hasn't fell to 0; false if it has.
+   * @return true if the unit's hp hasn't fallen to 0; false if it has.
    */
   boolean getIsAlive();
 

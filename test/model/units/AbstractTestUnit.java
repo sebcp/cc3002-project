@@ -18,6 +18,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
 
   protected Alpaca targetAlpaca;
   protected Cleric testCleric;
+
   protected Bow bow;
   protected Field field;
   protected Axe axe;
@@ -92,10 +93,11 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Test
   public void constructorTest() {
     assertEquals(50, getTestUnit().getCurrentHitPoints());
+    assertEquals(50, getTestUnit().getMaxHitPoints());
     assertEquals(2, getTestUnit().getMovement());
     assertEquals(new Location(0, 0), getTestUnit().getLocation());
     assertTrue(getTestUnit().getItems().isEmpty());
-    assertTrue(getTestUnit().equals(getTestUnit()));
+    assertEquals(getTestUnit(), getTestUnit());
   }
 
   /**
@@ -123,14 +125,26 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   public void checkEquippedItem(IEquipableItem item) {
     assertNull(getTestUnit().getEquippedItem());
+    getTestUnit().addItem(item);
     getTestUnit().equipItem(item);
     assertNull(getTestUnit().getEquippedItem());
+  }
+
+  @Test
+  public void checkCombatBorderCases(){
+    SwordMaster test = new SwordMaster(50,2,field.getCell(0,1),"test");
+    Sword testSword = new Sword("testSword",10,1,2);
+    test.addItem(testSword);
+    test.equipItem(testSword);
+    test.receiveDamage(50);
+    test.combat(getTestUnit());
+    assertEquals(getTestUnit().getMaxHitPoints(),getTestUnit().getCurrentHitPoints());
   }
 
   /**
    * Tries to give an item from the inventory of the test unit to the alpaca
    * and verifies whether it has been given or not, then tries to give an item
-   * to a unit with a full inventory.
+   * to a unit with a full inventory and then tries to give an item to a dead unit.
    */
   @Override
   @Test
@@ -138,6 +152,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     Sword exchangedSword = new Sword("exchangedSword",5,1,2);
     getTestUnit().addItem(exchangedSword);
     getTestUnit().giveItem(0, getTargetAlpaca());
+    assertEquals(exchangedSword.getOwner(),getTargetAlpaca());
     assertEquals(exchangedSword, getTargetAlpaca().getItems().get(0));
 
     Axe axe = new Axe("Axe",10,1,2);
@@ -148,6 +163,9 @@ public abstract class AbstractTestUnit implements ITestUnit {
     getTestUnit().addItem(sword);
     getTargetAlpaca().giveItem(0,getTestUnit());
     assertEquals(exchangedSword,getTargetAlpaca().getItems().get(0));
+    getTargetAlpaca().receiveDamage(50);
+    getTestUnit().giveItem(0,getTargetAlpaca());
+    assertTrue(getTestUnit().getItems().contains(axe));
   }
 
   public abstract void checkCombat();
@@ -163,6 +181,9 @@ public abstract class AbstractTestUnit implements ITestUnit {
     assertEquals(getTestUnit().getMaxHitPoints()-5,getTestUnit().getCurrentHitPoints());
     testCleric.heal(getTestUnit());
     assertEquals(getTestUnit().getMaxHitPoints(),getTestUnit().getCurrentHitPoints());
+    getTestUnit().receiveDamage(50);
+    testCleric.heal(getTestUnit());
+    assertEquals(0,getTestUnit().getCurrentHitPoints());
   }
 
   /**

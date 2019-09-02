@@ -45,6 +45,8 @@ public class ClericTest extends AbstractTestUnit {
     SwordMaster swordmaster = new SwordMaster(50,2,field.getCell(0,1),"Swordmaster");
     swordmaster.addItem(sword);
     swordmaster.equipItem(sword);
+    cleric.combat(swordmaster);
+    assertEquals(50,swordmaster.getCurrentHitPoints());
     swordmaster.combat(cleric);
     assertEquals(0,cleric.getCurrentHitPoints());
     assertFalse(cleric.getIsAlive());

@@ -19,6 +19,13 @@ public interface IEquipableItem {
   IUnit getOwner();
 
   /**
+   * Changes the item's owner.
+   * @param unit
+   *      the unit that's the new owner of the item.
+   */
+  void setOwner(IUnit unit);
+
+  /**
    * @return the name of the item
    */
   String getName();
@@ -115,12 +122,33 @@ public interface IEquipableItem {
    */
   void receiveAttackFromBow(Bow bow);
 
+  /**
+   * Receives an attack from an anima spell book.
+   * @param animaSpellBook
+   *      the anima spell book that's attacking.
+   */
   void receiveAttackFromAnimaSpellBook(AnimaSpellBook animaSpellBook);
 
+  /**
+   * Receives an attack from an oscuridad spell book.
+   * @param oscuridadSpellBook
+   *      the oscuridad spell book that's attacking.
+   */
   void receiveAttackFromOscuridadSpellBook(OscuridadSpellBook oscuridadSpellBook);
 
+  /**
+   * Receives an attack from a luz spell book.
+   * @param luzSpellBook
+   *      the luz spell book that's attacking.
+   */
   void receiveAttackFromLuzSpellBook(LuzSpellBook luzSpellBook);
 
+  /**
+   * Compares the item to an object.
+   * @param obj
+   *      the object to be compared.
+   * @return true if the item and the object are the same; false if they're different.
+   */
   boolean equals(Object obj);
 }
 

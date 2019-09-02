@@ -36,6 +36,7 @@ public abstract class AbstractAttackAbleItem implements IEquipableItem {
     return owner;
   }
 
+  @Override
   public void setOwner(IUnit unit){ this.owner = unit; }
 
   @Override
@@ -88,6 +89,7 @@ public abstract class AbstractAttackAbleItem implements IEquipableItem {
     System.out.println("Cannot equip " + this.getName() + ", fighters can only equip axes.");
   }
 
+  @Override
   public abstract void attack(IEquipableItem item);
 
   @Override

@@ -51,26 +51,12 @@ public class SorcererTest extends AbstractTestUnit {
     }
 
     @Test
-    public void combatTest(){
-        sorcerer.addItem(luz);
-        sorcerer.equipItem(luz);
-        assertTrue(sorcerer.getItems().contains(luz));
-        assertEquals(luz, sorcerer.getEquippedItem());
-
-        sorcerer.combat(getTargetAlpaca());
-        assertEquals(50,getTargetAlpaca().getCurrentHitPoints());
-
-        getTargetAlpaca().moveTo(field.getCell(1,1));
-        sorcerer.combat(getTargetAlpaca());
-        assertEquals(0,getTargetAlpaca().getCurrentHitPoints());
-        assertFalse(getTargetAlpaca().getIsAlive());
-    }
-
-    @Test
     @Override
     public void checkCombat() {
         sorcerer.addItem(luz);
         sorcerer.equipItem(luz);
+        sorcerer.combat(getTargetAlpaca());
+        assertEquals(50,getTargetAlpaca().getCurrentHitPoints());
         getTargetAlpaca().moveTo(field.getCell(1,1));
         sorcerer.combat(getTargetAlpaca());
         assertEquals(0,getTargetAlpaca().getCurrentHitPoints());

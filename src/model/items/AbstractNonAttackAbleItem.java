@@ -28,7 +28,7 @@ public abstract class AbstractNonAttackAbleItem implements IEquipableItem {
         this.name = name;
         this.power = power;
         this.minRange = Math.max(minRange, 1);
-        this.maxRange = Math.max(maxRange, this.minRange);
+        this.maxRange = Math.max(maxRange, this.minRange+1);
     }
 
     @Override
@@ -36,6 +36,7 @@ public abstract class AbstractNonAttackAbleItem implements IEquipableItem {
         return owner;
     }
 
+    @Override
     public void setOwner(IUnit unit){ this.owner = unit; }
 
     @Override
@@ -88,6 +89,7 @@ public abstract class AbstractNonAttackAbleItem implements IEquipableItem {
         System.out.println("Cannot equip " + this.getName() + ", fighters can only equip axes.");
     }
 
+    @Override
     public void attack(IEquipableItem item){
         System.out.println("Non attack-able items cannot attack");
     }
