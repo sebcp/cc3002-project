@@ -101,6 +101,16 @@ public class BowTest extends AbstractTestItem {
     assertEquals(5,getTestUnit().getCurrentHitPoints());
   }
 
+  @Test
+  public void checkNeutral(){
+    getTestUnit().addItem(getTestItem());
+    getTestUnit().equipItem(getTestItem());
+    assertEquals(getTestItem(),getTestUnit().getEquippedItem());
+    Bow item = new Bow("test",10,2,3);
+    getTestItem().receiveAttackFromBow(item);
+    assertEquals(40,getTestUnit().getCurrentHitPoints());
+  }
+
   /**
    * @return the item being tested
    */

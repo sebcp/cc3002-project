@@ -74,12 +74,15 @@ public class AnimaSpellBookTest extends AbstractTestItem{
         Axe axe = new Axe("Axe",5,1,2);
         Spear spear = new Spear("Spear",5,1,2);
         Sword sword = new Sword("Sword",5,1,2);
+        Bow bow = new Bow("Bow",5,2,3);
         getTestItem().receiveAttackFromAxe(axe);
         assertEquals(27,getTestUnit().getCurrentHitPoints());
         getTestItem().receiveAttackFromSword(sword);
         assertEquals(19,getTestUnit().getCurrentHitPoints());
         getTestItem().receiveAttackFromSpear(spear);
         assertEquals(11,getTestUnit().getCurrentHitPoints());
+        getTestItem().receiveAttackFromBow(bow);
+        assertEquals(3,getTestUnit().getCurrentHitPoints());
     }
 
     @Test
@@ -94,6 +97,15 @@ public class AnimaSpellBookTest extends AbstractTestItem{
         assertEquals(getTestUnit().getMaxHitPoints(),getTestUnit().getCurrentHitPoints());
     }
 
+    @Test
+    public void checkNeutral(){
+        getTestUnit().addItem(getTestItem());
+        getTestUnit().equipItem(getTestItem());
+        assertEquals(getTestItem(),getTestUnit().getEquippedItem());
+        AnimaSpellBook item = new AnimaSpellBook("test",10,2,3);
+        getTestItem().receiveAttackFromAnimaSpellBook(item);
+        assertEquals(40,getTestUnit().getCurrentHitPoints());
+    }
     /**
      * @return the item being tested
      */
