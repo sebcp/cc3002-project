@@ -34,11 +34,6 @@ public class Staff extends AbstractNonAttackAbleItem {
     this.setOwner(unit);
   }
 
-  @Override
-  public void equipToSwordMaster(IUnit unit){
-    System.out.println("Cannot equip " + this.getName() + ", sword masters can only equip swords.");
-  }
-
   public boolean equals(Object obj){
     if(obj instanceof Staff){
       String itemName = ((Staff) obj).getName();
