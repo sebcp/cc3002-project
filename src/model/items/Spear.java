@@ -10,6 +10,7 @@ import java.lang.Math;
  * Spears are strong against swords and weak against axes
  *
  * @author Ignacio Slater Muñoz
+ * @author Sebastián Contreras Phillippi
  * @since 1.0
  */
 public class Spear extends AbstractAttackAbleItem {

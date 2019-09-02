@@ -11,6 +11,7 @@ import model.map.Location;
  * The signature of all the common methods that a unit can execute are defined here. All units
  * except some special ones can carry at most 3 weapons.
  *
+ * @author Ignacio Slater Muñoz
  * @author Sebastián Contreras Phillippi
  * @since 1.0
  */

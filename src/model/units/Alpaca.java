@@ -12,6 +12,7 @@ import java.util.List;
  * them.
  *
  * @author Ignacio Slater Muñoz
+ * @author Sebastián Contreras Philliippi
  * @since 1.0
  */
 public class Alpaca extends AbstractUnit {

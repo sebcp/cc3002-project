@@ -1,5 +1,13 @@
 package model.items;
 
+/**
+ * Abstract class that defines some common information and behaviour between all ranged
+ * attack-able items.
+ *
+ * @author Ignacio Slater Muñoz
+ * @author Sebastián Contreras Phillippi
+ * @since 1.0
+ */
 public abstract class AbstractRangedAttackAbleItem extends AbstractAttackAbleItem{
 
     /**

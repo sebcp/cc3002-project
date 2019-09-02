@@ -9,6 +9,7 @@ import java.util.List;
  * This class represents a fighter type unit.
  * A fighter is a unit that can only use axe type weapons.
  *
+ * @author Ignacio Slater Muñoz
  * @author Sebastián Contreras Phillippi
  * @since 1.0
  */

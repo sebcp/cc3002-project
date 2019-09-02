@@ -10,6 +10,7 @@ import java.util.List;
  *
  * This kind of unit can only use bows.
  *
+ * @author Ignacio Slater Muñoz
  * @author Sebastián Contreras Phillippi
  * @since 1.0
  */

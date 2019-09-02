@@ -6,6 +6,7 @@ import model.units.IUnit;
  * Abstract class that defines some common information and behaviour between all attack-able items.
  *
  * @author Ignacio Slater Muñoz
+ * @author Sebastián Contreras Phillippi
  * @since 1.0
  */
 public abstract class AbstractAttackAbleItem implements IEquipableItem {

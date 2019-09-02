@@ -16,6 +16,7 @@ import model.map.Location;
  * game, but that contains the implementation of some of the methods that are common for most
  * units.
  *
+ * @author Ignacio Slater Muñoz
  * @author Sebastián Contreras Phillippi
  * @since 1.0
  */

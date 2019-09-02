@@ -11,6 +11,7 @@ import java.util.List;
  * This unit can only use spear weapons.
  *
  * @author Ignacio Slater Muñoz
+ * @author Sebastián Contreras Phillippi
  * @since 1.0
  */
 public class Hero extends AbstractUnit {

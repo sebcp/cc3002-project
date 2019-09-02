@@ -2,15 +2,13 @@ package model.items;
 
 import model.units.IUnit;
 /**
- * This class represents a Spell Book type item.
+ * This class defines the common behaviour of all spell book items.
  *
  * Spell books are strong against all other weapons but they're also weak against all of the other
- * type of items.
- * Anima spell books are strong against Luz spell books and weak against Oscuridad spell books.
- * Oscuridad spell books are strong against Anima spell books and weak against Luz spell books.
- * Luz spell books are strong against Oscuridad spell books and weak against Anima spell books.
+ * type of items. Each spellbook has their own magic weakness and strength.
  *
  * @author Sebastián Contreras Phillippi
+ * @since 1.0
  */
 public abstract class AbstractSpellBook extends AbstractRangedAttackAbleItem {
 

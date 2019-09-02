@@ -2,6 +2,13 @@ package model.items;
 
 import model.units.IUnit;
 
+/**
+ * This class represents an Anima Spell Book type item.
+ * Luz spell books are strong against Oscuridad spell books and weak against Anima spell books.
+ *
+ * @author Sebastián Contreras Phillippi
+ * @since 1.0
+ */
 public class LuzSpellBook extends AbstractSpellBook {
     /**
      * Creates a new spell book.

@@ -9,6 +9,7 @@ import java.util.List;
  * This class represents a cleric type unit. A cleric can only use staff type weapons, which means
  * that it can receive attacks but can't counter attack any of those.
  *
+ * @author Ignacio Slater Muñoz
  * @author Sebastián Contreras Phillippi
  * @since 1.0
  */
@@ -33,14 +34,6 @@ public class Cleric extends AbstractUnit {
     super(maxHitPoints, movement, location, 3, name, items);
   }
 
-  /**
-   * Sets the currently equipped item of this unit.
-   *
-   * The Cleric can only equip staffs.
-   *
-   * @param item
-   *     the item to equip
-   */
   @Override
   public void equipItem(IEquipableItem item) {
     if(this.getItems().contains(item) && this.getIsAlive()) {

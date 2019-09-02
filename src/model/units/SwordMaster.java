@@ -10,7 +10,8 @@ import java.util.List;
  *
  * A SwordMaster is a unit that can only use sword type weapons.
  *
- * @author Sebastián Contreras
+ * @author Ignacio Slater Muñoz
+ * @author Sebastián Contreras Phillippi
  * @since 1.0
  */
 public class SwordMaster extends AbstractUnit {

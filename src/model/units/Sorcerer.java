@@ -11,6 +11,7 @@ import java.util.List;
  * A sorcerer is a unit that can only use spell book type weapons.
  *
  * @author Sebastián Contreras Phillippi
+ * @since 1.0
  */
 public class Sorcerer extends AbstractUnit{
 
