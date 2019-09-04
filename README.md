@@ -35,6 +35,7 @@ The weakness/resistance tables are the following:
 | Luz        | Oscuridad     | Anima        | 
 
 * Receiving healing and receiving damage is very similar, a unit's current hp cannot be greater than it's maximum hp and it cannot be lesser than 0. Whenever this might happen, their hp is set to the max or to 0 respectively.
+* SpellBooks are a ranged item, i.e. their minimum range must be greater or equal than 2, just like bows.
 
 Double dispatch is used on the attack and the equip method because it is an easy way of disambiguating the type of the item that's being used to attack or being equipped, the only downside is the use of several auxiliary methods. It also provides a simple base for new items.
 For the items, there are four abstract classes that define the common behaviour of currently listed items: AbstractAttackAbleItems, AbstractNonAttackAbleItems, AbstractRangedAttackAbleItems and AbstractSpellBook.
