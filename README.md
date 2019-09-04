@@ -4,7 +4,7 @@ Alpaca Emblem is the main project of course CC3002. It's a top-down strategy gam
 
 ## Getting Started
 
-Download the last release tagged as Tarea1.
+Download the last release tagged as [https://github.com/sebcp/cc3002-project/releases/tag/Tarea1](Tarea1).
 
 ### Prerequisites
 
