@@ -36,7 +36,9 @@ public class Axe extends AbstractAttackAbleItem {
 
   @Override
   public void attack(IEquipableItem item){
+    if(!this.equals(item) && item.getOwner()!=null){
     item.receiveAttackFromAxe(this);
+    }
   }
 
   @Override

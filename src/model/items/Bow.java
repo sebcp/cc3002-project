@@ -40,7 +40,9 @@ public class Bow extends AbstractRangedAttackAbleItem {
 
   @Override
   public void attack(IEquipableItem item){
-    item.receiveAttackFromBow(this);
+    if(!this.equals(item) && item.getOwner()!=null) {
+      item.receiveAttackFromBow(this);
+    }
   }
 
   public boolean equals(Object obj){

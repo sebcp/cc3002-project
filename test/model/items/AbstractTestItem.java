@@ -61,7 +61,7 @@ import static org.junit.jupiter.api.Assertions.*;
   @Test
   public void incorrectRangeTest() {
     assertTrue(getWrongTestItem().getMinRange() >= 0);
-    assertTrue(getWrongTestItem().getMaxRange() >= getWrongTestItem().getMinRange());
+    assertTrue(getWrongTestItem().getMaxRange() > getWrongTestItem().getMinRange());
   }
 
   /**

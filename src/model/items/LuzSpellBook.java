@@ -29,7 +29,9 @@ public class LuzSpellBook extends AbstractSpellBook {
 
     @Override
     public void attack(IEquipableItem item) {
-        item.receiveAttackFromLuzSpellBook(this);
+        if(!this.equals(item) && item.getOwner()!=null){
+            item.receiveAttackFromLuzSpellBook(this);
+        }
     }
 
     @Override

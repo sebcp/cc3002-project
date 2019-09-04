@@ -37,7 +37,9 @@ public class Sword extends AbstractAttackAbleItem {
 
   @Override
   public void attack(IEquipableItem item){
-    item.receiveAttackFromSword(this);
+    if(!this.equals(item) && item.getOwner()!=null) {
+      item.receiveAttackFromSword(this);
+    }
   }
 
   @Override

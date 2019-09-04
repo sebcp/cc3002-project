@@ -39,7 +39,9 @@ public class Spear extends AbstractAttackAbleItem {
 
   @Override
   public void attack(IEquipableItem item){
-    item.receiveAttackFromSpear(this);
+    if (!this.equals(item) && item.getOwner() != null) {
+      item.receiveAttackFromSpear(this);
+    }
   }
   @Override
   public void receiveAttackFromAxe(Axe axe) {

@@ -28,7 +28,11 @@ public class AnimaSpellBook extends AbstractSpellBook {
     }
 
     @Override
-    public void attack(IEquipableItem item) { item.receiveAttackFromAnimaSpellBook(this); }
+    public void attack(IEquipableItem item) {
+        if(!this.equals(item) && item.getOwner()!=null) {
+            item.receiveAttackFromAnimaSpellBook(this);
+        }
+    }
 
     @Override
     public void receiveAttackFromAnimaSpellBook(AnimaSpellBook animaSpellBook) {
