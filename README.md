@@ -4,7 +4,7 @@ Alpaca Emblem is the main project of course CC3002. It's a top-down strategy gam
 
 ## Getting Started
 
-Download the last version tagged as Tarea1.
+Download the last release tagged as Tarea1.
 
 ### Prerequisites
 
@@ -35,6 +35,11 @@ The weakness/resistance tables are the following:
 | Luz        | Oscuridad     | Anima        | 
 
 * Receiving healing and receiving damage is very similar, a unit's current hp cannot be greater than it's maximum hp and it cannot be lesser than 0. Whenever this might happen, their hp is set to the max or to 0 respectively.
+
+Double dispatch is used on the attack and the equip method because it is an easy way of disambiguating the type of the item that's being used to attack or being equipped, the only downside is the use of several auxiliary methods. It also provides a simple base for new items.
+For the items, there are four abstract classes that define the common behaviour of currently listed items: AbstractAttackAbleItems, AbstractNonAttackAbleItems, AbstractRangedAttackAbleItems and AbstractSpellBook.
+AbstractAttackAbleItems defines the behaviour of the items that can attack. AbstractRangedAttackAbleItems extends AbstractAttackAbleItems and defines a constructor in which the minimum range is always at least 2. AbstractSpellBook extends AbstractRangedAttackAbleItems and defines the behaviour for spell books. AbstractNonAttackAbleItems defines the behaviour of the items that can't attack.
+The way they're defined provides a simple way of creating new items that can either attack or not and be ranged or not.
 
 ## Running the tests
 
