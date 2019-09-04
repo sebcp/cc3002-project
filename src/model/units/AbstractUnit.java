@@ -50,6 +50,7 @@ public abstract class AbstractUnit implements IUnit {
   protected AbstractUnit(final int maxHitPoints, final int movement,
                          Location location, final int maxItems, String name, IEquipableItem... items) {
     assert maxHitPoints>0 : String.format("A unit's maximum hit points must be a value greater than 0",0);
+    assert movement>0 : String.format("A unit's maximum hit points must be a value greater than 0",0);
     this.maxHitPoints = maxHitPoints;
     this.currentHitPoints = maxHitPoints;
     this.movement = movement;
