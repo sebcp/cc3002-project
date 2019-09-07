@@ -59,8 +59,8 @@ public class SorcererTest extends AbstractTestUnit {
         assertEquals(50,getTargetAlpaca().getCurrentHitPoints());
         getTargetAlpaca().moveTo(field.getCell(1,1));
         sorcerer.combat(getTargetAlpaca());
-        assertEquals(0,getTargetAlpaca().getCurrentHitPoints());
-        assertFalse(getTargetAlpaca().getIsAlive());
+        assertEquals(40,getTargetAlpaca().getCurrentHitPoints());
+        assertTrue(getTargetAlpaca().getIsAlive());
 
         Bow bow = new Bow("Bow",10,2,3);
         Archer archer = new Archer(50,2,field.getCell(1,1),
@@ -68,8 +68,9 @@ public class SorcererTest extends AbstractTestUnit {
         archer.addItem(bow);
         archer.equipItem(bow);
         archer.combat(sorcerer);
-        assertEquals(0,sorcerer.getCurrentHitPoints());
-        assertFalse(sorcerer.getIsAlive());
+        assertEquals(35,sorcerer.getCurrentHitPoints());
+        assertEquals(35,archer.getCurrentHitPoints());
         assertTrue(archer.getIsAlive());
+        assertTrue(sorcerer.getIsAlive());
     }
 }

@@ -151,6 +151,13 @@ public interface IEquipableItem {
    * @return true if the item and the object are the same; false if they're different.
    */
   boolean equals(Object obj);
+
+  /**
+   * Attacks back if possible.
+   * @param thisEquip
+   *      The item that's being attacked back.
+   */
+  void counterAttack(IEquipableItem item);
 }
 
 

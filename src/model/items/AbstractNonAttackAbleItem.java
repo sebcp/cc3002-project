@@ -138,4 +138,9 @@ public abstract class AbstractNonAttackAbleItem implements IEquipableItem {
     }
 
     public abstract boolean equals(Object obj);
+
+    @Override
+    public void counterAttack(IEquipableItem item){
+        //Do nothing
+    }
 }

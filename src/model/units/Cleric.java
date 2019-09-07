@@ -41,29 +41,6 @@ public class Cleric extends AbstractUnit {
     }
   }
 
-  /**
-   * Clerics cannot combat other units.
-   * @param unit
-   *      the unit to be targeted.
-   */
-  @Override
-  public void combat(IUnit unit){
-    //Do nothing
-    System.out.println("Clerics cannot combat other units.");
-  }
-
-  /**
-   * Heals a unit. Healing depends on the staff's power. Clerics can only heal other
-   * units if they're alive.
-   * @param unit
-   *      the unit to be healed.
-   */
-  public void heal(IUnit unit) {
-    if (this.getEquippedItem() != null && this.getIsAlive()) {
-      unit.receiveHealing(this.getEquippedItem().getPower());
-    }
-  }
-
   @Override
   public boolean equals(Object obj){
     if(obj instanceof Cleric){

@@ -46,8 +46,8 @@ public class FighterTest extends AbstractTestUnit {
     fighter.addItem(axe);
     fighter.equipItem(axe);
     fighter.combat(getTargetAlpaca());
-    assertEquals(0,getTargetAlpaca().getCurrentHitPoints());
-    assertFalse(getTargetAlpaca().getIsAlive());
+    assertEquals(40,getTargetAlpaca().getCurrentHitPoints());
+    assertTrue(getTargetAlpaca().getIsAlive());
   }
 
 }

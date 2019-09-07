@@ -69,7 +69,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   public void setTestCleric(){
     testCleric = new Cleric(50,2,field.getCell(1,0),
           "TestCleric");
-    Staff testStaff = new Staff("TestStaff",10,1,2);
+    Staff testStaff = new Staff("TestStaff",-10,1,2);
     testCleric.addItem(testStaff);
     testCleric.equipItem(testStaff);
   }
@@ -174,15 +174,15 @@ public abstract class AbstractTestUnit implements ITestUnit {
   public void checkHealing(){
     getTestUnit().receiveDamage(10);
     assertEquals(getTestUnit().getMaxHitPoints()-10,getTestUnit().getCurrentHitPoints());
-    testCleric.heal(getTestUnit());
+    testCleric.combat(getTestUnit());
     assertEquals(getTestUnit().getMaxHitPoints(),getTestUnit().getCurrentHitPoints());
     getTestUnit().receiveDamage(15);
-    testCleric.heal(getTestUnit());
+    testCleric.combat(getTestUnit());
     assertEquals(getTestUnit().getMaxHitPoints()-5,getTestUnit().getCurrentHitPoints());
-    testCleric.heal(getTestUnit());
+    testCleric.combat(getTestUnit());
     assertEquals(getTestUnit().getMaxHitPoints(),getTestUnit().getCurrentHitPoints());
     getTestUnit().receiveDamage(50);
-    testCleric.heal(getTestUnit());
+    testCleric.combat(getTestUnit());
     assertEquals(0,getTestUnit().getCurrentHitPoints());
   }
 

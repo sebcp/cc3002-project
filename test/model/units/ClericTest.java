@@ -48,7 +48,7 @@ public class ClericTest extends AbstractTestUnit {
     cleric.combat(swordmaster);
     assertEquals(50,swordmaster.getCurrentHitPoints());
     swordmaster.combat(cleric);
-    assertEquals(0,cleric.getCurrentHitPoints());
-    assertFalse(cleric.getIsAlive());
+    assertEquals(40,cleric.getCurrentHitPoints());
+    assertTrue(cleric.getIsAlive());
   }
 }

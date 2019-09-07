@@ -93,6 +93,10 @@ public abstract class AbstractUnit implements IUnit {
   @Override
   public void receiveDamage(int damage) {
     if (this.getIsAlive()) {
+      if(damage < 0) {
+        this.receiveHealing(Math.abs(damage));
+        return;
+      }
       int damageDealt;
       if (this.currentHitPoints - damage <= 0) {
         damageDealt = this.getCurrentHitPoints();
@@ -156,16 +160,18 @@ public abstract class AbstractUnit implements IUnit {
         if (distance >= thisEquip.getMinRange() && distance <= thisEquip.getMaxRange()) {
           if (unitEquip == null || unitEquip.getMinRange() > distance ||
                   unitEquip.getMaxRange() < distance) {
-            while (unit.getCurrentHitPoints() != 0) {
-              unit.receiveDamage(thisEquip.getPower());
-            }
+            unit.receiveDamage(thisEquip.getPower());
           }
-          while (this.currentHitPoints != 0 && unit.getCurrentHitPoints() != 0) {
+          else {
+            int current = unit.getCurrentHitPoints();
             thisEquip.attack(unitEquip);
-            if (unit.getCurrentHitPoints() != 0) {
-              unitEquip.attack(thisEquip);
+            if (unit.getCurrentHitPoints() != 0 && current > unit.getCurrentHitPoints()) {
+              unitEquip.counterAttack(thisEquip);
             }
           }
+        }
+        else {
+         System.out.println("The target is out of the " + thisEquip.getName() +  "'s range.");
         }
       }
     }

@@ -136,4 +136,7 @@ public abstract class AbstractAttackAbleItem implements IEquipableItem {
   }
 
   public abstract boolean equals(Object obj);
+
+  @Override
+  public void counterAttack(IEquipableItem item) { this.attack(item); }
 }

@@ -19,7 +19,7 @@ public class Staff extends AbstractNonAttackAbleItem {
    * @param name
    *     the name of the staff
    * @param power
-   *     the healing power of the staff
+   *     the healing power of the staff, it has negative values.
    * @param minRange
    *     the minimum range of the staff
    * @param maxRange
@@ -49,5 +49,22 @@ public class Staff extends AbstractNonAttackAbleItem {
       }
     }
     return false;
+  }
+
+  /**
+   * Heals a unit. Healing depends on the staff's power. Clerics can only heal other
+   * units if they're alive and if they're in range.
+   * @param item
+   *      the item that belongs to the unit to be healed.
+   */
+  public void heal(IEquipableItem item) {
+    if (this.getOwner() != null && this.getOwner().getIsAlive()) {
+      item.getOwner().receiveHealing(Math.abs(this.getPower()));
+    }
+  }
+
+  @Override
+  public void attack(IEquipableItem item){
+    heal(item);
   }
 }

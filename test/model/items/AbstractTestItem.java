@@ -49,7 +49,7 @@ import static org.junit.jupiter.api.Assertions.*;
   public abstract void setTestUnit();
 
   public void setTarget(){
-    staff = new Staff("Staff",10,1,2);
+    staff = new Staff("Staff",-10,1,2);
     cleric = new Cleric(50,2,new Location(0,1),"Cleric");
     cleric.addItem(staff);
     cleric.equipItem(staff);

@@ -55,15 +55,15 @@ public class ArcherTest extends AbstractTestUnit {
 
     getTargetAlpaca().moveTo(field.getCell(1,1));
     archer.combat(getTargetAlpaca());
-    assertEquals(0,getTargetAlpaca().getCurrentHitPoints());
-    assertFalse(getTargetAlpaca().getIsAlive());
+    assertEquals(40,getTargetAlpaca().getCurrentHitPoints());
+    assertTrue(getTargetAlpaca().getIsAlive());
 
     Sword sword = new Sword("Sword",10,1,1);
     SwordMaster swordmaster = new SwordMaster(50,2,field.getCell(0,1),"Swordmaster");
     swordmaster.addItem(sword);
     swordmaster.equipItem(sword);
     swordmaster.combat(archer);
-    assertEquals(0,archer.getCurrentHitPoints());
-    assertFalse(archer.getIsAlive());
+    assertEquals(40,archer.getCurrentHitPoints());
+    assertTrue(archer.getIsAlive());
   }
 }

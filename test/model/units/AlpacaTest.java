@@ -3,8 +3,7 @@ package model.units;
 import model.items.Sword;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test set for the alpaca unit
@@ -49,7 +48,7 @@ public class AlpacaTest extends AbstractTestUnit {
       alpaca.combat(swordmaster);
       assertEquals(50,swordmaster.getCurrentHitPoints());
       swordmaster.combat(alpaca);
-      assertEquals(0,alpaca.getCurrentHitPoints());
-      assertFalse(alpaca.getIsAlive());
+      assertEquals(40,alpaca.getCurrentHitPoints());
+      assertTrue(alpaca.getIsAlive());
   }
 }
