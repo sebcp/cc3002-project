@@ -16,8 +16,8 @@ Java, JUnit 5.2
 * Units have a boolean, isAlive, that describes their current state. It's true if their hp hasn't fallen to 0; it's false if it has.
 * Units equip items through double dispatch, if the unit is alive and it has the item in it's inventory, it sends a message to the item.
 If the item "matches" the class, it's equipped (for example, when an archer tries to equip a bow, it'll work).
-* Units can combat other units if they're both alive. Before every attack, the hp of the combatants is checked, if any of them has 0 hp the combat stops. If the target is in range and the attacker has an item equiped, the target will be attacked.
-Unless the target doesn't have an item equipped, after being attacked, it's hp is checked, if it's alive it'll counter the attack. If the target doesn't have an item equipped it
+* Units can combat other units if they're both alive. If the target is in range and the attacker has an item equiped, the target will be attacked. Unless the target doesn't have an item equipped, after being attacked, it's hp is checked and if it's still alive it'll counter the attack. If the target doesn't have an item equipped, it will just receive the damage of the item the unit's holding.
+When attacked by a cleric with an equipped staff, the cleric will heal the unit and this unit won't counterattack.
 * The units' attack is also done through double dispatch, the unit sends a message to its' item saying it will attack the target's item. Then the unit's item sends a message to the target's item saying it will attack it, when received, the target's item sends a message to the targeted unit making it receive the calculated damage.
 * The damage a unit should received when attacked by an item is calculated as it follows: When attacked by a weapon that's strong against yours, you receive 1.5 times the damage. When attacked by a weapon that's weak against yours, you receive 20 less damage. 
 The weakness/resistance tables are the following:
