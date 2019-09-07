@@ -1,10 +1,10 @@
-# Alpaca Emblem V0.1
+# Alpaca Emblem V1.0
 
 Alpaca Emblem is the main project of course CC3002. It's a top-down strategy game in which you control different units with unique skills.
 
 ## Getting Started
 
-Download the last release tagged as [Tarea1.1](https://github.com/sebcp/cc3002-project/releases/tag/Tarea1.1).
+Download the last release tagged as [Tarea1](https://github.com/sebcp/cc3002-project/releases/tag/Tarea1).
 
 ### Prerequisites
 
