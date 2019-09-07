@@ -48,7 +48,7 @@ There is a test package for every package on the model. For the item and unit te
 right-click AbstractTestItem or AbstractTestUnit and then click Run 'AbstractTest with coverage', choose all.
 For the map package, select both test classes at the same time, right-click on them and choose 'Run package with coverage'.
 
-### Break down into end to end tests
+### The tests
 
 Tests were created to design and check the functionalities of the logical model.
 Items are tested as it follows:
