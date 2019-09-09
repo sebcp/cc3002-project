@@ -34,6 +34,9 @@ The weakness/resistance tables are the following:
 | Oscuridad  | Anima         | Luz          | 
 | Luz        | Oscuridad     | Anima        | 
 
+Receiving negative damage heals the character.
+
+* Staffs MUST have negative power.
 * Receiving healing and receiving damage is very similar, a unit's current hp cannot be greater than it's maximum hp and it cannot be lesser than 0. Whenever this might happen, their hp is set to the max or to 0 respectively.
 * SpellBooks are a ranged item, i.e. their minimum range must be greater or equal than 2, just like bows.
 
