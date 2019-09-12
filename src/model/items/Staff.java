@@ -53,7 +53,7 @@ public class Staff extends AbstractNonAttackAbleItem {
 
   /**
    * Heals a unit. Healing depends on the staff's power. Clerics can only heal other
-   * units if they're alive and if they're in range.
+   * units if they're alive and if they're in range. Staffs MUST have negative power.
    * @param item
    *      the item that belongs to the unit to be healed.
    */

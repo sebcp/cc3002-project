@@ -51,7 +51,13 @@ public class Spear extends AbstractAttackAbleItem {
 
   @Override
   public void receiveAttackFromSword(Sword sword) {
-    int damage = sword.getPower()-20;
+    int damage;
+    if(sword.getPower()-20 > 0){
+      damage = sword.getPower()-20;
+    }
+    else{
+      damage= 0;
+    }
     this.getOwner().receiveDamage(damage);
   }
 

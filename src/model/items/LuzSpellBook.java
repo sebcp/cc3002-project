@@ -42,7 +42,13 @@ public class LuzSpellBook extends AbstractSpellBook {
 
     @Override
     public void receiveAttackFromOscuridadSpellBook(OscuridadSpellBook oscuridadSpellBook) {
-        int damage = oscuridadSpellBook.getPower()-20;
+        int damage;
+        if(oscuridadSpellBook.getPower()-20>0){
+            damage = oscuridadSpellBook.getPower()-20;
+        }
+        else{
+            damage=0;
+        }
         this.getOwner().receiveDamage(damage);
     }
 

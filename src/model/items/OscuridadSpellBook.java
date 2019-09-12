@@ -31,7 +31,13 @@ public class OscuridadSpellBook extends AbstractSpellBook {
 
     @Override
     public void receiveAttackFromAnimaSpellBook(AnimaSpellBook animaSpellBook) {
-        int damage = animaSpellBook.getPower()-20;
+        int damage;
+        if(animaSpellBook.getPower()-20>0){
+            damage = animaSpellBook.getPower()-20;
+        }
+        else{
+            damage = 0;
+        }
         this.getOwner().receiveDamage(damage);
     }
 
