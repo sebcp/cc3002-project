@@ -154,7 +154,7 @@ public interface IEquipableItem {
 
   /**
    * Attacks back if possible.
-   * @param thisEquip
+   * @param item
    *      The item that's being attacked back.
    */
   void counterAttack(IEquipableItem item);

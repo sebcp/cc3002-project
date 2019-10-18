@@ -9,7 +9,7 @@ import model.units.IUnit;
  * @author Sebastián Contreras Phillippi
  * @since 1.0
  */
-public abstract class AbstractAttackAbleItem implements IEquipableItem {
+public abstract class AbstractAttackAbleItem implements IAttackAbleItem {
 
   private final String name;
   private final int power;

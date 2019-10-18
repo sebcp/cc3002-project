@@ -49,7 +49,7 @@ public class AnimaSpellBook extends AbstractSpellBook {
     @Override
     public void receiveAttackFromLuzSpellBook(LuzSpellBook luzSpellBook) {
         int damage;
-        if(luzSpellBook.getPower()-20>20) {
+        if(luzSpellBook.getPower()-20>0) {
             damage = luzSpellBook.getPower()-20;
         }
         else{

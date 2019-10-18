@@ -10,7 +10,7 @@ import model.units.IUnit;
  * @author Sebastián Contreras Phillippi
  * @since 1.0
  */
-public abstract class AbstractNonAttackAbleItem implements IEquipableItem {
+public abstract class AbstractNonAttackAbleItem implements INonAttackAbleItem {
     private final String name;
     private final int power;
     protected int maxRange;
@@ -91,7 +91,7 @@ public abstract class AbstractNonAttackAbleItem implements IEquipableItem {
     }
 
     @Override
-    public void attack(IEquipableItem item){
+    public void attack(INonAttackAbleItem item){
         System.out.println("Non attack-able items cannot attack");
     }
 

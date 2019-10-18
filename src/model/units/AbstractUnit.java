@@ -9,8 +9,6 @@ import java.util.List;
 import model.items.IEquipableItem;
 import model.map.Location;
 
-import javax.sound.midi.SysexMessage;
-
 /**
  * This class represents an abstract unit.
  *
