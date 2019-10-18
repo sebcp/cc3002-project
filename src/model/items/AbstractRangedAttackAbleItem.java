@@ -6,6 +6,7 @@ package model.items;
  *
  * @author Ignacio Slater Muñoz
  * @author Sebastián Contreras Phillippi
+ * @version 2.0
  * @since 1.0
  */
 public abstract class AbstractRangedAttackAbleItem extends AbstractAttackAbleItem{

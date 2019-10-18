@@ -10,7 +10,8 @@ import model.units.IUnit;
  *
  * @author Ignacio Slater Muñoz
  * @author Sebastián Contreras Phillippi
- * @since 1.0
+ * @version 2.0
+ * @since 2.0
  */
 public interface INonAttackAbleItem extends IEquipableItem {
 

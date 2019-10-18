@@ -8,6 +8,7 @@ import model.units.IUnit;
  * type of items. Each spellbook has their own magic weakness and strength.
  *
  * @author Sebastián Contreras Phillippi
+ * @version 2.0
  * @since 1.0
  */
 public abstract class AbstractSpellBook extends AbstractRangedAttackAbleItem {

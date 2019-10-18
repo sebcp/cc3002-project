@@ -7,6 +7,7 @@ import model.units.IUnit;
  * Luz spell books are strong against Oscuridad spell books and weak against Anima spell books.
  *
  * @author Sebastián Contreras Phillippi
+ * @version 2.0
  * @since 1.0
  */
 public class LuzSpellBook extends AbstractSpellBook {
