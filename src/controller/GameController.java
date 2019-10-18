@@ -1,6 +1,9 @@
-package model.controller;
+package controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import model.Tactician;
 import model.items.IEquipableItem;
 import model.map.Field;
@@ -17,6 +20,12 @@ import model.units.IUnit;
  */
 public class GameController {
 
+  private List<Tactician> tacticians = new ArrayList<>();
+  private Field map = new Field();
+  private Tactician currentPlayer;
+  private int currentRound=1;
+  private int maxRounds=Integer.MAX_VALUE;
+
   /**
    * Creates the controller for a new game.
    *
@@ -26,42 +35,63 @@ public class GameController {
    *     the dimensions of the map, for simplicity, all maps are squares
    */
   public GameController(int numberOfPlayers, int mapSize) {
+    createPlayers(numberOfPlayers);
+  }
 
+  /**
+   * Creates the players for a new game.
+   * @param numberOfPlayers
+   *      the amount of players to be created for the game
+   */
+  private void createPlayers(int numberOfPlayers) {
+    for(int i=0; i<numberOfPlayers; i++){
+      Tactician tactician= new Tactician("Player " + i);
+      addTactician(tactician);
+    }
   }
 
   /**
    * @return the list of all the tacticians participating in the game.
    */
   public List<Tactician> getTacticians() {
-    return null;
+    return tacticians;
+  }
+
+  /**
+   * Adds a tactician to the game.
+   * @param tactician
+   *      the tactician to be added
+   */
+  public void addTactician(Tactician tactician){
+    tacticians.add(tactician);
   }
 
   /**
    * @return the map of the current game
    */
   public Field getGameMap() {
-    return null;
+    return map;
   }
 
   /**
    * @return the tactician that's currently playing
    */
   public Tactician getTurnOwner() {
-    return null;
+    return currentPlayer;
   }
 
   /**
    * @return the number of rounds since the start of the game.
    */
   public int getRoundNumber() {
-    return 0;
+    return currentRound;
   }
 
   /**
    * @return the maximum number of rounds a match can last
    */
   public int getMaxRounds() {
-    return 0;
+    return maxRounds;
   }
 
   /**
@@ -78,7 +108,14 @@ public class GameController {
    *     the player to be removed
    */
   public void removeTactician(String tactician) {
-
+    int size = getTacticians().size();
+    for(int i=0; i<size-1;i++){
+      Tactician current = getTacticians().get(i);
+      String name = current.getName();
+      if(name.equals(tactician)){
+        getTacticians().remove(current);
+      }
+    }
   }
 
   /**
@@ -87,7 +124,7 @@ public class GameController {
    *  the maximum number of turns the game can last
    */
   public void initGame(final int maxTurns) {
-
+    this.maxRounds=maxTurns;
   }
 
   /**
