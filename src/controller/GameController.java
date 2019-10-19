@@ -1,12 +1,14 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
+import java.util.Random;
 
 import model.Tactician;
-import model.items.IEquipableItem;
-import model.map.Field;
+import model.items.*;
+import model.map.*;
+
 import model.units.IUnit;
 
 /**
@@ -21,10 +23,13 @@ import model.units.IUnit;
 public class GameController {
 
   private List<Tactician> tacticians = new ArrayList<>();
+  private int numberOfTurnsLeft;
   private Field map = new Field();
   private Tactician currentPlayer;
+  private List<Tactician> turns = new ArrayList<>();
+  private Tactician firstPlayer;
   private int currentRound=1;
-  private int maxRounds=Integer.MAX_VALUE;
+  private int maxRounds;
 
   /**
    * Creates the controller for a new game.
@@ -35,7 +40,49 @@ public class GameController {
    *     the dimensions of the map, for simplicity, all maps are squares
    */
   public GameController(int numberOfPlayers, int mapSize) {
+    createMap(mapSize);
     createPlayers(numberOfPlayers);
+    numberOfTurnsLeft = numberOfPlayers;
+    setTurns(numberOfPlayers, (long) 0.000001);
+
+  }
+
+  public void setTurns(int numberOfPlayers, long randomSeed) {
+    List<Tactician> copy = new ArrayList<>();
+    for(int i =0; i<getTacticians().size();i++){
+      Tactician clone = getTacticians().get(i);
+      copy.add(clone);
+    }
+    Random ran = new Random(randomSeed);
+    for(int i=0; i<numberOfPlayers; i++){
+      int sel = ran.nextInt(copy.size()+1);
+      Tactician selected = getTacticians().get(sel);
+      turns.add(selected);
+      copy.remove(selected);
+      if(i==0) {
+        if(firstPlayer!=null) {
+          while (firstPlayer.equals(selected)) {
+            sel = ran.nextInt(copy.size() + 1);
+            selected = getTacticians().get(sel);
+          }
+        }
+        firstPlayer = selected;
+      }
+    }
+    currentPlayer = turns.get(0);
+  }
+
+  /**
+   * Creates a square map of a given size
+   * @param mapSize
+   *      the map's size (mapSize x mapSize)
+   */
+  public void createMap(int mapSize) {
+    for(int i=0;i<mapSize;i++){
+      for(int j=0;j<mapSize;j++){
+        map.addCells(false, new Location(i,j));
+      }
+    }
   }
 
   /**
@@ -80,6 +127,10 @@ public class GameController {
     return currentPlayer;
   }
 
+  public List<Tactician> getTurns(){
+    return turns;
+  }
+
   /**
    * @return the number of rounds since the start of the game.
    */
@@ -98,7 +149,16 @@ public class GameController {
    * Finishes the current player's turn.
    */
   public void endTurn() {
-
+    if(numberOfTurnsLeft-1==0){
+      numberOfTurnsLeft=getTacticians().size();
+      setTurns(getTacticians().size(), (long) 0.000001);
+      currentRound++;
+    }
+    else{
+      numberOfTurnsLeft--;
+      turns.remove(0);
+    }
+    currentPlayer = turns.get(0);
   }
 
   /**
@@ -111,11 +171,19 @@ public class GameController {
     int size = getTacticians().size();
     for(int i=0; i<size-1;i++){
       Tactician current = getTacticians().get(i);
-      String name = current.getName();
+      String name = getTacticianName(i);
       if(name.equals(tactician)){
         getTacticians().remove(current);
       }
     }
+  }
+
+  public int tacticiansLeft(){
+    return getTacticians().size();
+  }
+
+  public String getTacticianName(int pos){
+    return getTacticians().get(pos).getName();
   }
 
   /**
@@ -131,14 +199,23 @@ public class GameController {
    * Starts a game without a limit of turns.
    */
   public void initEndlessGame() {
-
+    this.maxRounds=-1;
   }
 
   /**
    * @return the winner of this game, if the match ends in a draw returns a list of all the winners
    */
   public List<String> getWinners() {
-    return null;
+    List<String> winners = new ArrayList<>();
+    if(currentRound!=maxRounds){
+      if(tacticiansLeft()==1){
+        winners.add(getTacticianName(0));
+      }
+    }
+    else{
+      //CONDICIÓN Nº DE UNIDADES
+    }
+    return winners;
   }
 
   /**

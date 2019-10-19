@@ -18,12 +18,37 @@ public class Tactician {
     private String name;
     private IUnit selectedUnit;
 
-
     public Tactician(String name){
         this.name=name;
     }
 
     public String getName(){
         return name;
+    }
+
+    public List<IUnit> getUnits(){
+        return units;
+    }
+
+    public IUnit getSelectedUnit(){
+        return selectedUnit;
+    }
+
+    public void receiveUnit(IUnit unit){
+        units.add(unit);
+    }
+
+    public void removeUnit(IUnit unit){
+        units.remove(unit);
+    }
+
+    @Override
+    public boolean equals(Object tactician){
+        if(tactician instanceof Tactician){
+            if(getName().equals(((Tactician) tactician).getName()) && getUnits().equals(((Tactician) tactician).getUnits())){
+                return true;
+            }
+        }
+        return false;
     }
 }

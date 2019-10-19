@@ -11,6 +11,7 @@ import java.util.stream.IntStream;
 
 import model.Tactician;
 import model.map.Field;
+import model.map.Location;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,10 +45,21 @@ class GameControllerTest {
 
   @Test
   void getGameMap() {
-    Field gameMap = controller.getGameMap();
-    assertEquals(7, gameMap.getSize()); // getSize deben definirlo
-    assertTrue(controller.getGameMap().isConnected());
-    Random testRandom = new Random(randomSeed);
+      Field gameMap = controller.getGameMap();
+      assertEquals(7, gameMap.getSize()); // getSize deben definirlo
+      assertTrue(controller.getGameMap().isConnected());
+
+      Field mapita = new Field();
+      Field mapita_clone = new Field();
+      mapita_clone.setSeed(randomSeed);
+      mapita.setSeed(randomSeed);
+      for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+          mapita.addCells(false, new Location(i, j));
+          mapita_clone.addCells(false, new Location(i, j));
+        }
+      }
+      assertEquals(mapita, mapita_clone);
     // Para testear funcionalidades que dependen de valores aleatorios se hacen 2 cosas:
     //  - Comprobar las invariantes de las estructuras que se crean (en este caso que el mapa tenga
     //    las dimensiones definidas y que sea conexo.
@@ -92,7 +104,7 @@ class GameControllerTest {
   void endTurn() {
     Tactician firstPlayer = controller.getTurnOwner();
     // Nuevamente, para determinar el orden de los jugadores se debe usar una semilla
-    Tactician secondPlayer = new Tactician("Player 2"); // <- Deben cambiar esto (!)
+    Tactician secondPlayer = controller.getTurns().get(1); // <- Deben cambiar esto (!)
     assertNotEquals(secondPlayer.getName(), firstPlayer.getName());
 
     controller.endTurn();
@@ -147,29 +159,36 @@ class GameControllerTest {
   // Desde aquí en adelante, los tests deben definirlos completamente ustedes
   @Test
   void getSelectedUnit() {
+    assert(false);
   }
 
   @Test
   void selectUnitIn() {
+    assert(false);
   }
 
   @Test
   void getItems() {
+    assert(false);
   }
 
   @Test
   void equipItem() {
+    assert(false);
   }
 
   @Test
   void useItemOn() {
+    assert(false);
   }
 
   @Test
   void selectItem() {
+    assert(false);
   }
 
   @Test
   void giveItemTo() {
+    assert(false);
   }
 }

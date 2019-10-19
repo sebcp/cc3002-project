@@ -31,11 +31,16 @@ public class Field {
       addCell(cell);
       Location[] adjacentCells = getAdjacentCells(cell);
       for (Location adjacentCell : adjacentCells) {
-        if (connectAll || random.nextDouble() > 1.0 / 3 || cell.getNeighbours().size() < 1) {
+        long ran = random.nextLong();
+        if (connectAll ||  ran> 1.0 / 3 || cell.getNeighbours().size() < 1) {
           addConnection(cell, adjacentCell);
         }
       }
     }
+  }
+
+  public void setSeed(long randomSeed){
+    random.setSeed(randomSeed);
   }
 
   /**
@@ -142,6 +147,25 @@ public class Field {
   }
 
   public int getSize(){
-    return 0;
+    return (int) Math.sqrt(map.size());
+  }
+
+  @Override
+  public boolean equals(Object obj){
+    if(obj instanceof Field){
+      for(int i=0; i<getSize(); i++){
+        for(int j=0; j<getSize(); j++){
+          Location thisCell = getCell(i,j);
+          Location objCell = ((Field) obj).getCell(i,j);
+          if(!thisCell.equals(objCell) || !thisCell.equalNeighbours(objCell)){
+            break;
+          }
+          if(i==getSize()-1 && j==getSize()-1){
+            return true;
+          }
+        }
+      }
+    }
+    return false;
   }
 }
