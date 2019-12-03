@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -23,13 +22,14 @@ import model.units.IUnit;
 public class GameController {
 
   private List<Tactician> tacticians = new ArrayList<>();
-  private int numberOfTurnsLeft;
+  private int turnsLeft;
   private Field map = new Field();
   private Tactician currentPlayer;
   private List<Tactician> turns = new ArrayList<>();
   private Tactician firstPlayer;
   private int currentRound=1;
   private int maxRounds;
+  private int numberOfPlayers;
 
   /**
    * Creates the controller for a new game.
@@ -40,11 +40,9 @@ public class GameController {
    *     the dimensions of the map, for simplicity, all maps are squares
    */
   public GameController(int numberOfPlayers, int mapSize) {
+    this.numberOfPlayers=numberOfPlayers;
     createMap(mapSize);
-    createPlayers(numberOfPlayers);
-    numberOfTurnsLeft = numberOfPlayers;
-    setTurns(numberOfPlayers, (long) 0.000001);
-
+    setNewGame(numberOfPlayers);
   }
 
   public void setTurns(int numberOfPlayers, long randomSeed) {
@@ -149,15 +147,16 @@ public class GameController {
    * Finishes the current player's turn.
    */
   public void endTurn() {
-    if(numberOfTurnsLeft-1==0){
-      numberOfTurnsLeft=getTacticians().size();
+    if(turnsLeft-1==0){
+      turnsLeft=getTacticians().size();
       setTurns(getTacticians().size(), (long) 0.000001);
       currentRound++;
+
     }
     else{
-      numberOfTurnsLeft--;
-      turns.remove(0);
+      turnsLeft--;
     }
+    turns.remove(0);
     currentPlayer = turns.get(0);
   }
 
@@ -174,6 +173,13 @@ public class GameController {
       String name = getTacticianName(i);
       if(name.equals(tactician)){
         getTacticians().remove(current);
+      }
+    }
+    for(int i=0;i<turnsLeft;i++){
+      Tactician toCompare = turns.get(i);
+      if(tactician.equals(toCompare.getName())){
+        turns.remove(toCompare);
+        turnsLeft--;
       }
     }
   }
@@ -193,6 +199,8 @@ public class GameController {
    */
   public void initGame(final int maxTurns) {
     this.maxRounds=maxTurns;
+    this.currentRound = 1;
+    setNewGame(numberOfPlayers);
   }
 
   /**
@@ -200,6 +208,17 @@ public class GameController {
    */
   public void initEndlessGame() {
     this.maxRounds=-1;
+    this.currentRound = 1;
+    setNewGame(numberOfPlayers);
+  }
+
+  public void setNewGame(int numberOfPlayers /** agregar randomSeed
+   */){
+    tacticians = new ArrayList<>();
+    turns = new ArrayList<>();
+    createPlayers(numberOfPlayers);
+    turnsLeft = numberOfPlayers;
+    setTurns(numberOfPlayers, (long) 0.000001);
   }
 
   /**
@@ -207,13 +226,26 @@ public class GameController {
    */
   public List<String> getWinners() {
     List<String> winners = new ArrayList<>();
-    if(currentRound!=maxRounds){
-      if(tacticiansLeft()==1){
-        winners.add(getTacticianName(0));
+    if(tacticiansLeft()==1){
+      winners.add(getTacticianName(0));
+    }
+    else if(currentRound>maxRounds && maxRounds!=-1){
+      int max = 0;
+      for(int i=0;i<tacticiansLeft();i++){
+        Tactician current = tacticians.get(i);
+        if(current.getUnits().size()>max){
+          max=current.getUnits().size();
+        }
+      }
+      for(int i=0;i<tacticiansLeft();i++) {
+        Tactician current = tacticians.get(i);
+        if(current.getUnits().size()==max){
+          winners.add(getTacticianName(i));
+        }
       }
     }
-    else{
-      //CONDICIÓN Nº DE UNIDADES
+    if(winners.isEmpty()){
+      winners = null;
     }
     return winners;
   }

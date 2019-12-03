@@ -53,22 +53,13 @@ class GameControllerTest {
       Field mapita_clone = new Field();
       mapita_clone.setSeed(randomSeed);
       mapita.setSeed(randomSeed);
-      for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
+      for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
           mapita.addCells(false, new Location(i, j));
           mapita_clone.addCells(false, new Location(i, j));
         }
       }
       assertEquals(mapita, mapita_clone);
-    // Para testear funcionalidades que dependen de valores aleatorios se hacen 2 cosas:
-    //  - Comprobar las invariantes de las estructuras que se crean (en este caso que el mapa tenga
-    //    las dimensiones definidas y que sea conexo.
-    //  - Setear una semilla para el generador de números aleatorios. Hacer esto hace que la
-    //    secuencia de números generada sea siempre la misma, así pueden predecir los
-    //    resultados que van a obtener.
-    //    Hay 2 formas de hacer esto en Java, le pueden pasar el seed al constructor de Random, o
-    //    usar el método setSeed de Random.
-    //  ESTO ÚLTIMO NO ESTÁ IMPLEMENTADO EN EL MAPA, ASÍ QUE DEBEN AGREGARLO (!)
   }
 
   @Test
@@ -103,8 +94,7 @@ class GameControllerTest {
   @Test
   void endTurn() {
     Tactician firstPlayer = controller.getTurnOwner();
-    // Nuevamente, para determinar el orden de los jugadores se debe usar una semilla
-    Tactician secondPlayer = controller.getTurns().get(1); // <- Deben cambiar esto (!)
+    Tactician secondPlayer = controller.getTurns().get(1);
     assertNotEquals(secondPlayer.getName(), firstPlayer.getName());
 
     controller.endTurn();
@@ -133,7 +123,9 @@ class GameControllerTest {
   @Test
   void getWinners() {
     controller.initGame(2);
-    IntStream.range(0, 8).forEach(i -> controller.endTurn());
+    for(int i=0;i<8;i++) {
+      controller.endTurn();
+    }
     assertEquals(4, controller.getWinners().size());
     controller.getWinners()
         .forEach(player -> Assertions.assertTrue(testTacticians.contains(player)));
@@ -156,7 +148,6 @@ class GameControllerTest {
     assertTrue(List.of("Player 3").containsAll(controller.getWinners()));
   }
 
-  // Desde aquí en adelante, los tests deben definirlos completamente ustedes
   @Test
   void getSelectedUnit() {
     assert(false);

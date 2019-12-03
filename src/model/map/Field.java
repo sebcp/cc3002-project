@@ -152,19 +152,20 @@ public class Field {
 
   @Override
   public boolean equals(Object obj){
+    int mapSize = getSize();
     if(obj instanceof Field){
-      for(int i=0; i<getSize(); i++){
-        for(int j=0; j<getSize(); j++){
-          Location thisCell = getCell(i,j);
-          Location objCell = ((Field) obj).getCell(i,j);
-          if(!thisCell.equals(objCell) || !thisCell.equalNeighbours(objCell)){
-            break;
-          }
-          if(i==getSize()-1 && j==getSize()-1){
-            return true;
+      if(mapSize==((Field) obj).getSize()) {
+        for (int i = 0; i < mapSize; i++) {
+          for (int j = 0; j < mapSize; j++) {
+            Location thisCell = getCell(i, j);
+            Location objCell = ((Field) obj).getCell(i, j);
+            if (!thisCell.equals(objCell) || !thisCell.equalNeighbours(objCell)) {
+              return false;
+            }
           }
         }
       }
+      return true;
     }
     return false;
   }

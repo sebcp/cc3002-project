@@ -1,8 +1,7 @@
 package model.map;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
+
 import model.units.IUnit;
 
 /**
@@ -61,13 +60,16 @@ public class Location {
   public boolean equalNeighbours(Location location){
     Set<Location> currentNeighbours = this.getNeighbours();
     Set<Location> locationNeighbours = location.getNeighbours();
-    Iterator<Location> iterator = currentNeighbours.iterator();
+    List<Location> currentList = new ArrayList<Location>();
+    List<Location> locationList = new ArrayList<Location>();
+    currentList.addAll(currentNeighbours);
+    locationList.addAll(locationNeighbours);
     if(currentNeighbours.isEmpty() && !locationNeighbours.isEmpty() ||
             !currentNeighbours.isEmpty() && locationNeighbours.isEmpty()){
       return false;
     }
-    while(iterator.hasNext()){
-      if(!locationNeighbours.contains(iterator.next())){
+    for(int i =0;i<currentList.size();i++){
+      if(!currentNeighbours.contains(currentList.get(i))){
         return false;
       }
     }
