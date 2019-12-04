@@ -17,6 +17,7 @@ public class SwordFactoryTest extends ItemFactoryTestUnit{
         }
 
         @Override
+        @Test
         public void checkPropertyChange() {
             swordFactory.setName("Sword");
             swordFactory.setMaxRange(3);
@@ -24,7 +25,7 @@ public class SwordFactoryTest extends ItemFactoryTestUnit{
             swordFactory.setPower(20);
             Sword sword = (Sword) swordFactory.create();
             assertEquals(sword.getName(),"Sword");
-            assertEquals(sword.getPower(),-20);
+            assertEquals(sword.getPower(),20);
             assertEquals(sword.getMinRange(),2);
             assertEquals(sword.getMaxRange(),3);
         }

@@ -17,11 +17,12 @@ public class StaffFactoryTest extends ItemFactoryTestUnit{
     }
 
     @Override
+    @Test
     public void checkPropertyChange() {
-        spearFactory.setName("Staff");
-        spearFactory.setMaxRange(3);
-        spearFactory.setMinRange(2);
-        spearFactory.setPower(-20);
+        staffFactory.setName("Staff");
+        staffFactory.setMaxRange(3);
+        staffFactory.setMinRange(2);
+        staffFactory.setPower(-20);
         Staff staff = (Staff) staffFactory.create();
         assertEquals(staff.getName(),"Staff");
         assertEquals(staff.getPower(),-20);
