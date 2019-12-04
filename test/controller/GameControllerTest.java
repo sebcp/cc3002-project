@@ -28,7 +28,6 @@ class GameControllerTest {
 
   @BeforeEach
   void setUp() {
-    // Se define la semilla como un número aleatorio para generar variedad en los tests
     randomSeed = new Random().nextLong();
     controller = new GameController(4, 7);
     testTacticians = List.of("Player 0", "Player 1", "Player 2", "Player 3");
@@ -46,7 +45,7 @@ class GameControllerTest {
   @Test
   void getGameMap() {
       Field gameMap = controller.getGameMap();
-      assertEquals(7, gameMap.getSize()); // getSize deben definirlo
+      assertEquals(7, gameMap.getSize());
       assertTrue(controller.getGameMap().isConnected());
 
       Field mapita = new Field();
@@ -64,7 +63,28 @@ class GameControllerTest {
 
   @Test
   void getTurnOwner() {
-    //  En este caso deben hacer lo mismo que para el mapa
+    List<Tactician> turns = controller.getTurns();
+    Tactician last = turns.get(3);
+    for(int i=0;i<3;i++){
+      controller.endTurn();
+    }
+    assertEquals(controller.getTurnOwner(),last);
+    GameController c1 = new GameController(4,7);
+    GameController c2 = new GameController(4,7);
+    c1.wipeFirstTurn();
+    c2.wipeFirstTurn();
+    c1.setNewGame(4,randomSeed);
+    c2.setNewGame(4,randomSeed);
+    for(int i=0; i<4;i++){
+      Tactician turnOwner1= c1.getTurnOwner();
+      Tactician turnOwner2= c2.getTurnOwner();
+      assertEquals(turnOwner1,turnOwner2);
+      if(i<3){
+        c1.endTurn();
+        c2.endTurn();
+      }
+    }
+
   }
 
   @Test

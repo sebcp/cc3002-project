@@ -42,9 +42,18 @@ public class GameController {
   public GameController(int numberOfPlayers, int mapSize) {
     this.numberOfPlayers=numberOfPlayers;
     createMap(mapSize);
-    setNewGame(numberOfPlayers);
+    long seed = new Random().nextLong();
+    setNewGame(numberOfPlayers, seed);
   }
 
+  /**
+   * Sets the turns for the current round. Turns are randomly decided and the first player of the last round
+   * cannot be the first of this round.
+   * @param numberOfPlayers
+   *      the number of players
+   * @param randomSeed
+   *      the seed for the random generator
+   */
   public void setTurns(int numberOfPlayers, long randomSeed) {
     List<Tactician> copy = new ArrayList<>();
     for(int i =0; i<getTacticians().size();i++){
@@ -53,8 +62,8 @@ public class GameController {
     }
     Random ran = new Random(randomSeed);
     for(int i=0; i<numberOfPlayers; i++){
-      int sel = ran.nextInt(copy.size()+1);
-      Tactician selected = getTacticians().get(sel);
+      int sel = ran.nextInt(copy.size());
+      Tactician selected = copy.get(sel);
       turns.add(selected);
       copy.remove(selected);
       if(i==0) {
@@ -119,12 +128,23 @@ public class GameController {
   }
 
   /**
-   * @return the tactician that's currently playing
+   * @return the tactician that's currently playing.
    */
   public Tactician getTurnOwner() {
     return currentPlayer;
   }
 
+  /**
+   * Resets the content of the firstPlayer variable.
+   */
+  public void wipeFirstTurn(){
+    firstPlayer=null;
+  }
+
+  /**
+   *
+   * @return the list of turns.
+   */
   public List<Tactician> getTurns(){
     return turns;
   }
@@ -149,7 +169,8 @@ public class GameController {
   public void endTurn() {
     if(turnsLeft-1==0){
       turnsLeft=getTacticians().size();
-      setTurns(getTacticians().size(), (long) 0.000001);
+      long seed = new Random().nextLong();
+      setTurns(getTacticians().size(), seed);
       currentRound++;
 
     }
@@ -184,10 +205,20 @@ public class GameController {
     }
   }
 
+  /**
+   *
+   * @return the number of tacticians left in the game.
+   */
   public int tacticiansLeft(){
     return getTacticians().size();
   }
 
+  /**
+   * Returns the name of an specific tactician.
+   * @param pos
+   *      the position of the tactician in the tactician list
+   * @return the name of the tactician.
+   */
   public String getTacticianName(int pos){
     return getTacticians().get(pos).getName();
   }
@@ -195,12 +226,14 @@ public class GameController {
   /**
    * Starts the game.
    * @param maxTurns
-   *  the maximum number of turns the game can last
+   *    the maximum number of turns the game can last
    */
   public void initGame(final int maxTurns) {
     this.maxRounds=maxTurns;
     this.currentRound = 1;
-    setNewGame(numberOfPlayers);
+    firstPlayer = null;
+    long seed = new Random().nextLong();
+    setNewGame(numberOfPlayers,seed);
   }
 
   /**
@@ -209,16 +242,24 @@ public class GameController {
   public void initEndlessGame() {
     this.maxRounds=-1;
     this.currentRound = 1;
-    setNewGame(numberOfPlayers);
+    firstPlayer = null;
+    long seed = new Random().nextLong();
+    setNewGame(numberOfPlayers,seed);
   }
 
-  public void setNewGame(int numberOfPlayers /** agregar randomSeed
-   */){
+  /**
+   * Sets a new game on the current map
+   * @param numberOfPlayers
+   *      the number of tacticians
+   * @param randomSeed
+   *      the seed that determines how the turns are decided
+   */
+  public void setNewGame(int numberOfPlayers, long randomSeed){
     tacticians = new ArrayList<>();
     turns = new ArrayList<>();
     createPlayers(numberOfPlayers);
     turnsLeft = numberOfPlayers;
-    setTurns(numberOfPlayers, (long) 0.000001);
+    setTurns(numberOfPlayers, randomSeed);
   }
 
   /**
