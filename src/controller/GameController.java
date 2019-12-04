@@ -295,7 +295,7 @@ public class GameController {
    * @return the current player's selected unit
    */
   public IUnit getSelectedUnit() {
-    return null;
+    return currentPlayer.getSelectedUnit();
   }
 
   /**
@@ -307,7 +307,8 @@ public class GameController {
    *     vertical position of the unit
    */
   public void selectUnitIn(int x, int y) {
-
+    Location cell = map.getCell(x,y);
+    currentPlayer.selectUnit(cell.getUnit());
   }
 
   /**

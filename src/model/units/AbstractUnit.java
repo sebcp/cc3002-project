@@ -53,6 +53,7 @@ public abstract class AbstractUnit implements IUnit {
     this.currentHitPoints = maxHitPoints;
     this.movement = movement;
     this.location = location;
+    location.setUnit(this);
     this.name = name;
     this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
     this.maxItems = maxItems;
@@ -107,6 +108,7 @@ public abstract class AbstractUnit implements IUnit {
       System.out.println(this.getName() + " received " + damageDealt + " points of damage.");
     }
   }
+
   @Override
   public void receiveHealing(int healing){
     if(this.getIsAlive()){
@@ -218,7 +220,9 @@ public abstract class AbstractUnit implements IUnit {
   public void moveTo(final Location targetLocation) {
     if (getLocation().distanceTo(targetLocation) <= getMovement()
         && (targetLocation.getUnit() == null || !targetLocation.getUnit().getIsAlive())){
+      this.getLocation().setUnit(null);
       setLocation(targetLocation);
+      targetLocation.setUnit(this);
     }
   }
 

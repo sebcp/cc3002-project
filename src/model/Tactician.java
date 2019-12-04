@@ -26,6 +26,12 @@ public class Tactician {
         return name;
     }
 
+    public void selectUnit(IUnit unit){
+        if(units.contains(unit)) {
+            selectedUnit = unit;
+        }
+    }
+
     public List<IUnit> getUnits(){
         return units;
     }

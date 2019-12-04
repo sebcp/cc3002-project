@@ -130,6 +130,13 @@ public class Location {
     this.unit = unit;
   }
 
+  public boolean isEmpty(){
+    if(unit.equals(null)){
+      return true;
+    }
+    return false;
+  }
+
   /**
    * Removes a neighbour from this location.
    *
