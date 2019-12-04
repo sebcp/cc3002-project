@@ -7,12 +7,13 @@ import model.items.IEquipableItem;
  *
  * The signature for all the common methods of the factories are defined here.
  * Every factory has a set of parameters (name, power, minimum range and maximum range)
- * used for creating items.
+ * used for creating items that can be changed using the methods defined here.
  *
  * @author Sebastián Contreras Phillippi
  * @version 2.0
  * @since 2.0
  */
+
 public interface itemFactoryInterface {
     /**
      * Creates a new item of the type that's specific to the facrtory.
