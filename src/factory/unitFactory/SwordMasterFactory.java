@@ -27,7 +27,12 @@ public class SwordMasterFactory implements unitFactoryInterface {
 
     @Override
     public void setLocation(Location location) {
-        this.initialLocation=location;
+        if(location.isEmpty()) {
+            this.initialLocation = location;
+        }
+        else{
+            initialLocation = null;
+        }
     }
 
     @Override

@@ -131,10 +131,10 @@ public class Location {
   }
 
   public boolean isEmpty(){
-    if(unit.equals(null)){
-      return true;
+    if(unit!=null){
+      return false;
     }
-    return false;
+    return true;
   }
 
   /**
