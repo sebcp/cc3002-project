@@ -16,13 +16,6 @@ public abstract class UnitFactoryTestUnit {
     protected SwordMasterFactory swordMasterFactory = new SwordMasterFactory();
     protected Field field;
 
-    @Test
-    public abstract void createDefault();
-
-    @Test
-    public abstract void checkPropertyChanges();
-
-
     @BeforeEach
     public void setTestField() {
         field = new Field();
@@ -30,4 +23,10 @@ public abstract class UnitFactoryTestUnit {
                 new Location(1, 0), new Location(1, 1), new Location(1, 2), new Location(2, 0),
                 new Location(2, 1), new Location(2, 2));
     }
+
+    @Test
+    public abstract void createDefault();
+
+    @Test
+    public abstract void checkPropertyChanges();
 }

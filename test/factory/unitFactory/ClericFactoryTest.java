@@ -1,10 +1,10 @@
 package factory.unitFactory;
 
+import model.Tactician;
 import model.units.Cleric;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ClericFactoryTest extends UnitFactoryTestUnit {
     @Override
@@ -20,11 +20,14 @@ public class ClericFactoryTest extends UnitFactoryTestUnit {
     @Override
     @Test
     public void checkPropertyChanges() {
+        Tactician tactician = new Tactician("pepito");
+        clericFactory.setTactician(tactician);
         clericFactory.setLocation(field.getCell(0,0));
         clericFactory.setMaxHitPoints(10);
         clericFactory.setMovement(3);
         clericFactory.setName("notCleric");
         Cleric cleric = (Cleric) clericFactory.create();
+        assertTrue(tactician.getUnits().contains(cleric));
         assertEquals(cleric.getName(),"notCleric");
         assertEquals(cleric.getMaxHitPoints(),10);
         assertEquals(cleric.getMovement(),3);

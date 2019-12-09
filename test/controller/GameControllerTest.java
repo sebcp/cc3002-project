@@ -9,9 +9,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
+import factory.unitFactory.AlpacaFactory;
 import model.Tactician;
 import model.map.Field;
 import model.map.Location;
+import model.units.Alpaca;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +27,7 @@ class GameControllerTest {
   private GameController controller;
   private long randomSeed;
   private List<String> testTacticians;
+  private AlpacaFactory alpacafactory = new AlpacaFactory();
 
   @BeforeEach
   void setUp() {
@@ -170,12 +173,31 @@ class GameControllerTest {
 
   @Test
   void getSelectedUnit() {
-    assert(false);
+    controller.initGame(1);
+    Tactician tactician = controller.getTurnOwner();
+    assertNull(controller.getSelectedUnit());
+
+    alpacafactory.setTactician(tactician);
+    alpacafactory.setLocation(controller.getGameMap().getCell(0,0));
+    Alpaca alpaca = (Alpaca) alpacafactory.create();
+    controller.selectUnitIn(0,0);
+    assertEquals(alpaca,controller.getSelectedUnit());
+    controller.selectUnitIn(0,1);
+    assertNull(controller.getSelectedUnit());
   }
 
   @Test
   void selectUnitIn() {
-    assert(false);
+    controller.initGame(1);
+    alpacafactory.setTactician(controller.getTurnOwner());
+    alpacafactory.setLocation(controller.getGameMap().getCell(0,0));
+    Alpaca alpaca1 = (Alpaca) alpacafactory.create();
+    controller.selectUnitIn(0,0);
+    assertEquals(alpaca1,controller.getSelectedUnit());
+    
+    controller.endTurn();
+    controller.selectUnitIn(0,0);
+    assertNull(controller.getSelectedUnit());
   }
 
   @Test

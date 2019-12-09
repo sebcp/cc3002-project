@@ -1,5 +1,6 @@
 package factory.unitFactory;
 
+import model.Tactician;
 import model.map.Location;
 import model.units.IUnit;
 import model.units.SwordMaster;
@@ -9,10 +10,15 @@ public class SwordMasterFactory implements unitFactoryInterface {
     private int movementRange = 2;
     private Location initialLocation;
     private String name = "SwordMaster";
+    private Tactician owner;
 
     @Override
     public IUnit create() {
-        return new SwordMaster(maxHitPoints,movementRange,initialLocation,name);
+        SwordMaster swordMaster = new SwordMaster(maxHitPoints,movementRange,initialLocation,name);
+        if(owner!=null){
+            owner.receiveUnit(swordMaster);
+        }
+        return swordMaster;
     }
 
     @Override
@@ -38,5 +44,10 @@ public class SwordMasterFactory implements unitFactoryInterface {
     @Override
     public void setName(String name) {
         this.name=name;
+    }
+
+    @Override
+    public void setTactician(Tactician tactician){
+        owner=tactician;
     }
 }

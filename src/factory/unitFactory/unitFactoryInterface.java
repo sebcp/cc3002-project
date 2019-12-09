@@ -1,5 +1,6 @@
 package factory.unitFactory;
 
+import model.Tactician;
 import model.map.Location;
 import model.units.IUnit;
 
@@ -41,4 +42,6 @@ public interface unitFactoryInterface {
      * Sets the name of the unit to be created.
      */
     void setName(String name);
+
+    void setTactician(Tactician tactician);
 }

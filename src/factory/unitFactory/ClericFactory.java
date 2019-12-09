@@ -1,5 +1,6 @@
 package factory.unitFactory;
 
+import model.Tactician;
 import model.map.Location;
 import model.units.Cleric;
 import model.units.IUnit;
@@ -9,10 +10,15 @@ public class ClericFactory implements unitFactoryInterface {
     private int movementRange = 2;
     private Location initialLocation;
     private String name = "Cleric";
+    private Tactician owner;
 
     @Override
     public IUnit create() {
-        return new Cleric(maxHitPoints,movementRange,initialLocation,name);
+        Cleric cleric = new Cleric(maxHitPoints,movementRange,initialLocation,name);
+        if(owner!=null){
+            owner.receiveUnit(cleric);
+        }
+        return cleric;
     }
 
     @Override
@@ -38,5 +44,10 @@ public class ClericFactory implements unitFactoryInterface {
     @Override
     public void setName(String name) {
         this.name=name;
+    }
+
+    @Override
+    public void setTactician(Tactician tactician){
+        owner=tactician;
     }
 }

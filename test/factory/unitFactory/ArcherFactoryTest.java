@@ -1,10 +1,10 @@
 package factory.unitFactory;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
+import model.Tactician;
 import model.units.Archer;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ArcherFactoryTest extends UnitFactoryTestUnit {
 
@@ -21,11 +21,14 @@ public class ArcherFactoryTest extends UnitFactoryTestUnit {
     @Override
     @Test
     public void checkPropertyChanges() {
+        Tactician tactician = new Tactician("pepito");
+        archerFactory.setTactician(tactician);
         archerFactory.setLocation(field.getCell(0,0));
         archerFactory.setMaxHitPoints(10);
         archerFactory.setMovement(3);
         archerFactory.setName("notArcher");
         Archer archer = (Archer) archerFactory.create();
+        assertTrue(tactician.getUnits().contains(archer));
         assertEquals(archer.getName(),"notArcher");
         assertEquals(archer.getMaxHitPoints(),10);
         assertEquals(archer.getMovement(),3);

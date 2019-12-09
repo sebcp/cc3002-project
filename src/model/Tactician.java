@@ -27,7 +27,7 @@ public class Tactician {
     }
 
     public void selectUnit(IUnit unit){
-        if(units.contains(unit)) {
+        if(units.contains(unit) || unit==null ) {
             selectedUnit = unit;
         }
     }

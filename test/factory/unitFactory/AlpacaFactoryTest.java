@@ -1,10 +1,10 @@
 package factory.unitFactory;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
+import model.Tactician;
 import model.units.Alpaca;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AlpacaFactoryTest extends UnitFactoryTestUnit {
     @Override
@@ -20,11 +20,14 @@ public class AlpacaFactoryTest extends UnitFactoryTestUnit {
     @Override
     @Test
     public void checkPropertyChanges() {
+        Tactician tactician = new Tactician("pepito");
+        alpacaFactory.setTactician(tactician);
         alpacaFactory.setLocation(field.getCell(0,0));
         alpacaFactory.setMaxHitPoints(10);
         alpacaFactory.setMovement(3);
         alpacaFactory.setName("notAlpaca");
         Alpaca alpaca = (Alpaca) alpacaFactory.create();
+        assertTrue(tactician.getUnits().contains(alpaca));
         assertEquals(alpaca.getName(),"notAlpaca");
         assertEquals(alpaca.getMaxHitPoints(),10);
         assertEquals(alpaca.getMovement(),3);
