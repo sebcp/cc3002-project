@@ -9,11 +9,20 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
+import factory.itemFactory.AxeFactory;
+import factory.itemFactory.AxeFactoryTest;
+import factory.itemFactory.StaffFactory;
 import factory.unitFactory.AlpacaFactory;
+import factory.unitFactory.ClericFactory;
+import factory.unitFactory.FighterFactory;
+import factory.unitFactory.FighterFactoryTest;
 import model.Tactician;
+import model.items.Axe;
 import model.map.Field;
 import model.map.Location;
 import model.units.Alpaca;
+import model.units.Cleric;
+import model.units.Fighter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,6 +37,10 @@ class GameControllerTest {
   private long randomSeed;
   private List<String> testTacticians;
   private AlpacaFactory alpacafactory = new AlpacaFactory();
+  private FighterFactory fighterFactory = new FighterFactory();
+  private AxeFactory axeFactory = new AxeFactory();
+  private ClericFactory clericFactory = new ClericFactory();
+  private StaffFactory staffFactory = new StaffFactory();
 
   @BeforeEach
   void setUp() {
@@ -202,26 +215,90 @@ class GameControllerTest {
 
   @Test
   void getItems() {
-    assert(false);
+    controller.initGame(1);
+    alpacafactory.setTactician(controller.getTurnOwner());
+    alpacafactory.setLocation(controller.getGameMap().getCell(0,0));
+    Alpaca alpaca = (Alpaca) alpacafactory.create();
+    controller.selectUnitIn(0,0);
+    assertTrue(controller.getItems().isEmpty());
+
+    axeFactory.setOwner(alpaca);
+    Axe axe = (Axe) axeFactory.create();
+    assertTrue(controller.getItems().contains(axe));
   }
 
   @Test
   void equipItem() {
-    assert(false);
+    controller.initGame(1);
+    fighterFactory.setTactician(controller.getTurnOwner());
+    fighterFactory.setLocation(controller.getGameMap().getCell(0,0));
+    Fighter fighter = (Fighter) fighterFactory.create();
+    controller.selectUnitIn(0,0);
+    assertNull(controller.getSelectedUnit().getEquippedItem());
+    axeFactory.setOwner(fighter);
+    Axe axe = (Axe) axeFactory.create();
+    controller.equipItem(0);
+    assertEquals(controller.getSelectedUnit().getEquippedItem(),axe);
   }
 
   @Test
   void useItemOn() {
-    assert(false);
+    controller.initGame(1);
+    alpacafactory.setLocation(controller.getGameMap().getCell(0,0));
+    Alpaca alpaca = (Alpaca) alpacafactory.create();
+    fighterFactory.setLocation(controller.getGameMap().getCell(0,1));
+    fighterFactory.setTactician(controller.getTurnOwner());
+    Fighter fighter = (Fighter) fighterFactory.create();
+    clericFactory.setLocation(controller.getGameMap().getCell(1,0));
+    clericFactory.setTactician(controller.getTurnOwner());
+    Cleric cleric = (Cleric) clericFactory.create();
+
+    axeFactory.setOwner(fighter);
+    staffFactory.setOwner(cleric);
+    axeFactory.create();
+    staffFactory.create();
+    controller.selectUnitIn(0,1);
+    controller.equipItem(0);
+    assertEquals(alpaca.getMaxHitPoints(),alpaca.getCurrentHitPoints());
+    controller.useItemOn(0,0);
+    assertEquals(alpaca.getCurrentHitPoints(),40);
+    controller.selectUnitIn(1,0);
+    controller.equipItem(0);
+    controller.useItemOn(0,0);
+    assertEquals(alpaca.getMaxHitPoints(),alpaca.getCurrentHitPoints());
   }
 
   @Test
   void selectItem() {
-    assert(false);
+    controller.initGame(1);
+    alpacafactory.setTactician(controller.getTurnOwner());
+    alpacafactory.setLocation(controller.getGameMap().getCell(0,0));
+    Alpaca alpaca = (Alpaca) alpacafactory.create();
+    controller.selectUnitIn(0,0);
+    assertNull(controller.getSelectedItem());
+
+    axeFactory.setOwner(alpaca);
+    Axe axe = (Axe) axeFactory.create();
+
+    controller.selectItem(0);
+    assertEquals(controller.getSelectedItem(),axe);
   }
 
   @Test
   void giveItemTo() {
-    assert(false);
+    controller.initGame(1);
+    alpacafactory.setTactician(controller.getTurnOwner());
+    alpacafactory.setLocation(controller.getGameMap().getCell(0,0));
+    Alpaca alpaca = (Alpaca) alpacafactory.create();
+    alpacafactory.setLocation(controller.getGameMap().getCell(0,1));
+    Alpaca alpaca1 = (Alpaca) alpacafactory.create();
+    controller.selectUnitIn(0,0);
+
+    axeFactory.setOwner(alpaca);
+    Axe axe = (Axe) axeFactory.create();
+    assertTrue(alpaca.getItems().contains(axe));
+    controller.giveItemTo(0,1);
+    assertTrue(alpaca.getItems().isEmpty());
+    assertTrue(alpaca1.getItems().contains(axe));
   }
 }

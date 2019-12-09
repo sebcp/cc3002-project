@@ -355,6 +355,14 @@ public class GameController {
   }
 
   /**
+   * Returns the currently selected item from the selected unit of the turn owner.
+   * @return the item that's currently selected
+   */
+  public IEquipableItem getSelectedItem(){
+    return selectedItem;
+  }
+
+  /**
    * Gives the selected item to a target unit.
    *
    * @param x horizontal position of the target
