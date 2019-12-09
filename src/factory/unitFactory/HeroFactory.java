@@ -5,7 +5,7 @@ import model.map.Location;
 import model.units.Hero;
 import model.units.IUnit;
 
-public class HeroFactory implements unitFactoryInterface{
+public class HeroFactory implements UnitFactoryInterface {
     private int maxHitPoints = 50;
     private int movementRange = 2;
     private Location initialLocation;

@@ -16,7 +16,7 @@ import model.units.IUnit;
  * @since 2.0
  */
 
-public interface unitFactoryInterface {
+public interface UnitFactoryInterface {
     /**
      * Creates the unit specific to the factory.
      * @return the unit created.
@@ -25,23 +25,36 @@ public interface unitFactoryInterface {
 
     /**
      * Sets the maximum ammount of health points of the unit to be created.
+     * @param maxHitPoints
+     *      the maximum health points
      */
     void setMaxHitPoints(int maxHitPoints);
 
     /**
      * Sets the maximum movement range of the unit to be created.
+     * @param movementRange
+     *      the maximum movement range
      */
     void setMovement(int movementRange);
 
     /**
      * Sets the initial location on the map of the unit to be created.
+     * @param location
+     *      the location to be set
      */
     void setLocation(Location location);
 
     /**
      * Sets the name of the unit to be created.
+     * @param name
+     *      the name of the unit
      */
     void setName(String name);
 
+    /**
+     * Sets the tactician that will own the unit.
+     * @param tactician
+     *      the tactician to own the unit
+     */
     void setTactician(Tactician tactician);
 }

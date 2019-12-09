@@ -5,7 +5,7 @@ import model.map.Location;
 import model.units.Alpaca;
 import model.units.IUnit;
 
-public class AlpacaFactory implements unitFactoryInterface {
+public class AlpacaFactory implements UnitFactoryInterface {
     private int maxHitPoints = 50;
     private int movementRange = 2;
     private Location initialLocation;

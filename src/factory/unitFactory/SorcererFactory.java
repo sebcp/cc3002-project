@@ -5,7 +5,7 @@ import model.map.Location;
 import model.units.IUnit;
 import model.units.Sorcerer;
 
-public class SorcererFactory implements unitFactoryInterface{
+public class SorcererFactory implements UnitFactoryInterface {
     private int maxHitPoints = 50;
     private int movementRange = 2;
     private Location initialLocation;

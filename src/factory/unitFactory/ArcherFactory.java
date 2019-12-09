@@ -5,7 +5,7 @@ import model.map.Location;
 import model.units.Archer;
 import model.units.IUnit;
 
-public class ArcherFactory implements unitFactoryInterface {
+public class ArcherFactory implements UnitFactoryInterface {
     private int maxHitPoints = 50;
     private int movementRange = 2;
     private Location initialLocation;

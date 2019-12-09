@@ -194,7 +194,7 @@ class GameControllerTest {
     Alpaca alpaca1 = (Alpaca) alpacafactory.create();
     controller.selectUnitIn(0,0);
     assertEquals(alpaca1,controller.getSelectedUnit());
-    
+
     controller.endTurn();
     controller.selectUnitIn(0,0);
     assertNull(controller.getSelectedUnit());

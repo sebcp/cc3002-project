@@ -5,7 +5,7 @@ import model.map.Location;
 import model.units.Cleric;
 import model.units.IUnit;
 
-public class ClericFactory implements unitFactoryInterface {
+public class ClericFactory implements UnitFactoryInterface {
     private int maxHitPoints = 50;
     private int movementRange = 2;
     private Location initialLocation;

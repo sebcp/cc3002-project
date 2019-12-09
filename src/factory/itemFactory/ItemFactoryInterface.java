@@ -1,6 +1,7 @@
 package factory.itemFactory;
 
 import model.items.IEquipableItem;
+import model.units.IUnit;
 
 /**
  * This interface represents the factories that create items for the game.
@@ -14,7 +15,7 @@ import model.items.IEquipableItem;
  * @since 2.0
  */
 
-public interface itemFactoryInterface {
+public interface ItemFactoryInterface {
     /**
      * Creates a new item of the type that's specific to the facrtory.
      * @return the item created
@@ -48,4 +49,11 @@ public interface itemFactoryInterface {
      *      the maximum range given to the item
      */
     void setMaxRange(int maxRange);
+
+    /**
+     * Sets the owner of the item
+     * @param unit
+     *      the unit that owns the item
+     */
+    void setOwner(IUnit unit);
 }
