@@ -17,10 +17,11 @@ import tactician.Tactician;
  *
  * An abstract unit is a unit that cannot be used in the
  * game, but that contains the implementation of some of the methods that are common for most
- * units.
+ * units. Units can only move and act once per turn.
  *
  * @author Ignacio Slater Muñoz
  * @author Sebastián Contreras Phillippi
+ * @version 2.0
  * @since 1.0
  */
 public abstract class AbstractUnit implements IUnit {
@@ -175,7 +176,7 @@ public abstract class AbstractUnit implements IUnit {
           else {
             int current = unit.getCurrentHitPoints();
             thisEquip.attack(unitEquip);
-            if (unit.getCurrentHitPoints() != 0 && current > unit.getCurrentHitPoints()) {
+            if (unit.getCurrentHitPoints() != 0 && current >= unit.getCurrentHitPoints()) {
               unitEquip.counterAttack(thisEquip);
             }
           }
@@ -238,17 +239,20 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  @Override
   public void resetAction(){
     canAct = true;
     canMove = true;
   }
 
+  @Override
   public boolean canAct(){
     return canAct || canMove;
   }
 
   public abstract boolean equals(Object obj);
 
+  @Override
   public void addListener(Tactician tactician){
     pcs.addPropertyChangeListener(new UnitDeathHandler(tactician,this));
   }

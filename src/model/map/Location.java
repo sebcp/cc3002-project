@@ -17,6 +17,8 @@ import model.units.IUnit;
  * neighbours will be always 1.
  *
  * @author Ignacio Slater Muñoz
+ * @author Sebastián Contreras Phillippi
+ * @version 2.0
  * @since 1.0
  */
 public class Location {
@@ -57,6 +59,12 @@ public class Location {
         && column == ((Location) other).column;
   }
 
+  /**
+   * Checks if two locations have the same neighbours.
+   * @param location
+   *      the location to compare with
+   * @return true if they have the same elements on the list; false if they don't.
+   */
   public boolean equalNeighbours(Location location){
     Set<Location> currentNeighbours = this.getNeighbours();
     Set<Location> locationNeighbours = location.getNeighbours();
@@ -130,6 +138,10 @@ public class Location {
     this.unit = unit;
   }
 
+  /**
+   * Checks if the location is empty
+   * @return true if there's no units; false if there is a unit.
+   */
   public boolean isEmpty(){
     if(unit!=null){
       return false;

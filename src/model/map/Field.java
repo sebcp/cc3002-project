@@ -10,6 +10,8 @@ import java.util.*;
  * Since all cells of the map should be reachable, the graph must be connected.
  *
  * @author Ignacio Slater Muñoz
+ * @author Sebastián Contreras Phillippi
+ * @version 2.0
  * @since 1.0
  */
 public class Field {

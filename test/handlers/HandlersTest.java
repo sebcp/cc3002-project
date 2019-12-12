@@ -22,7 +22,7 @@ public class HandlersTest {
     SpearFactory spearFactory = new SpearFactory();
 
     @Test
-    public void HeroDeathTestHandler(){
+    public void HeroDeathHandlerTest(){
         heroFactory.setTactician(controller.getTurnOwner());
         heroFactory.setLocation(map.getCell(0,0));
         Hero hero = (Hero) heroFactory.create();
@@ -41,10 +41,34 @@ public class HandlersTest {
         assertEquals(controller.getWinners().get(0),controller.getTacticians().get(0).getName());
     }
 
+    @Test
+    public void BorderHeroDeathTest(){
+        Tactician first = controller.getTurnOwner();
+        fighterFactory.setTactician(controller.getTurnOwner());
+        fighterFactory.setLocation(map.getCell(0,1));
+        Fighter fighter = (Fighter) fighterFactory.create();
+        axeFactory.setOwner(fighter);
+        axeFactory.setPower(100);
+        axeFactory.create();
+        controller.selectUnitIn(0,1);
+        controller.equipItem(0);
+        controller.endTurn();
 
+        heroFactory.setTactician(controller.getTurnOwner());
+        heroFactory.setLocation(map.getCell(0,0));
+        Hero hero = (Hero) heroFactory.create();
+        spearFactory.setOwner(hero);
+        spearFactory.setPower(10);
+        spearFactory.create();
+        controller.selectUnitIn(0,0);
+        controller.equipItem(0);
+        controller.useItemOn(0,1);
+        assertEquals(1,controller.getWinners().size());
+        assertEquals(first.getName(),controller.getWinners().get(0));
+    }
 
     @Test
-    public void UnitDeathTestHandler(){
+    public void UnitDeathHandlerTest(){
         Tactician first = controller.getTurnOwner();
         fighterFactory.setTactician(first);
         fighterFactory.setLocation(map.getCell(0,1));

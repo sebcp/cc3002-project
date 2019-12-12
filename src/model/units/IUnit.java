@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.items.IEquipableItem;
 import model.map.Location;
+import tactician.Tactician;
 
 /**
  * This interface represents all units in the game.
@@ -13,6 +14,7 @@ import model.map.Location;
  *
  * @author Ignacio Slater Muñoz
  * @author Sebastián Contreras Phillippi
+ * @version 2.0
  * @since 1.0
  */
 public interface IUnit {
@@ -191,5 +193,12 @@ public interface IUnit {
    * @return true if the unit and the object are the same; false if they're different.
    */
   boolean equals(Object obj);
+
+  /**
+   * Adds a listener to the unit.
+   * @param tactician
+   *      the tactician to be listening the unit
+   */
+  void addListener(Tactician tactician);
 }
 

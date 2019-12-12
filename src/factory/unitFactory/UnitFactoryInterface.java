@@ -18,7 +18,7 @@ import model.units.IUnit;
 
 public interface UnitFactoryInterface {
     /**
-     * Creates the unit specific to the factory.
+     * Creates the unit specific to the factory. If the unit has an owner it will also add it as a listener.
      * @return the unit created.
      */
     IUnit create();

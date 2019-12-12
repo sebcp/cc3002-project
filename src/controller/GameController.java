@@ -12,7 +12,7 @@ import model.units.IUnit;
 
 /**
  * Controller of the game.
- * The controller manages all the input received from de game's GUI.
+ * The controller manages all the input received from the game's GUI.
  *
  * @author Ignacio Slater Muñoz
  * @author Sebastián Contreras Phillippi
