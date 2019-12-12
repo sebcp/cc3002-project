@@ -31,6 +31,8 @@ public abstract class AbstractUnit implements IUnit {
   private final int maxItems;
   private boolean isAlive;
   private final String name;
+  private boolean canMove = true;
+  private boolean canAct = true;
 
   /**
    * Creates a new Unit.
@@ -150,7 +152,7 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public void combat(IUnit unit){
-    if(this.getIsAlive() && unit.getIsAlive()) {
+    if(this.getIsAlive() && unit.getIsAlive() && canAct) {
       IEquipableItem unitEquip = unit.getEquippedItem();
       IEquipableItem thisEquip = this.getEquippedItem();
       int distance = this.calculateDistance(unit);
@@ -171,6 +173,7 @@ public abstract class AbstractUnit implements IUnit {
               unitEquip.counterAttack(thisEquip);
             }
           }
+          canAct = false;
         }
         else {
          System.out.println("The target is out of the " + thisEquip.getName() +  "'s range.");
@@ -201,11 +204,11 @@ public abstract class AbstractUnit implements IUnit {
   public void giveItem(int pos, IUnit unit){
     if(unit.getItems().size()<unit.getMaxItems() &&
             this.getItems().get(pos)!=this.getEquippedItem() &&
-            this.calculateDistance(unit)==1 && this.getIsAlive() && unit.getIsAlive()){
+            this.calculateDistance(unit)==1 && this.getIsAlive() && unit.getIsAlive() && canAct){
       unit.addItem(this.getItems().get(pos));
       this.getItems().get(pos).setOwner(unit);
       this.removeItem(this.getItems().get(pos));
-
+      canAct = false;
     }
   }
 
@@ -221,11 +224,21 @@ public abstract class AbstractUnit implements IUnit {
   @Override
   public void moveTo(final Location targetLocation) {
     if (getLocation().distanceTo(targetLocation) <= getMovement()
-        && (targetLocation.getUnit() == null || !targetLocation.getUnit().getIsAlive())){
+        && (targetLocation.getUnit() == null || !targetLocation.getUnit().getIsAlive()) && canMove){
       this.getLocation().setUnit(null);
       setLocation(targetLocation);
       targetLocation.setUnit(this);
+      canMove = false;
     }
+  }
+
+  public void resetAction(){
+    canAct = true;
+    canMove = true;
+  }
+
+  public boolean canAct(){
+    return canAct || canMove;
   }
 
   public abstract boolean equals(Object obj);

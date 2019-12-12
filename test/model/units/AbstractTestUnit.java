@@ -175,11 +175,14 @@ public abstract class AbstractTestUnit implements ITestUnit {
     getTestUnit().receiveDamage(10);
     assertEquals(getTestUnit().getMaxHitPoints()-10,getTestUnit().getCurrentHitPoints());
     testCleric.combat(getTestUnit());
+    testCleric.resetAction();
     assertEquals(getTestUnit().getMaxHitPoints(),getTestUnit().getCurrentHitPoints());
     getTestUnit().receiveDamage(15);
     testCleric.combat(getTestUnit());
+    testCleric.resetAction();
     assertEquals(getTestUnit().getMaxHitPoints()-5,getTestUnit().getCurrentHitPoints());
     testCleric.combat(getTestUnit());
+    testCleric.resetAction();
     assertEquals(getTestUnit().getMaxHitPoints(),getTestUnit().getCurrentHitPoints());
     getTestUnit().receiveDamage(50);
     testCleric.combat(getTestUnit());

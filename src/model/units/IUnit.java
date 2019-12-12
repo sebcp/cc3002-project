@@ -172,6 +172,18 @@ public interface IUnit {
    */
   String getName();
 
+
+  /**
+   * Resets the action states (canMove and canAct) to true.
+   */
+  void resetAction();
+
+  /**
+   * Checks if a unit can either move, attack or give an item.
+   * @return true if it can do any of those things; otherwise returns false.
+   */
+  boolean canAct();
+
   /**
    * Checks if the object is equal to the unit.
    * @param obj

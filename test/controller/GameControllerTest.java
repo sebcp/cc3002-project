@@ -301,4 +301,24 @@ class GameControllerTest {
     assertTrue(alpaca.getItems().isEmpty());
     assertTrue(alpaca1.getItems().contains(axe));
   }
+
+  @Test
+  void moveUnit(){
+    controller.initGame(1);
+    alpacafactory.setTactician(controller.getTurnOwner());
+    alpacafactory.setLocation(controller.getGameMap().getCell(0,0));
+    alpacafactory.create();
+    controller.selectUnitIn(0,0);
+    controller.moveUnit(0,1);
+    assertEquals(controller.getSelectedUnit().getLocation(),controller.getGameMap().getCell(0,1));
+    controller.endTurn();
+
+    alpacafactory.setTactician(controller.getTurnOwner());
+    alpacafactory.setLocation(controller.getGameMap().getCell(0,0));
+    alpacafactory.setMovement(1);
+    alpacafactory.create();
+    controller.selectUnitIn(0,0);
+    controller.moveUnit(0,2);
+    assertEquals(controller.getSelectedUnit().getLocation(),controller.getGameMap().getCell(0,0));
+  }
 }

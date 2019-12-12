@@ -3,6 +3,7 @@ package model.units;
 import model.items.IEquipableItem;
 import model.map.Location;
 
+import java.beans.PropertyChangeSupport;
 import java.util.List;
 
 /**

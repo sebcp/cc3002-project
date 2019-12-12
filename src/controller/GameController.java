@@ -175,6 +175,7 @@ public class GameController {
       turnsLeft--;
     }
     turns.remove(0);
+    currentPlayer.resetUnitActions();
     currentPlayer = turns.get(0);
   }
 
@@ -376,4 +377,18 @@ public class GameController {
       selected.giveItem(selectedIndex, unit);
     }
   }
+
+  /**
+   * Tries to move the selected unit to a chosen location.
+   * @param x
+   *      the horizontal position of the location
+   * @param y
+   *      the vertical position of the location
+   */
+  public void moveUnit(int x, int y){
+    IUnit selected = currentPlayer.getSelectedUnit();
+    Location cell = map.getCell(x,y);
+    selected.moveTo(cell);
+  }
+
 }
