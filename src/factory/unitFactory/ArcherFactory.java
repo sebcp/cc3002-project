@@ -17,6 +17,7 @@ public class ArcherFactory implements UnitFactoryInterface {
         Archer archer = new Archer(maxHitPoints,movementRange,initialLocation,name);
         if(owner!=null){
             owner.receiveUnit(archer);
+            archer.addListener(owner);
         }
         return archer;
     }

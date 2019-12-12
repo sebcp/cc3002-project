@@ -2,12 +2,15 @@ package model.units;
 
 import static java.lang.Math.min;
 
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import handlers.UnitDeathHandler;
 import model.items.IEquipableItem;
 import model.map.Location;
+import tactician.Tactician;
 
 /**
  * This class represents an abstract unit.
@@ -33,6 +36,7 @@ public abstract class AbstractUnit implements IUnit {
   private final String name;
   private boolean canMove = true;
   private boolean canAct = true;
+  private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
   /**
    * Creates a new Unit.
@@ -105,6 +109,7 @@ public abstract class AbstractUnit implements IUnit {
         damageDealt = this.getCurrentHitPoints();
         this.setCurrentHitPoints(0);
         this.setIsAlive(false);
+        pcs.firePropertyChange("isAlive",true,false);
       }
       else {
         damageDealt = damage;
@@ -243,4 +248,8 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   public abstract boolean equals(Object obj);
+
+  public void addListener(Tactician tactician){
+    pcs.addPropertyChangeListener(new UnitDeathHandler(tactician,this));
+  }
 }

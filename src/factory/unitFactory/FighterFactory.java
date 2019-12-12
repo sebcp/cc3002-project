@@ -15,8 +15,9 @@ public class FighterFactory implements UnitFactoryInterface {
     @Override
     public IUnit create() {
         Fighter fighter = new Fighter(maxHitPoints,movementRange,initialLocation,name);
-        if(owner!=null){
+        if(owner!=null) {
             owner.receiveUnit(fighter);
+            fighter.addListener(owner);
         }
         return fighter;
     }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import handlers.LoseGameHandler;
 import tactician.Tactician;
 import model.items.*;
 import model.map.*;
@@ -331,8 +330,12 @@ public class GameController {
    */
   public void equipItem(int index) {
     IUnit selected = currentPlayer.getSelectedUnit();
-    IEquipableItem item = selected.getItems().get(index);
-    selected.equipItem(item);
+    if(selected!=null) {
+      if (index < selected.getItems().size()) {
+        IEquipableItem item = selected.getItems().get(index);
+        selected.equipItem(item);
+      }
+    }
   }
 
   /**

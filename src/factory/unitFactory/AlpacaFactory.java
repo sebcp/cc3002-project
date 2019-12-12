@@ -17,6 +17,7 @@ public class AlpacaFactory implements UnitFactoryInterface {
         Alpaca alpaca = new Alpaca(maxHitPoints,movementRange,initialLocation,name);
         if(owner!=null){
             owner.receiveUnit(alpaca);
+            alpaca.addListener(owner);
         }
         return alpaca;
     }

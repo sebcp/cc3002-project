@@ -17,6 +17,7 @@ public class SwordMasterFactory implements UnitFactoryInterface {
         SwordMaster swordMaster = new SwordMaster(maxHitPoints,movementRange,initialLocation,name);
         if(owner!=null){
             owner.receiveUnit(swordMaster);
+            swordMaster.addListener(owner);
         }
         return swordMaster;
     }

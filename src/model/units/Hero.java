@@ -68,7 +68,7 @@ public class Hero extends AbstractUnit {
     }
   }
 
-  public void addListener(Tactician tactician){
+  public void addHeroListener(Tactician tactician){
     pcs.addPropertyChangeListener(new HeroDeathHandler(tactician));
   }
 

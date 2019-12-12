@@ -17,7 +17,7 @@ public class HeroFactory implements UnitFactoryInterface {
         Hero hero = new Hero(maxHitPoints,movementRange,initialLocation,name);
         if(owner!=null){
             owner.receiveUnit(hero);
-            hero.addListener(owner);
+            hero.addHeroListener(owner);
         }
         return hero;
     }

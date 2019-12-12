@@ -17,6 +17,8 @@ public class ClericFactory implements UnitFactoryInterface {
         Cleric cleric = new Cleric(maxHitPoints,movementRange,initialLocation,name);
         if(owner!=null){
             owner.receiveUnit(cleric);
+            cleric.addListener(owner);
+
         }
         return cleric;
     }

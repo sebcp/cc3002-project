@@ -17,6 +17,7 @@ public class SorcererFactory implements UnitFactoryInterface {
         Sorcerer sorcerer = new Sorcerer(maxHitPoints,movementRange,initialLocation,name);
         if(owner!=null){
             owner.receiveUnit(sorcerer);
+            sorcerer.addListener(owner);
         }
         return sorcerer;
     }
