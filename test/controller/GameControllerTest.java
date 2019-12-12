@@ -10,13 +10,11 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 import factory.itemFactory.AxeFactory;
-import factory.itemFactory.AxeFactoryTest;
 import factory.itemFactory.StaffFactory;
 import factory.unitFactory.AlpacaFactory;
 import factory.unitFactory.ClericFactory;
 import factory.unitFactory.FighterFactory;
-import factory.unitFactory.FighterFactoryTest;
-import model.Tactician;
+import tactician.Tactician;
 import model.items.Axe;
 import model.map.Field;
 import model.map.Location;

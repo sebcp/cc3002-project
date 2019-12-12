@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import model.Tactician;
+import handlers.LoseGameHandler;
+import tactician.Tactician;
 import model.items.*;
 import model.map.*;
 
@@ -83,7 +84,7 @@ public class GameController {
    *
    * @param mapSize the map's size (mapSize x mapSize)
    */
-  public void createMap(int mapSize) {
+  private void createMap(int mapSize) {
     for (int i = 0; i < mapSize; i++) {
       for (int j = 0; j < mapSize; j++) {
         map.addCells(false, new Location(i, j));
@@ -99,6 +100,7 @@ public class GameController {
   private void createPlayers(int numberOfPlayers) {
     for (int i = 0; i < numberOfPlayers; i++) {
       Tactician tactician = new Tactician("Player " + i);
+      tactician.addListener(this);
       addTactician(tactician);
     }
   }
@@ -185,13 +187,20 @@ public class GameController {
    * @param tactician the player to be removed
    */
   public void removeTactician(String tactician) {
+    Tactician current = null;
     int size = getTacticians().size();
-    for (int i = 0; i < size - 1; i++) {
-      Tactician current = getTacticians().get(i);
+    for (int i = 0; i < size; i++) {
+      current = getTacticians().get(i);
       String name = getTacticianName(i);
       if (name.equals(tactician)) {
-        getTacticians().remove(current);
+        break;
       }
+      else{
+        current = null;
+      }
+    }
+    if(current!=null){
+      getTacticians().remove(current);
     }
     for (int i = 0; i < turnsLeft; i++) {
       Tactician toCompare = turns.get(i);

@@ -1,6 +1,6 @@
 package factory.unitFactory;
 
-import model.Tactician;
+import tactician.Tactician;
 import model.units.Alpaca;
 import org.junit.jupiter.api.Test;
 

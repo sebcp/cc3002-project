@@ -1,7 +1,6 @@
 package factory.unitFactory;
 
-import model.Tactician;
-import model.items.Sword;
+import tactician.Tactician;
 import model.units.SwordMaster;
 import org.junit.jupiter.api.Test;
 

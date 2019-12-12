@@ -1,7 +1,9 @@
 package model.units;
 
+import handlers.HeroDeathHandler;
 import model.items.IEquipableItem;
 import model.map.Location;
+import tactician.Tactician;
 
 import java.beans.PropertyChangeSupport;
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.List;
  * @since 1.0
  */
 public class Hero extends AbstractUnit {
+  private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
   /**
    * Creates a new Unit.
@@ -41,6 +44,32 @@ public class Hero extends AbstractUnit {
     if(this.getItems().contains(item) && this.getIsAlive()) {
       item.equipToHero(this);
     }
+  }
+
+  @Override
+  public void receiveDamage(int damage) {
+    if (this.getIsAlive()) {
+      if(damage < 0) {
+        this.receiveHealing(Math.abs(damage));
+        return;
+      }
+      int damageDealt;
+      if (this.getCurrentHitPoints() - damage <= 0) {
+        damageDealt = this.getCurrentHitPoints();
+        setCurrentHitPoints(0);
+        setIsAlive(false);
+        pcs.firePropertyChange("isAlive", true, false);
+      }
+      else {
+        damageDealt = damage;
+        setCurrentHitPoints(this.getCurrentHitPoints() - damage);
+      }
+      System.out.println(this.getName() + " received " + damageDealt + " points of damage.");
+    }
+  }
+
+  public void addListener(Tactician tactician){
+    pcs.addPropertyChangeListener(new HeroDeathHandler(tactician));
   }
 
   @Override

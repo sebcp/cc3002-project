@@ -104,6 +104,7 @@ public abstract class AbstractUnit implements IUnit {
       if (this.currentHitPoints - damage <= 0) {
         damageDealt = this.getCurrentHitPoints();
         this.setCurrentHitPoints(0);
+        this.setIsAlive(false);
       }
       else {
         damageDealt = damage;

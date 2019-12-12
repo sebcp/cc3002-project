@@ -1,6 +1,6 @@
 package factory.unitFactory;
 
-import model.Tactician;
+import tactician.Tactician;
 import model.map.Location;
 import model.units.Hero;
 import model.units.IUnit;
@@ -17,6 +17,7 @@ public class HeroFactory implements UnitFactoryInterface {
         Hero hero = new Hero(maxHitPoints,movementRange,initialLocation,name);
         if(owner!=null){
             owner.receiveUnit(hero);
+            hero.addListener(owner);
         }
         return hero;
     }

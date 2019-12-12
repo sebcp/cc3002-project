@@ -1,6 +1,6 @@
 package factory.unitFactory;
 
-import model.Tactician;
+import tactician.Tactician;
 import model.map.Location;
 import model.units.IUnit;
 import model.units.SwordMaster;

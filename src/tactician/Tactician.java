@@ -1,10 +1,12 @@
-package model;
+package tactician;
 
+import controller.GameController;
+import handlers.LoseGameHandler;
 import model.items.IEquipableItem;
 import model.map.Location;
-import model.units.Archer;
 import model.units.IUnit;
 
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +20,10 @@ import java.util.List;
  */
 public class Tactician {
     private List<IUnit> units = new ArrayList<>();
-    private List<IUnit> canAct = new ArrayList<>();
     private String name;
     private IUnit selectedUnit;
+    private boolean isHeroAlive = true;
+    private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     public Tactician(String name){
         this.name=name;
@@ -99,6 +102,15 @@ public class Tactician {
             IUnit unit = this.getUnits().get(i);
             unit.resetAction();
         }
+    }
+
+    public void loseGame(){
+        isHeroAlive = false;
+        pcs.firePropertyChange("isHeroAlive",true,false);
+    }
+
+    public void addListener(GameController controller){
+        pcs.addPropertyChangeListener(new LoseGameHandler(controller,this));
     }
 
     @Override
