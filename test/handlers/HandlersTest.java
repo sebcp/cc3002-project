@@ -90,4 +90,30 @@ public class HandlersTest {
         assertEquals(1,first.getUnits().size());
         assertEquals(fighter,first.getUnits().get(0));
     }
+
+    @Test
+    public void BorderUnitDeathHandlerTest(){
+        Tactician first = controller.getTurnOwner();
+        heroFactory.setTactician(controller.getTurnOwner());
+        heroFactory.setLocation(map.getCell(0,1));
+        Hero hero = (Hero) heroFactory.create();
+        spearFactory.setOwner(hero);
+        spearFactory.setPower(100);
+        spearFactory.create();
+        controller.selectUnitIn(0,1);
+        controller.equipItem(0);
+        controller.endTurn();
+
+        fighterFactory.setTactician(controller.getTurnOwner());
+        fighterFactory.setLocation(map.getCell(0,0));
+        Fighter fighter = (Fighter) fighterFactory.create();
+        axeFactory.setOwner(fighter);
+        axeFactory.setPower(10);
+        axeFactory.create();
+        controller.selectUnitIn(0,0);
+        controller.equipItem(0);
+        controller.useItemOn(0,1);
+        assertEquals(1,controller.getWinners().size());
+        assertEquals(first.getName(),controller.getWinners().get(0));
+    }
 }
